@@ -1,25 +1,23 @@
 package com.editor;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
 import com.games.leveleditor.LevelEditor;
+import com.shellGDX.GameInstance;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-public class MainWindow
+public class MainWindow extends JFrame
 {
-  private JFrame frame;
-  private LwjglCanvas canvas;
-
   /**
    * Launch the application.
    */
@@ -29,59 +27,32 @@ public class MainWindow
     {
       public void run()
       {
-        try
-        {
-          MainWindow window = new MainWindow();
-          window.frame.setVisible(true);
-        }
-        catch (Exception e)
-        {
-          e.printStackTrace();
-        }
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.title = "";
+        config.useGL30 = false;
+        config.width = 800;
+        config.height = 480;
+        config.fullscreen = false;
+        config.vSyncEnabled = false;
+        config.foregroundFPS = 0;
+
+        new MainWindow(new LevelEditor(), config);
       }
     });
   }
+
+  private static final long serialVersionUID = 1L;
+  private LwjglCanvas       canvas;
 
   /**
    * Create the application.
    */
-  public MainWindow()
+  public MainWindow(GameInstance listener, LwjglApplicationConfiguration config)
   {
-    initialize();
-  }
-
-  /**
-   * Initialize the contents of the frame.
-   */
-  private void initialize()
-  {
-    frame = new JFrame(java.util.Locale.getDefault().toString().compareTo("ru_RU") == 0 ? "Редактор уровней" : "Level editor");
-    frame.setBounds(100, 100, 881, 539);
-    frame.addWindowListener(new WindowAdapter() {
-      
-      @Override
-      public void windowClosing(WindowEvent e) {
-        canvas.stop();
-        canvas.getApplicationListener().dispose();
-        System.exit(0);
-      }
-    });
-    
-    LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-    config.title = "";
-    config.useGL30 = false;
-    config.width = 800;
-    config.height = 480;
-    config.fullscreen = false;
-    config.vSyncEnabled = false;
-    config.foregroundFPS = 0;
-    
-    Container container = frame.getContentPane();
-    canvas = new LwjglCanvas(new LevelEditor(), config);
-    container.add(canvas.getCanvas(), BorderLayout.CENTER);
+    super(config.title);
     
     JMenuBar menuBar = new JMenuBar();
-    frame.setJMenuBar(menuBar);
+    setJMenuBar(menuBar);
     
     JMenu mnFile = new JMenu("File");
     menuBar.add(mnFile);
@@ -95,7 +66,7 @@ public class MainWindow
     JMenuItem mntmSave = new JMenuItem("Save");
     mnFile.add(mntmSave);
     
-    JMenuItem mntmSaveAs = new JMenuItem("Save as ...");
+    JMenuItem mntmSaveAs = new JMenuItem("Save as...");
     mnFile.add(mntmSaveAs);
     
     JMenuItem mntmExit = new JMenuItem("Exit");
@@ -103,14 +74,123 @@ public class MainWindow
     
     JMenu mnEdit = new JMenu("Edit");
     menuBar.add(mnEdit);
-    
-    JMenuItem mntmCopy = new JMenuItem("Copy");
-    mnEdit.add(mntmCopy);
-    
-    JMenuItem mntmCut = new JMenuItem("Cut");
-    mnEdit.add(mntmCut);
-    
-    JMenuItem mntmPaste = new JMenuItem("Paste");
-    mnEdit.add(mntmPaste);
+
+    construct(listener, config);
+    setBounds(100, 100, config.width, config.height);
+  }
+
+  private void construct(final GameInstance listener, LwjglApplicationConfiguration config)
+  {
+    canvas = new LwjglCanvas(listener, config)
+    {
+      protected void stopped()
+      {
+        MainWindow.this.dispose();
+      }
+
+      protected void setTitle(String title)
+      {
+        MainWindow.this.setTitle(title);
+      }
+
+      protected void setDisplayMode(int width, int height)
+      {
+        MainWindow.this.getContentPane().setPreferredSize(new Dimension(width, height));
+        MainWindow.this.getContentPane().invalidate();
+        MainWindow.this.pack();
+        MainWindow.this.setLocationRelativeTo(null);
+        updateSize(width, height);
+      }
+
+      protected void resize(int width, int height)
+      {
+        updateSize(width, height);
+      }
+
+      protected void start()
+      {
+        MainWindow.this.start();
+      }
+
+      protected void exception(Throwable t)
+      {
+        MainWindow.this.exception(t);
+      }
+
+      protected int getFrameRate()
+      {
+        int frameRate = MainWindow.this.getFrameRate();
+        return frameRate == 0 ? super.getFrameRate() : frameRate;
+      }
+    };
+
+    Runtime.getRuntime().addShutdownHook(new Thread()
+    {
+      public void run()
+      {
+        Runtime.getRuntime().halt(0); // Because fuck you, deadlock causing
+                                      // Swing shutdown hooks.
+      }
+    });
+
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    getContentPane().setPreferredSize(new Dimension(config.width, config.height));
+
+    Point location = getLocation();
+    if (location.x == 0 && location.y == 0)
+      setLocationRelativeTo(null);
+    canvas.getCanvas().setSize(getSize());
+
+    // Finish with invokeLater so any LwjglFrame super constructor has a chance
+    // to initialize.
+    EventQueue.invokeLater(new Runnable()
+    {
+      public void run()
+      {
+        addCanvas();
+        setVisible(true);
+        canvas.getCanvas().requestFocus();
+      }
+    });
+  }
+
+  protected int getFrameRate()
+  {
+    return 0;
+  }
+
+  protected void exception(Throwable ex)
+  {
+    ex.printStackTrace();
+    canvas.stop();
+  }
+
+  protected void addCanvas()
+  {
+    getContentPane().add(canvas.getCanvas());
+  }
+
+  /**
+   * Called after {@link ApplicationListener} create and resize, but before the
+   * game loop iteration.
+   */
+  protected void start()
+  {
+  }
+
+  /** Called when the canvas size changes. */
+  public void updateSize(int width, int height)
+  {
+  }
+
+  public LwjglCanvas getCanvas()
+  {
+    return canvas;
+  }
+  
+  @Override
+  public void dispose()
+  {
+    super.dispose();
   }
 }
