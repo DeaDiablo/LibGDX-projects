@@ -1,0 +1,2702 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="city" Visible="true">
+    <Layers>
+        <Layer Name="0" Visible="true">
+            <Items>
+                <Item xsi:type="TextureItem" Name="Texture_0015" Visible="true">
+                    <Position>
+                        <X>-576</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0017" Visible="true">
+                    <Position>
+                        <X>-320</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0018" Visible="true">
+                    <Position>
+                        <X>-64</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0019" Visible="true">
+                    <Position>
+                        <X>192</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0020" Visible="true">
+                    <Position>
+                        <X>448</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0021" Visible="true">
+                    <Position>
+                        <X>704</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0022" Visible="true">
+                    <Position>
+                        <X>704</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0023" Visible="true">
+                    <Position>
+                        <X>448</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0024" Visible="true">
+                    <Position>
+                        <X>192</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0025" Visible="true">
+                    <Position>
+                        <X>-64</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0026" Visible="true">
+                    <Position>
+                        <X>-320</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0027" Visible="true">
+                    <Position>
+                        <X>-576</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0028" Visible="true">
+                    <Position>
+                        <X>-576</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0029" Visible="true">
+                    <Position>
+                        <X>-320</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0031" Visible="true">
+                    <Position>
+                        <X>-64</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0032" Visible="true">
+                    <Position>
+                        <X>192</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0033" Visible="true">
+                    <Position>
+                        <X>448</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0034" Visible="true">
+                    <Position>
+                        <X>704</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0035" Visible="true">
+                    <Position>
+                        <X>-576</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0036" Visible="true">
+                    <Position>
+                        <X>-320</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0037" Visible="true">
+                    <Position>
+                        <X>-64</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0038" Visible="true">
+                    <Position>
+                        <X>192</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0039" Visible="true">
+                    <Position>
+                        <X>448</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0040" Visible="true">
+                    <Position>
+                        <X>704</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 316.jpg</texture_filename>
+                    <asset_name>image 316</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0048" Visible="true">
+                    <Position>
+                        <X>-832</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0049" Visible="true">
+                    <Position>
+                        <X>-832</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0050" Visible="true">
+                    <Position>
+                        <X>-832</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0051" Visible="true">
+                    <Position>
+                        <X>-832</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0052" Visible="true">
+                    <Position>
+                        <X>-832</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0053" Visible="true">
+                    <Position>
+                        <X>-576</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0054" Visible="true">
+                    <Position>
+                        <X>-320</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0055" Visible="true">
+                    <Position>
+                        <X>-64</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0056" Visible="true">
+                    <Position>
+                        <X>192</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0057" Visible="true">
+                    <Position>
+                        <X>448</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0058" Visible="true">
+                    <Position>
+                        <X>704</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0059" Visible="true">
+                    <Position>
+                        <X>960</X>
+                        <Y>-576</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0060" Visible="true">
+                    <Position>
+                        <X>960</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0061" Visible="true">
+                    <Position>
+                        <X>960</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0062" Visible="true">
+                    <Position>
+                        <X>960</X>
+                        <Y>192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0063" Visible="true">
+                    <Position>
+                        <X>960</X>
+                        <Y>448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0065" Visible="true">
+                    <Position>
+                        <X>960</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0067" Visible="true">
+                    <Position>
+                        <X>704</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0068" Visible="true">
+                    <Position>
+                        <X>448</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0069" Visible="true">
+                    <Position>
+                        <X>192</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0070" Visible="true">
+                    <Position>
+                        <X>-64</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0071" Visible="true">
+                    <Position>
+                        <X>-320</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0072" Visible="true">
+                    <Position>
+                        <X>-576</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0073" Visible="true">
+                    <Position>
+                        <X>-832</X>
+                        <Y>704</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 293.jpg</texture_filename>
+                    <asset_name>image 293</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0074" Visible="true">
+                    <Position>
+                        <X>449</X>
+                        <Y>-383</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 130.png</texture_filename>
+                    <asset_name>image 130</asset_name>
+                    <Origin>
+                        <X>81</X>
+                        <Y>81</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0075" Visible="true">
+                    <Position>
+                        <X>647</X>
+                        <Y>455</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0076" Visible="true">
+                    <Position>
+                        <X>-608</X>
+                        <Y>-171</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0077" Visible="true">
+                    <Position>
+                        <X>-524</X>
+                        <Y>-232</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0078" Visible="true">
+                    <Position>
+                        <X>-539</X>
+                        <Y>-201</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0079" Visible="true">
+                    <Position>
+                        <X>-582</X>
+                        <Y>-216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0080" Visible="true">
+                    <Position>
+                        <X>-622</X>
+                        <Y>-206</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0081" Visible="true">
+                    <Position>
+                        <X>-567</X>
+                        <Y>-238</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0082" Visible="true">
+                    <Position>
+                        <X>-637</X>
+                        <Y>-239</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0083" Visible="true">
+                    <Position>
+                        <X>-602</X>
+                        <Y>-186</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0084" Visible="true">
+                    <Position>
+                        <X>-571</X>
+                        <Y>-174</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0085" Visible="true">
+                    <Position>
+                        <X>-549</X>
+                        <Y>-192</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0086" Visible="true">
+                    <Position>
+                        <X>-609</X>
+                        <Y>-237</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0087" Visible="true">
+                    <Position>
+                        <X>-296</X>
+                        <Y>-316</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0088" Visible="true">
+                    <Position>
+                        <X>-352</X>
+                        <Y>-242</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0089" Visible="true">
+                    <Position>
+                        <X>-281</X>
+                        <Y>-299</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 162.png</texture_filename>
+                    <asset_name>image 162</asset_name>
+                    <Origin>
+                        <X>26</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0090" Visible="true">
+                    <Position>
+                        <X>-340</X>
+                        <Y>-266</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 140.png</texture_filename>
+                    <asset_name>image 140</asset_name>
+                    <Origin>
+                        <X>106</X>
+                        <Y>106</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0091" Visible="true">
+                    <Position>
+                        <X>-628</X>
+                        <Y>217</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 140.png</texture_filename>
+                    <asset_name>image 140</asset_name>
+                    <Origin>
+                        <X>106</X>
+                        <Y>106</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0094" Visible="true">
+                    <Position>
+                        <X>556</X>
+                        <Y>510</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 152.png</texture_filename>
+                    <asset_name>image 152</asset_name>
+                    <Origin>
+                        <X>106</X>
+                        <Y>104</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0095" Visible="true">
+                    <Position>
+                        <X>-423</X>
+                        <Y>-64</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 123.png</texture_filename>
+                    <asset_name>image 123</asset_name>
+                    <Origin>
+                        <X>80</X>
+                        <Y>80</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0096" Visible="true">
+                    <Position>
+                        <X>255</X>
+                        <Y>-303</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 1724 (dumpster.png).png</texture_filename>
+                    <asset_name>image 1724 (dumpster.png)</asset_name>
+                    <Origin>
+                        <X>58</X>
+                        <Y>81</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0097" Visible="true">
+                    <Position>
+                        <X>-531</X>
+                        <Y>398</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 389.png</texture_filename>
+                    <asset_name>image 389</asset_name>
+                    <Origin>
+                        <X>87</X>
+                        <Y>87</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0098" Visible="true">
+                    <Position>
+                        <X>-646</X>
+                        <Y>477</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 48.png</texture_filename>
+                    <asset_name>image 48</asset_name>
+                    <Origin>
+                        <X>29</X>
+                        <Y>20</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0099" Visible="true">
+                    <Position>
+                        <X>769</X>
+                        <Y>479</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 54.png</texture_filename>
+                    <asset_name>image 54</asset_name>
+                    <Origin>
+                        <X>40</X>
+                        <Y>20</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0100" Visible="true">
+                    <Position>
+                        <X>-69</X>
+                        <Y>-393</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 56.png</texture_filename>
+                    <asset_name>image 56</asset_name>
+                    <Origin>
+                        <X>76</X>
+                        <Y>26</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0101" Visible="true">
+                    <Position>
+                        <X>-504</X>
+                        <Y>27</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 46.png</texture_filename>
+                    <asset_name>image 46</asset_name>
+                    <Origin>
+                        <X>66</X>
+                        <Y>13</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0102" Visible="true">
+                    <Position>
+                        <X>504</X>
+                        <Y>322</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 92.png</texture_filename>
+                    <asset_name>image 92</asset_name>
+                    <Origin>
+                        <X>40</X>
+                        <Y>40</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0103" Visible="true">
+                    <Position>
+                        <X>-739</X>
+                        <Y>-403</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 1742 (car5.png).png</texture_filename>
+                    <asset_name>image 1742 (car5.png)</asset_name>
+                    <Origin>
+                        <X>106</X>
+                        <Y>211</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0104" Visible="true">
+                    <Position>
+                        <X>-796</X>
+                        <Y>410</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 1744 (car3.png).png</texture_filename>
+                    <asset_name>image 1744 (car3.png)</asset_name>
+                    <Origin>
+                        <X>49</X>
+                        <Y>100</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0117" Visible="true">
+                    <Position>
+                        <X>285</X>
+                        <Y>-52</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0118" Visible="true">
+                    <Position>
+                        <X>284</X>
+                        <Y>122</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>3.14159274</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0119" Visible="true">
+                    <Position>
+                        <X>172</X>
+                        <Y>35</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>-1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0120" Visible="true">
+                    <Position>
+                        <X>397</X>
+                        <Y>35</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0121" Visible="true">
+                    <Position>
+                        <X>284</X>
+                        <Y>32</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 44.png</texture_filename>
+                    <asset_name>image 44</asset_name>
+                    <Origin>
+                        <X>13</X>
+                        <Y>13</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0123" Visible="true">
+                    <Position>
+                        <X>172</X>
+                        <Y>35</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>-1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0124" Visible="true">
+                    <Position>
+                        <X>397</X>
+                        <Y>35</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0125" Visible="true">
+                    <Position>
+                        <X>285</X>
+                        <Y>-52</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0126" Visible="true">
+                    <Position>
+                        <X>-205</X>
+                        <Y>-166</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>-1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0127" Visible="true">
+                    <Position>
+                        <X>284</X>
+                        <Y>122</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>3.14159274</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0128" Visible="true">
+                    <Position>
+                        <X>397</X>
+                        <Y>35</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0129" Visible="true">
+                    <Position>
+                        <X>285</X>
+                        <Y>-52</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0130" Visible="true">
+                    <Position>
+                        <X>285</X>
+                        <Y>-52</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0131" Visible="true">
+                    <Position>
+                        <X>-93</X>
+                        <Y>-253</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0132" Visible="true">
+                    <Position>
+                        <X>-94</X>
+                        <Y>-78</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>3.14159274</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0134" Visible="true">
+                    <Position>
+                        <X>-784</X>
+                        <Y>833</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0135" Visible="true">
+                    <Position>
+                        <X>397</X>
+                        <Y>35</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0136" Visible="true">
+                    <Position>
+                        <X>15</X>
+                        <Y>-166</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>1.57079637</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>window.png</texture_filename>
+                    <asset_name>window</asset_name>
+                    <Origin>
+                        <X>100</X>
+                        <Y>12.5</Y>
+                    </Origin>
+                </Item>
+            </Items>
+            <ScrollSpeed>
+                <X>1</X>
+                <Y>1</Y>
+            </ScrollSpeed>
+        </Layer>
+        <Layer Name="100" Visible="true">
+            <Items>
+                <Item xsi:type="TextureItem" Name="Texture_0122" Visible="true">
+                    <Position>
+                        <X>294</X>
+                        <Y>24</Y>
+                    </Position>
+                    <CustomProperties>
+                        <Property Name="Parallax" Type="Vector2" Description="">
+                            <Vector2>
+                                <X>310</X>
+                                <Y>175</Y>
+                            </Vector2>
+                        </Property>
+                    </CustomProperties>
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>2.38589668</X>
+                        <Y>2.38589668</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 103.png</texture_filename>
+                    <asset_name>image 103</asset_name>
+                    <Origin>
+                        <X>70</X>
+                        <Y>70</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0133" Visible="true">
+                    <Position>
+                        <X>-85</X>
+                        <Y>-178</Y>
+                    </Position>
+                    <CustomProperties>
+                        <Property Name="Parallax" Type="Vector2" Description="">
+                            <Vector2>
+                                <X>310</X>
+                                <Y>175</Y>
+                            </Vector2>
+                        </Property>
+                    </CustomProperties>
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>2.372932</X>
+                        <Y>2.372932</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 103.png</texture_filename>
+                    <asset_name>image 103</asset_name>
+                    <Origin>
+                        <X>70</X>
+                        <Y>70</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0137" Visible="true">
+                    <Position>
+                        <X>-640</X>
+                        <Y>832</Y>
+                    </Position>
+                    <CustomProperties>
+                        <Property Name="Parallax" Type="Vector2" Description="">
+                            <Vector2>
+                                <X>310</X>
+                                <Y>175</Y>
+                            </Vector2>
+                        </Property>
+                    </CustomProperties>
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>2.68032742</X>
+                        <Y>2.68032742</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>image 103.png</texture_filename>
+                    <asset_name>image 103</asset_name>
+                    <Origin>
+                        <X>70</X>
+                        <Y>70</Y>
+                    </Origin>
+                </Item>
+            </Items>
+            <ScrollSpeed>
+                <X>1E+18</X>
+                <Y>1E+20</Y>
+            </ScrollSpeed>
+        </Layer>
+    </Layers>
+    <CustomProperties>
+        <Property Name="assetRoot" Type="string" Description="data/sprites/test">
+            <string>data/sprites/test</string>
+        </Property>
+    </CustomProperties>
+    <EditorRelated>
+        <NextItemNumber>137</NextItemNumber>
+        <ContentRootFolder>C:\Users\Deadiablo\Desktop\left of dead\sprites</ContentRootFolder>
+        <CameraPosition>
+            <X>0</X>
+            <Y>0</Y>
+        </CameraPosition>
+        <Version>1.3.0.0</Version>
+    </EditorRelated>
+</Level>
