@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.games.leveleditor.controller.AddCommand;
 import com.games.leveleditor.controller.Command;
 import com.games.leveleditor.controller.CommandController;
@@ -16,6 +17,9 @@ import com.games.leveleditor.controller.ScaleCommand;
 import com.games.leveleditor.controller.TranslateCommand;
 import com.games.leveleditor.model.EditModel;
 import com.games.leveleditor.model.Layer;
+import com.games.leveleditor.model.PanelLayers;
+import com.games.leveleditor.model.PanelMain;
+import com.games.leveleditor.model.PanelProperties;
 import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model2D.Scene2D;
 import com.shellGDX.screen.GameScreen;
@@ -24,10 +28,14 @@ public class MainScreen extends GameScreen implements InputProcessor
 {
   //scenes
   private Scene2D mainScene = null;
+  private Scene2D guiScene = null;
   
   private Vector<EditModel> copyModels = new Vector<EditModel>();
-  private Vector<Layer> layers = new Vector<Layer>();
   private Layer selectLayer = null;
+  
+  private PanelMain       main       = null;
+  private PanelProperties properties = null;
+  private PanelLayers     layers     = null;
   
   public MainScreen()
   {
@@ -49,8 +57,8 @@ public class MainScreen extends GameScreen implements InputProcessor
     mainScene = new Scene2D(1920.0f, 1080.0f);
     
     Layer layer1 = new Layer("layer1");
-    layers.add(layer1);
-    selectLayer = layer1;
+    mainScene.addActor(layer1);
+    selectLayer = layer1;    
     
     EditModel wall = new EditModel(ResourceManager.instance.getTextureRegion("data/sprites/wall.png", 0, 0, 227, 37));
     wall.setPosition(mainScene.getWidth() * 0.5f, mainScene.getHeight() * 0.5f);
@@ -58,12 +66,31 @@ public class MainScreen extends GameScreen implements InputProcessor
     layer1.addModel(wall);
     mainScene.addActor(layer1);
     
+    guiScene = new Scene2D(1920.0f, 1080.0f);
+    
+    Skin skin = ResourceManager.instance.getSkin("data/skin/uiskin.json");
+    
+    //properties
+    main = new PanelMain("editor", skin);
+    main.setPosition(0, guiScene.getHeight() - main.getHeight());
+    guiScene.addActor(main);
+    
+    properties = new PanelProperties("properties", skin); 
+    properties.setPosition(0, main.getY() - properties.getHeight());  
+    guiScene.addActor(properties);
+    
+    layers = new PanelLayers("layers", skin);
+    layers.setPosition(0, properties.getY() - layers.getHeight());  
+    guiScene.addActor(layers);
+    
     contoller.addScene2D(mainScene);
+    contoller.addScene2D(guiScene);
     contoller.addProcessor(this);
   }
 
   protected boolean ctrlPress = false;
   protected boolean shiftPress = false;
+  protected boolean shiftPress2 = false;
 
   @Override
   public boolean keyDown(int keycode)
@@ -285,10 +312,14 @@ public class MainScreen extends GameScreen implements InputProcessor
         if (model.getBound().contains(touch) && (!firstSelect || ctrlPress))
         {
           model.setSelection(!model.isSelected());
+          properties.setEditModels(selectLayer.getSelectedModels());
           firstSelect = true;
         }
         else if (!ctrlPress)
+        {
           model.setSelection(false);
+          properties.setEditModels(selectLayer.getSelectedModels());
+        }
       }
     }
 
@@ -298,6 +329,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     scale = false;
     move = false;
     command = null;
+    properties.updateProperties();
 
     return true;
   }

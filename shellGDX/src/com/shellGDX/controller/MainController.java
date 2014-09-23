@@ -124,14 +124,12 @@ public class MainController extends InputMultiplexer
   {
     for (Scene2D scene : scenes2D)
     {
-      if (scene.getResize())
-        scene.setViewport(width, height); 
+      scene.setViewport(width, height); 
     }
     
     for (Scene3D scene : scenes3D)
     {
-      if (scene.getResize())
-        scene.setViewport(width, height);
+      scene.setViewport(width, height);
     }
  
     if (LightWorld2D.instance != null)

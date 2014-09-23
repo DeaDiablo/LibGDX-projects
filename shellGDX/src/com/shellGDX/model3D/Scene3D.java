@@ -23,7 +23,6 @@ public class Scene3D extends InputAdapter implements Disposable
   private float             width, height;
   private final ModelBatch  modelBatch;
   private Environment       environment;
-  protected boolean         resize = false;
 
   private PerspectiveCamera camera;
 
@@ -44,7 +43,6 @@ public class Scene3D extends InputAdapter implements Disposable
   public Scene3D()
   {
     this(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
-    resize = true;
   }
 
   /**
@@ -56,7 +54,6 @@ public class Scene3D extends InputAdapter implements Disposable
   public Scene3D(float width, float height)
   {
     this(width, height, false);
-    resize = false;
   }
 
   public Scene3D(float width, float height, boolean keepAspectRatio)
@@ -75,7 +72,6 @@ public class Scene3D extends InputAdapter implements Disposable
     environment.add(new DirectionalLight().set(0.8f, 0f, 0f, -1f, -0.8f, -0.2f));
 
     setViewport(width, height, keepAspectRatio);
-    resize = false;
   }
 
   public Scene3D(float width, float height, PerspectiveCamera camera)
@@ -86,7 +82,6 @@ public class Scene3D extends InputAdapter implements Disposable
     root.setScene(this);
     modelBatch = new ModelBatch();
     this.camera = camera;
-    resize = false;
   }
 
   public Scene3D(float width, float height, PerspectiveCamera camera, Environment environment)
@@ -98,7 +93,6 @@ public class Scene3D extends InputAdapter implements Disposable
     modelBatch = new ModelBatch();
     this.camera = camera;
     this.environment = environment;
-    resize = false;
   }
 
   public void setViewport(float width, float height)
@@ -194,16 +188,6 @@ public class Scene3D extends InputAdapter implements Disposable
     modelBatch.begin(camera);
     root.draw(modelBatch, environment, root.shader);
     modelBatch.end();
-  }
-
-  public void setResize(boolean resize)
-  {
-    this.resize = resize;
-  }
-
-  public boolean getResize()
-  {
-    return resize;
   }
 
   /** Calls {@link #act(float)} with {@link Graphics#getDeltaTime()}. */

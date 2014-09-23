@@ -98,10 +98,11 @@ public class GameInstance extends Game
     return gameActions.get(name);
   }
   
-  public void activeGameAction(String name)
+  public boolean activeGameAction(String name)
   {
     GameAction ga = gameActions.get(name);
     if (ga != null)
-      ga.action();
+      return ga.action();
+    return false;
   }
 }

@@ -11,8 +11,8 @@ public class Main
     LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
     config.title = java.util.Locale.getDefault().toString().compareTo("ru_RU") == 0 ? "Редактор уровней" : "Level editor";
     config.useGL30 = false;
-    config.width = 800;
-    config.height = 480;
+    config.width = 1440;
+    config.height = 810;
     config.fullscreen = false;
     config.vSyncEnabled = false;
     config.foregroundFPS = 0;

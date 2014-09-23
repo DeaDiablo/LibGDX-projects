@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
@@ -15,11 +16,14 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.shellGDX.GameLog;
 import com.shellGDX.utils.gleed.Level;
 import com.shellGDX.utils.gleed.LevelLoader;
@@ -56,8 +60,8 @@ public class ResourceManager extends AssetManager
   protected void loadFolder(File directory)
   {
     File[] files = directory.listFiles();
-                    
-    for(int i = 0; i < files.length; i++)           
+
+    for(int i = 0; i < files.length; i++)
     {
       File file = files[i];
       if (file.isDirectory())
@@ -132,6 +136,17 @@ public class ResourceManager extends AssetManager
   {
     return get(fileName, Texture.class);
   }
+  
+  public void loadTextureAtlas(String fileName)
+  {
+    load(fileName, TextureAtlas.class);
+  }
+  
+  public TextureAtlas getTextureAtlas(String fileName)
+  {
+    return get(fileName, TextureAtlas.class);
+  }
+
 
   public TextureRegion getTextureRegion(String fileName)
   {
@@ -176,6 +191,28 @@ public class ResourceManager extends AssetManager
   public Model getModel(String fileName)
   {
     return get(fileName, Model.class);
+  }
+  
+  public void loadSkin(String fileNameJSON, String fileNameAtlas)
+  {
+    loadSkin(fileNameJSON, fileNameAtlas, null);
+  }
+  
+  public void loadSkin(String fileNameJSON, String fileNameAtlas, ObjectMap<String, Object> objects)
+  {
+    load(fileNameAtlas, TextureAtlas.class);
+
+    int index = fileNameAtlas.lastIndexOf("/");    
+    if (index != -1)
+      fileNameAtlas = fileNameAtlas.substring(index + 1);
+
+    SkinParameter param = new SkinParameter(fileNameAtlas, objects);
+    load(fileNameJSON, Skin.class, param);
+  }
+  
+  public Skin getSkin(String fileNameJSON)
+  {
+    return get(fileNameJSON, Skin.class);
   }
   
   final Array<String> particleFiles = new Array<String>();

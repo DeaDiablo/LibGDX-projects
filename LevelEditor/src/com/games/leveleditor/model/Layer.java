@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.shellGDX.model2D.Group2D;
 
 public class Layer extends Group2D
-{  
+{
   private Vector<EditModel> models = new Vector<EditModel>();
   private String name = "";
   

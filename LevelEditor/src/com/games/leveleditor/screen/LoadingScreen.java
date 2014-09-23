@@ -1,6 +1,7 @@
 package com.games.leveleditor.screen;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.games.leveleditor.LevelEditor;
 import com.shellGDX.manager.FontManager;
 import com.shellGDX.manager.FontStruct;
@@ -20,11 +21,16 @@ public class LoadingScreen extends GameScreen
   @Override
   public void show()
   {
-    FontStruct font = FontManager.instance.loadFont("data/fonts/arial.ttf", 50);
+    FontStruct font = FontManager.instance.loadFont("data/fonts/calibriz.ttf", 50);
+    FontStruct skinFont = FontManager.instance.loadFont("data/fonts/calibriz.ttf", 20);
     ResourceManager.instance.finishLoading();
     
     ResourceManager.instance.loadTexture("data/sprites/editor.png");
     ResourceManager.instance.loadTexture("data/sprites/wall.png");
+    
+    ObjectMap<String, Object> objects = new ObjectMap<String, Object>();
+    objects.put("default-font", skinFont.bitmapFont);
+    ResourceManager.instance.loadSkin("data/skin/uiskin.json", "data/skin/uiskin.atlas", objects);
     
     Scene2D scene = new Scene2D(1920.0f, 1080.0f);
     setClearColor(0.96f, 0.94f, 0.92f, 1);
