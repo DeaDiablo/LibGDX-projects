@@ -20,6 +20,12 @@ public class RotateCommand extends Command
   protected Vector<ActorRotation> arVec = new Vector<ActorRotation>();
   protected float angle = 0;
   protected boolean delta = false;
+  
+  public void addActors(Vector<Actor> actors)
+  {
+    for (Actor actor : actors)
+      addActor(actor);
+  }
 
   public void addActor(Actor actor)
   {

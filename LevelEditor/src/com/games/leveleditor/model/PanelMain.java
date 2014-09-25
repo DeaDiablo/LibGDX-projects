@@ -9,26 +9,25 @@ public class PanelMain extends Panel
   public TextButton  openButton = null;
   public TextButton  saveButton = null;
   public TextButton  saveAsButton = null;
+  public TextButton  exitButton = null;
   
   public PanelMain(String title, Skin skin)
   {
     super(title, skin);
-    setSize(1000, 1000);
-    defaults().spaceBottom(10);
-    defaults().space(10);
     
     //visible
     newButton = new TextButton("new", skin);
     openButton = new TextButton("open", skin);
     saveButton = new TextButton("save", skin);
     saveAsButton = new TextButton("save as...", skin);
+    exitButton = new TextButton("exit", skin);
     
     add(newButton);
     add(openButton);
     add(saveButton);
     add(saveAsButton);
-    
-    pack();
-    setWidth(450);
+    add(exitButton);
+
+    setSize(450, 80);
   }
 }

@@ -2,28 +2,31 @@ package com.games.leveleditor.model;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
-public class PanelLayers extends Panel
+public class PanelLayers extends PanelScroll
 {
+  public Tree        tree        = null;
   public TextButton  addButton    = null;
   public TextButton  removeButton = null;
   
   public PanelLayers(String title, Skin skin)
   {
     super(title, skin);
-    setSize(1000, 1000);
-    defaults().spaceBottom(10);
-    defaults().space(10);
+    content.align(Align.bottom);
     
-    //visible
+    tree = new Tree(skin);
+    content.add(tree).fill().expand();
+
+    content.row();
+
     addButton = new TextButton("add", skin);
     removeButton = new TextButton("remove", skin);
-    add(addButton);
-    add(removeButton);
-
-    row();
     
-    pack();
-    setWidth(450);
+    content.add(addButton);
+    content.add(removeButton);
+    
+    setSize(450, 350);
   }
 }

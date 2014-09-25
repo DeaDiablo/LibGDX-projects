@@ -32,14 +32,15 @@ public class EditModel extends ModelObject2D
   
   protected boolean select = false;
   
-  public EditModel(TextureRegion region)
+  public EditModel(String name, TextureRegion region)
   {
-    super(region);
+    this(name, region, 0, 0);
   }
   
-  public EditModel(TextureRegion region, float x, float y)
+  public EditModel(String name, TextureRegion region, float x, float y)
   {
     super(region, x, y);
+    setName(name);
   }
   
   public void setSelection(boolean select)
@@ -98,7 +99,8 @@ public class EditModel extends ModelObject2D
 
   public EditModel copy()
   {
-    EditModel newModel = new EditModel(region, getX(), getY());
+    EditModel newModel = new EditModel(getName(), region, getX(), getY());
+    newModel.setVisible(isVisible());
     newModel.setRotation(getRotation());
     newModel.setScale(getScaleX(), getScaleY());
     newModel.setAlign(getHorzAlign(), getVertAlign());

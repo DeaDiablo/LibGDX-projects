@@ -20,6 +20,12 @@ public class ScaleCommand extends Command
   protected Vector<ActorScale> asVec = new Vector<ActorScale>();
   protected float x = 0, y = 0;
   protected boolean delta = false;
+  
+  public void addActors(Vector<Actor> actors)
+  {
+    for (Actor actor : actors)
+      addActor(actor);
+  }
 
   public void addActor(Actor actor)
   {

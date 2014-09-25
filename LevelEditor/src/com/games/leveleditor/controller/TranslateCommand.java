@@ -20,6 +20,12 @@ public class TranslateCommand extends Command
   protected Vector<ActorPosition> apVec = new Vector<ActorPosition>();
   protected float x = 0, y = 0;
   protected boolean delta = false;
+  
+  public void addActors(Vector<Actor> actors)
+  {
+    for (Actor actor : actors)
+      addActor(actor);
+  }
 
   public void addActor(Actor actor)
   {

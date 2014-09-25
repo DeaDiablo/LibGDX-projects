@@ -22,11 +22,10 @@ public class LoadingScreen extends GameScreen
   public void show()
   {
     FontStruct font = FontManager.instance.loadFont("data/fonts/calibriz.ttf", 50);
-    FontStruct skinFont = FontManager.instance.loadFont("data/fonts/calibriz.ttf", 20);
+    FontStruct skinFont = FontManager.instance.loadFont("data/fonts/calibriz.ttf", 22);
     ResourceManager.instance.finishLoading();
     
-    ResourceManager.instance.loadTexture("data/sprites/editor.png");
-    ResourceManager.instance.loadTexture("data/sprites/wall.png");
+    ResourceManager.instance.loadFolder("data");
     
     ObjectMap<String, Object> objects = new ObjectMap<String, Object>();
     objects.put("default-font", skinFont.bitmapFont);
@@ -34,7 +33,7 @@ public class LoadingScreen extends GameScreen
     
     Scene2D scene = new Scene2D(1920.0f, 1080.0f);
     setClearColor(0.96f, 0.94f, 0.92f, 1);
-    scene.addActor(new Text(LanguagesManager.instance.getString("Loading"), font, new Color(0, 0, 0, 1), scene.getWidth() * 0.5f, scene.getHeight() * 0.5f));
+    scene.addActor(new Text(LanguagesManager.instance.getString("Loading"), font, Color.BLACK, scene.getWidth() * 0.5f, scene.getHeight() * 0.5f));
     contoller.addScene2D(scene);
   }
 

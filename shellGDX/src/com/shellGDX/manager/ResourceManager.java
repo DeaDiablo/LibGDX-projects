@@ -78,7 +78,8 @@ public class ResourceManager extends AssetManager
         if (pointPosition > 0)
         {
           String extension = path.substring(pointPosition);
-          if (extension.compareToIgnoreCase(".png") == 0)
+          if (extension.compareToIgnoreCase(".png") == 0 ||
+              extension.compareToIgnoreCase(".jpg") == 0)
           {
             loadTexture(path);
           }

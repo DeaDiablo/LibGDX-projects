@@ -15,17 +15,17 @@ public class DelCommand extends Command
   protected Layer layer = null;
   protected Vector<EditModel> newModels = new Vector<EditModel>();
   
-  public void SetLayer(Layer layer)
+  public void setLayer(Layer layer)
   {
     this.layer = layer;
   }
   
-  public void AddModel(EditModel model)
+  public void addModel(EditModel model)
   {
     newModels.add(model);
   }
   
-  public void AddModels(Vector<EditModel> models)
+  public void addModels(Vector<EditModel> models)
   {
     newModels.addAll(models);
   }
