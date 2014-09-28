@@ -138,9 +138,9 @@ public class PanelGraphics extends PanelScroll
           }
           
           clearActiveButton();
-
-          activeButton = button;
+          
           screen.setAddModel(name);
+          activeButton = button;
         }
       }
     });

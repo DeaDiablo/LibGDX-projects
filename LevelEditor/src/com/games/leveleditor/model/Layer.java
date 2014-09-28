@@ -9,22 +9,16 @@ import com.shellGDX.model2D.Group2D;
 public class Layer extends Group2D
 {
   private Vector<EditModel> models = new Vector<EditModel>();
-  private String name = "";
   
   public Layer(String name)
   {
     super();
-    this.name = name;
-  }
-  
-  public String getName()
-  {
-    return name;
+    setName(name);
   }
   
   public void saveLayer(Element elementLayer)
   {
-    elementLayer.setAttribute("name", name);
+    elementLayer.setAttribute("name", getName());
     for(int i = 0; i < models.size(); i++)
     {
       EditModel model = models.get(i);

@@ -70,6 +70,12 @@ public class PanelProperties extends Panel
         if (editModels == null || c == 0)
           return;
         
+        if (c == '\r')
+        {
+          getStage().unfocusAll();
+          return;
+        }
+        
         GroupCommand groupCommand = new GroupCommand();
 
         for (EditModel model : editModels)

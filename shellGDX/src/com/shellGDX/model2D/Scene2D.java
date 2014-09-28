@@ -120,8 +120,15 @@ public class Scene2D extends Stage
   }
 
   @Override
-  public Group getRoot() {
+  public Group getRoot()
+  {
     return root;
+  }
+  
+  @Override
+  public Array<Actor> getActors ()
+  {
+    return root.getChildren();
   }
 
   public void setViewport(int width, int height)

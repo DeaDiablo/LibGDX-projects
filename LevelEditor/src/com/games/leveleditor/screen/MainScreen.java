@@ -37,7 +37,6 @@ public class MainScreen extends GameScreen implements InputProcessor
   
   private EditModel         addModel   = null;
   private Vector<EditModel> copyModels = new Vector<EditModel>();
-  private Layer             selectLayer = null;
   
   private PanelMain       main       = null;
   private PanelProperties properties = null;
@@ -50,7 +49,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     @Override
     public void update()
     {
-      properties.setEditModels(selectLayer.getSelectedModels());
+      properties.setEditModels(layers.selectLayer.getSelectedModels());
       tree.panelUpdater.update();
     }
   };
@@ -76,7 +75,6 @@ public class MainScreen extends GameScreen implements InputProcessor
     
     Layer layer = new Layer("layer");
     mainScene.addActor(layer);
-    selectLayer = layer;
     
     guiScene = new Scene2D(1920.0f, 1080.0f);
     
@@ -99,8 +97,8 @@ public class MainScreen extends GameScreen implements InputProcessor
     guiScene.addActor(tree);
     
     //layers
-    layers = new PanelLayers("layers", skin);
-    layers.setPosition(0, 0);  
+    layers = new PanelLayers("layers", skin, mainScene);
+    layers.setPosition(0, 0);
     guiScene.addActor(layers);
     
     //graphics
@@ -150,7 +148,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     clearAddModel();
     properties.setEditModels(null);
     
-    Vector<EditModel> models = selectLayer.getModels();
+    Vector<EditModel> models = layers.selectLayer.getModels();
     for(int i = 0; i < models.size(); i++)
       models.get(i).setSelection(false);
   }
@@ -185,11 +183,11 @@ public class MainScreen extends GameScreen implements InputProcessor
         break;
       case Input.Keys.DEL:
       case Input.Keys.FORWARD_DEL:
-        if (selectLayer != null)
+        if (layers.selectLayer != null)
         {
           DelCommand command = new DelCommand();
-          command.setLayer(selectLayer);
-          command.addModels(selectLayer.getSelectedModels());
+          command.setLayer(layers.selectLayer);
+          command.addModels(layers.selectLayer.getSelectedModels());
           command.addUpdater(selectionUpdater);
           CommandController.instance.addCommand(command);
         }
@@ -198,20 +196,20 @@ public class MainScreen extends GameScreen implements InputProcessor
         EditModel.setHideMode(!EditModel.getHideMode());
         break;
       case Input.Keys.V:
-        if (ctrlPress && selectLayer != null)
+        if (ctrlPress && layers.selectLayer != null)
         {
           AddCommand command = new AddCommand();
-          command.setLayer(selectLayer);
+          command.setLayer(layers.selectLayer);
           command.addModels(copyModels);
           command.addUpdater(tree.panelUpdater);
           CommandController.instance.addCommand(command);
         }
         break;
       case Input.Keys.C:
-        if (ctrlPress && selectLayer != null)
+        if (ctrlPress && layers.selectLayer != null)
         {
           copyModels.clear();
-          Vector<EditModel> selectedModels = selectLayer.getSelectedModels();
+          Vector<EditModel> selectedModels = layers.selectLayer.getSelectedModels();
           for(int i = 0; i < selectedModels.size(); i++)
           {
             copyModels.add(selectedModels.get(i).copy());
@@ -219,20 +217,30 @@ public class MainScreen extends GameScreen implements InputProcessor
         }
         break;
       case Input.Keys.X:
-        if (ctrlPress && selectLayer != null)
+        if (ctrlPress && layers.selectLayer != null)
         {
           copyModels.clear();
-          Vector<EditModel> selectedModels = selectLayer.getSelectedModels();
+          Vector<EditModel> selectedModels = layers.selectLayer.getSelectedModels();
           for(int i = 0; i < selectedModels.size(); i++)
           {
             copyModels.add(selectedModels.get(i).copy());
           }
 
           DelCommand command = new DelCommand();
-          command.setLayer(selectLayer);
+          command.setLayer(layers.selectLayer);
           command.addModels(selectedModels);
           command.addUpdater(selectionUpdater);
           CommandController.instance.addCommand(command);
+        }
+        break;
+      case Input.Keys.A:
+        if (ctrlPress)
+        {
+          Vector<EditModel> models = layers.selectLayer.getModels();
+          for(int i = 0; i < models.size(); i++)
+          {
+            models.get(i).setSelection(true);
+          }
         }
         break;
       case Input.Keys.CONTROL_LEFT:
@@ -274,7 +282,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     touch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
     newTouch.set(touch);
     
-    Vector<EditModel> selected = selectLayer.getSelectedModels();
+    Vector<EditModel> selected = layers.selectLayer.getSelectedModels();
     for(int i = 0; i < selected.size(); i++)
     {
       EditModel model = selected.get(i);
@@ -368,7 +376,7 @@ public class MainScreen extends GameScreen implements InputProcessor
           
           AddCommand command = new AddCommand();
           command.addModel(newModel);
-          command.setLayer(selectLayer);
+          command.setLayer(layers.selectLayer);
           command.addUpdater(tree.panelUpdater);
           CommandController.instance.addCommand(command);
           break;
@@ -404,7 +412,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     if (delta.len() < minDelta)
     {
       boolean firstSelect = false;
-      Vector<EditModel> models = selectLayer.getModels();
+      Vector<EditModel> models = layers.selectLayer.getModels();
       for(int i = models.size() - 1; i >= 0; i--)
       {
         EditModel model = models.get(i);
@@ -442,7 +450,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       delta.set(newTouch);
       newTouch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
       delta.sub(newTouch);
-      Vector<EditModel> models = selectLayer.getSelectedModels();
+      Vector<EditModel> models = layers.selectLayer.getSelectedModels();
       for(int i = 0; i < models.size(); i++)
       {
         EditModel model = models.get(i);
@@ -476,7 +484,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     {
       delta.set(newTouch);
       newTouch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
-      Vector<EditModel> models = selectLayer.getSelectedModels();
+      Vector<EditModel> models = layers.selectLayer.getSelectedModels();
       for(int i = 0; i < models.size(); i++)
       {
         EditModel model = models.get(i);
@@ -529,7 +537,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       delta.set(newTouch);
       newTouch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
       delta.sub(newTouch);
-      Vector<EditModel> models = selectLayer.getSelectedModels();
+      Vector<EditModel> models = layers.selectLayer.getSelectedModels();
       for(int i = 0; i < models.size(); i++)
       {
         EditModel model = models.get(i);
@@ -582,7 +590,6 @@ public class MainScreen extends GameScreen implements InputProcessor
   @Override
   public boolean scrolled(int amount)
   {
-    // TODO Auto-generated method stub
     return false;
   }
 }

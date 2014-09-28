@@ -22,7 +22,6 @@ public class PanelScroll extends Panel
     content = new Table(skin);
     content.defaults().spaceBottom(10);
     content.defaults().space(10);
-    add(content).fill();
 
     scroll = new ScrollPane(content, skin);
     add(scroll).expand().fill();
