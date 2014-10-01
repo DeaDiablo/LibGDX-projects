@@ -34,6 +34,10 @@ public class UndoRedoProcessor extends InputAdapter
         if (ctrlPress)
           CommandController.instance.undo();
         return true;
+      case Input.Keys.CONTROL_LEFT:
+      case Input.Keys.CONTROL_RIGHT:
+        ctrlPress = false;
+        break;
     }
     return false;
   }

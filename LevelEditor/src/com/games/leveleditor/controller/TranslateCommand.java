@@ -1,8 +1,7 @@
 package com.games.leveleditor.controller;
 
-import java.util.Vector;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 
 public class TranslateCommand extends Command
 {
@@ -17,11 +16,11 @@ public class TranslateCommand extends Command
     super();
   }
   
-  protected Vector<ActorPosition> apVec = new Vector<ActorPosition>();
+  protected Array<ActorPosition> apVec = new Array<ActorPosition>();
   protected float x = 0, y = 0;
   protected boolean delta = false;
   
-  public void addActors(Vector<Actor> actors)
+  public void addActors(Array<Actor> actors)
   {
     for (Actor actor : actors)
       addActor(actor);
@@ -53,7 +52,7 @@ public class TranslateCommand extends Command
   @Override
   public boolean execute()
   {
-    if (apVec.isEmpty())
+    if (apVec.size <= 0)
       return false;
     
     if (!delta)

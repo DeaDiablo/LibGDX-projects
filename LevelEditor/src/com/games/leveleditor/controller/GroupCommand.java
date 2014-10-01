@@ -1,15 +1,20 @@
 package com.games.leveleditor.controller;
 
-import java.util.Vector;
+import com.badlogic.gdx.utils.Array;
 
 public class GroupCommand extends Command
 {
-  private Vector<Command> commands = new Vector<Command>();
-  private Vector<Command> buffer = new Vector<Command>();
+  private Array<Command> commands = new Array<Command>();
+  private Array<Command> buffer = new Array<Command>();
 
   public void addCommand(Command command)
   {
     commands.add(command);
+  }
+  
+  public Array<Command> getCommands()
+  {
+    return commands;
   }
   
   @Override
@@ -19,19 +24,20 @@ public class GroupCommand extends Command
     for(Command command : buffer)
     {
       if (!command.execute())
-        commands.remove(command);
+        commands.removeValue(command, true);
       command.update();
     }
 
     buffer.clear();
-    return !commands.isEmpty();
+    return commands.size > 0;
   }
 
   @Override
   public void unExecute()
   {
-    for(Command command : commands)
+    for(int i = commands.size - 1; i >= 0; --i)
     {
+      Command command = commands.get(i);
       command.unExecute();
       command.update();
     }

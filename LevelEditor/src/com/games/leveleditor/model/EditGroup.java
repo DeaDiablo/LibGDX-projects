@@ -3,59 +3,59 @@ package com.games.leveleditor.model;
 import java.io.IOException;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.FileTextureData;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.shellGDX.manager.ResourceManager;
-import com.shellGDX.model2D.ModelObject2D;
+import com.shellGDX.model2D.Group2D;
 
-public class EditModel extends ModelObject2D implements SelectObject
+public class EditGroup extends Group2D implements SelectObject
 {
   protected BoundingBox bb = null;
   
-  public EditModel()
+  public EditGroup()
   {
-    this("", null);
+    this("");
   }
   
-  public EditModel(String name, TextureRegion region)
+  public EditGroup(String name)
   {
-    this(name, region, 0, 0);
+    this(name, 0, 0);
   }
   
-  public EditModel(String name, TextureRegion region, float x, float y)
+  public EditGroup(String name, float x, float y)
   {
-    super(region, x, y);
+    super(x, y);
     setName(name);
     bb = new BoundingBox(getBound());
   }
 
-  public EditModel copy()
+  public EditGroup copy()
   {
-    EditModel newModel = new EditModel(getName(), region, getX(), getY());
+    EditGroup newModel = new EditGroup(getName(), getX(), getY());
     newModel.setVisible(isVisible());
     newModel.setRotation(getRotation());
     newModel.setScale(getScaleX(), getScaleY());
-    newModel.setAlign(getHorzAlign(), getVertAlign());
+    
+    for(Actor actor : getChildren())
+    {
+      if (actor instanceof EditGroup)
+      {
+        newModel.addActor(((EditGroup)actor).copy());
+      }
+      else if (actor instanceof EditModel)
+      {
+        newModel.addActor(((EditModel)actor).copy());
+      }
+    }
+    
     return newModel;
   }
-  
+
   @Override
   public void load(Element element) throws IOException
   {
     setName(element.get("name"));
     setVisible(element.getBoolean("visible"));
-    
-    {
-      Element texture = element.getChildByName("texture");
-      String file = texture.get("file");
-      int x = texture.getInt("x");
-      int y = texture.getInt("y");
-      int width = texture.getInt("width");
-      int height = texture.getInt("height");
-      setTextureRegion(ResourceManager.instance.getTextureRegion(file, x, y, width, height));
-    }
     
     {
       Element position = element.getChildByName("position");
@@ -71,33 +71,42 @@ public class EditModel extends ModelObject2D implements SelectObject
       setScaleY(scale.getFloat("y"));
     }
     
-    setAlign(element.getInt("horzAlign"), element.getInt("vertAlign"));
+    Element children = element.getChildByName("children");
+    for(int i = 0; i < children.getChildCount(); i++)
+    {
+      Element child = children.getChild(i);
+      if (child.getName().compareToIgnoreCase("model") == 0)
+      {
+        EditModel model = new EditModel();
+        model.load(child);
+        addActor(model);
+        continue;
+      }
+      
+      if (child.getName().compareToIgnoreCase("group") == 0)
+      {
+        EditGroup group = new EditGroup();
+        group.load(child);
+        addActor(group);
+        continue;
+      }
+    }
   }
-  
+
   @Override
   public void save(XmlWriter xml) throws IOException
   {
-    xml.element("model");
+    xml.element("group");
     xml.element("name", getName());
     xml.element("visible", isVisible());
-    
-    {
-      xml.element("texture");
-      xml.element("file", ((FileTextureData)getTextureRegion().getTexture().getTextureData()).getFileHandle().path());
-      xml.element("x", getTextureRegion().getRegionX());
-      xml.element("y", getTextureRegion().getRegionY());
-      xml.element("width", getTextureRegion().getRegionWidth());
-      xml.element("height", getTextureRegion().getRegionHeight());
-      xml.pop();
-    }
-    
+
     {
       xml.element("position");
       xml.element("x", getX());
       xml.element("y", getY());
       xml.pop();
     }
-    
+
     xml.element("rotation", getRotation());
     
     {
@@ -107,8 +116,16 @@ public class EditModel extends ModelObject2D implements SelectObject
       xml.pop();
     }
     
-    xml.element("horzAlign", getHorzAlign());
-    xml.element("vertAlign", getVertAlign());
+    xml.element("children");
+    for(Actor model : getChildren())
+    {      
+      if (model instanceof SelectObject)
+      {
+        ((SelectObject)model).save(xml);
+      }
+    }
+    xml.pop();
+    
     xml.pop();
   }
 
@@ -119,13 +136,13 @@ public class EditModel extends ModelObject2D implements SelectObject
   }
 
   protected boolean select = false;
-  
+
   @Override
   public void setSelection(boolean select)
   {
     this.select = select;
   }
-  
+
   @Override
   public boolean isSelected()
   {
@@ -137,7 +154,8 @@ public class EditModel extends ModelObject2D implements SelectObject
   {
     if (!select)
       return;
-    
+
+    updateBound();
     bb.draw(batch, parentAlpha);
   }
 }

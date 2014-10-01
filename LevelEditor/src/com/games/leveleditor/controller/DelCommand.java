@@ -1,9 +1,8 @@
 package com.games.leveleditor.controller;
 
-import java.util.Vector;
-
-import com.games.leveleditor.model.EditModel;
-import com.games.leveleditor.model.Layer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.utils.Array;
 
 public class DelCommand extends Command
 {
@@ -12,20 +11,20 @@ public class DelCommand extends Command
     super();
   }
   
-  protected Layer layer = null;
-  protected Vector<EditModel> newModels = new Vector<EditModel>();
+  protected Group group = null;
+  protected Array<Actor> newModels = new Array<Actor>();
   
-  public void setLayer(Layer layer)
+  public void setGroup(Group group)
   {
-    this.layer = layer;
+    this.group = group;
   }
   
-  public void addModel(EditModel model)
+  public void addModel(Actor model)
   {
     newModels.add(model);
   }
   
-  public void addModels(Vector<EditModel> models)
+  public void addModels(Array<Actor> models)
   {
     newModels.addAll(models);
   }
@@ -33,11 +32,11 @@ public class DelCommand extends Command
   @Override
   public boolean execute()
   {
-    if (layer == null || newModels.isEmpty())
+    if (group == null || newModels.size <= 0)
       return false;
     
-    for(EditModel model : newModels)
-      layer.removeModel(model);
+    for(Actor model : newModels)
+      model.remove();
     
     return true;
   }
@@ -45,7 +44,7 @@ public class DelCommand extends Command
   @Override
   public void unExecute()
   {
-    for(EditModel model : newModels)
-      layer.addModel(model);
+    for(Actor model : newModels)
+      group.addActor(model);
   }
 }

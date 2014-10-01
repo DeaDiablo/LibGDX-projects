@@ -1,8 +1,7 @@
 package com.games.leveleditor.controller;
 
-import java.util.Vector;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 
 public class VisibleCommand extends Command
 {
@@ -17,11 +16,11 @@ public class VisibleCommand extends Command
     super();
   }
   
-  protected Vector<ActorVisible> avVec = new Vector<ActorVisible>();
+  protected Array<ActorVisible> avVec = new Array<ActorVisible>();
   protected boolean visible = false;
   protected boolean delta = false;
   
-  public void addActors(Vector<Actor> actors)
+  public void addActors(Array<Actor> actors)
   {
     for (Actor actor : actors)
       addActor(actor);
@@ -43,7 +42,7 @@ public class VisibleCommand extends Command
   @Override
   public boolean execute()
   {
-    if (avVec.isEmpty())
+    if (avVec.size <= 0)
       return false;
 
     for(ActorVisible av : avVec)

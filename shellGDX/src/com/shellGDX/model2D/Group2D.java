@@ -40,14 +40,26 @@ public class Group2D extends Group
     setScale(scaleX, scaleY);
   }
   
+  //position
   public void setPosition(Vector2 position)
   {
     setPosition(position.x, position.y);
   }
 
+  public Vector2 getPosition()
+  {
+    return new Vector2(getX(), getY());
+  }
+  
+  //scale
   public void setScale(Vector2 scale)
   {
     setScale(scale.x, scale.y);
+  }
+
+  public Vector2 getScale()
+  {
+    return new Vector2(getScaleX(), getScaleY());
   }
   
   public Vector2 screenToLocalCoordinates(float screenX, float screenY)
@@ -68,34 +80,48 @@ public class Group2D extends Group
   {
     return this.zIndex;
   }
+  
+  protected Rectangle bound = new Rectangle(0, 0, 0, 0);
 
   public Rectangle getBound()
   {
-    Rectangle bound = new Rectangle(0, 0, 0, 0);
+    return getBound(true);
+  }
+  
+  public Rectangle getBound(boolean update)
+  {
+    if (update)
+      updateBound();
+    return bound;
+  }
+  
+  protected void updateBound()
+  {
+    bound.set(0, 0, 0, 0);
     
     SnapshotArray<Actor> children = getChildren();
     if (children.size <= 0)
-      return bound;
+      return;
+
+    bound.set(getBoundChild(children.get(0)));
     
     Actor[] actors = children.begin();
-    for (int i = 0, n = children.size; i < n; i++)
+    for (int i = 1, n = children.size; i < n; i++)
     {
-      Actor child = actors[i];
-      if (child instanceof Group2D)
-      {
-        Group2D group = (Group2D) child;
-        bound.merge(group.getBound());
-      }
-      
-      if (child instanceof ModelObject2D)
-      {
-        ModelObject2D model = (ModelObject2D) child;
-        bound.merge(model.getBound());
-      }
+      bound.merge(getBoundChild(actors[i]));
     }
     children.end();
-
-    return bound;
+  }
+  
+  protected Rectangle getBoundChild(Actor child)
+  {
+    if (child instanceof Group2D)
+      return ((Group2D)child).getBound();
+    
+    if (child instanceof ModelObject2D)
+      return ((ModelObject2D)child).getBound();
+    
+    return new Rectangle(0, 0, 0, 0);
   }
   
   @Override

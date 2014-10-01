@@ -126,7 +126,7 @@ public class Scene2D extends Stage
   }
   
   @Override
-  public Array<Actor> getActors ()
+  public Array<Actor> getActors()
   {
     return root.getChildren();
   }
@@ -134,5 +134,12 @@ public class Scene2D extends Stage
   public void setViewport(int width, int height)
   {
     getViewport().update(width, height);
+  }
+  
+  @Override
+  public void clear()
+  {
+    unfocusAll();
+    root.clear();
   }
 }

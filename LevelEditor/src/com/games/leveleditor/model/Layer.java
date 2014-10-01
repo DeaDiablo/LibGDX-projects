@@ -1,60 +1,92 @@
 package com.games.leveleditor.model;
 
-import java.util.Vector;
+import java.io.IOException;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.badlogic.gdx.utils.XmlWriter;
 import com.shellGDX.model2D.Group2D;
 
 public class Layer extends Group2D
 {
-  private Vector<EditModel> models = new Vector<EditModel>();
+  protected Group currentGroup = null;
+  
+  public Layer()
+  {
+    this("");
+  }
   
   public Layer(String name)
   {
     super();
     setName(name);
+    currentGroup = this;
   }
-  
-  public void saveLayer(Element elementLayer)
+
+  public void load(Element element) throws IOException
   {
-    elementLayer.setAttribute("name", getName());
-    for(int i = 0; i < models.size(); i++)
+    setName(element.get("name"));
+    setVisible(element.getBoolean("visible"));
+    
+    Element children = element.getChildByName("children");
+    for(int i = 0; i < children.getChildCount(); i++)
     {
-      EditModel model = models.get(i);
+      Element child = children.getChild(i);
+      if (child.getName().compareToIgnoreCase("model") == 0)
+      {
+        EditModel model = new EditModel();
+        model.load(child);
+        addActor(model);
+        continue;
+      }
       
-      Element elementModel = new Element("Model", elementLayer);
-      model.saveModel(elementModel);
-      elementLayer.addChild(elementModel);
+      if (child.getName().compareToIgnoreCase("group") == 0)
+      {
+        EditGroup group = new EditGroup();
+        group.load(child);
+        addActor(group);
+        continue;
+      }
     }
   }
   
-  public void addModel(EditModel model)
+  public void save(XmlWriter xml) throws IOException
   {
-    models.add(model);
-    addActor(model);
+    xml.element("layer");
+    xml.element("name", getName());
+    xml.element("visible", isVisible());
+
+    xml.element("children");
+    for(Actor model : getChildren())
+    {      
+      if (model instanceof SelectObject)
+      {
+        ((SelectObject)model).save(xml);
+      }
+    }
+    xml.pop();
+
+    xml.pop();
   }
-  
-  public void removeModel(EditModel model)
+
+  public Array<Actor> getSelectedModels()
   {
-    models.remove(model);
-    removeActor(model);
-  }
-  
-  public Vector<EditModel> getModels()
-  {
-    return models;
-  }
-  
-  public Vector<EditModel> getSelectedModels()
-  {
-    Vector<EditModel> selectModels = new Vector<EditModel>();
-    for(int i = 0; i < models.size(); i++)
+    Array<Actor> selectModels = new Array<Actor>();
+
+    SnapshotArray<Actor> children = currentGroup.getChildren();
+    Actor[] actors = children.begin();
+    for (int i = 0, n = children.size; i < n; i++)
     {
-      EditModel model = models.get(i);
-      if (model.isSelected())
+      Actor model = actors[i];
+      if (((SelectObject)model).isSelected())
         selectModels.add(model);
     }
+    children.end();
+    
     return selectModels;
   }
   
@@ -62,11 +94,27 @@ public class Layer extends Group2D
   public void draw(Batch batch, float parentAlpha)
   {
     super.draw(batch, parentAlpha);
-    for(int i = 0; i < models.size(); i++)
+
+    SnapshotArray<Actor> children = currentGroup.getChildren();
+    Actor[] actors = children.begin();
+    for(int i = 0; i < actors.length; i++)
     {
-      EditModel model = models.get(i);
-      if (model.isSelected())
-        model.drawSelect(batch, parentAlpha);
+      Actor model = actors[i];
+      if (model instanceof SelectObject)
+      {
+        ((SelectObject)model).drawBound(batch, parentAlpha);
+      }
     }
+    children.end();
+  }
+  
+  public Group getCurrentGroup()
+  {
+    return currentGroup;
+  }
+
+  public void setCurrentGroup(Group group)
+  {
+    currentGroup = group;
   }
 }

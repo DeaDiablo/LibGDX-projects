@@ -20,6 +20,8 @@ import com.games.leveleditor.controller.AddLayerCommand;
 import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.DelLayerCommand;
 import com.games.leveleditor.controller.Updater;
+import com.games.leveleditor.screen.MainScreen;
+import com.shellGDX.GameInstance;
 import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model2D.Scene2D;
 
@@ -30,6 +32,8 @@ public class PanelLayers extends PanelScroll
   
   protected TextButton addButton    = null;
   protected TextButton removeButton = null;
+  protected TextButton upButton = null;
+  protected TextButton downButton = null;
 
   protected Skin skin = null;
   protected Scene2D scene = null;
@@ -69,6 +73,7 @@ public class PanelLayers extends PanelScroll
       {
         Node node = tree.getSelection().getLastSelected();
         selectLayer = (Layer)node.getObject();
+        ((MainScreen)GameInstance.game.getScreen()).getTree().setGroup(selectLayer);
       }
     });
     
@@ -79,8 +84,12 @@ public class PanelLayers extends PanelScroll
     content.row();
 
     Table buttons = new Table(skin);
-    buttons.defaults().spaceBottom(10);
+    buttons.defaults().spaceBottom(5);
     buttons.defaults().space(10);
+
+    Table layerButtons = new Table(skin);
+    layerButtons.defaults().spaceBottom(5);
+    layerButtons.defaults().space(10);
     
     addButton = new TextButton("add", skin);
     removeButton = new TextButton("remove", skin);
@@ -180,8 +189,38 @@ public class PanelLayers extends PanelScroll
       }
     });
     
-    buttons.add(addButton);
-    buttons.add(removeButton);
+    layerButtons.add(addButton);
+    layerButtons.add(removeButton);
+    buttons.add(layerButtons).space(100);
+
+    Table updownButtons = new Table(skin);
+    updownButtons.defaults().spaceBottom(5);
+    updownButtons.defaults().space(10);
+
+    upButton = new TextButton("up", skin);
+    upButton.addListener(new ClickListener()
+    {
+      @Override
+      public void clicked(InputEvent event, float x, float y)
+      {
+        ((MainScreen)GameInstance.game.getScreen()).UpDownLayer(-1);
+      }
+    });
+
+    downButton = new TextButton("down", skin);
+    downButton.addListener(new ClickListener()
+    {
+      @Override
+      public void clicked(InputEvent event, float x, float y)
+      {
+        ((MainScreen)GameInstance.game.getScreen()).UpDownLayer(1);
+      }
+    });
+    
+    
+    updownButtons.add(upButton);
+    updownButtons.add(downButton);
+    buttons.add(updownButtons);
     
     row();
     add(buttons);
@@ -195,7 +234,10 @@ public class PanelLayers extends PanelScroll
     for(Actor actor : scene.getActors())
     {
       if (actor instanceof Layer)
-        addLayer((Layer)actor);
+      {
+        Layer layer = (Layer)actor;
+        addLayer(layer);
+      }
     }
   }
 
@@ -238,7 +280,7 @@ public class PanelLayers extends PanelScroll
     
     Node node = new Node(item);
     node.setObject(layer);
-    
+
     if (index < 0)
       tree.add(node);
     else

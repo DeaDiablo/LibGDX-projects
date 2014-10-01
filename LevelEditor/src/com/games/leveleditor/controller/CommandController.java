@@ -1,14 +1,14 @@
 package com.games.leveleditor.controller;
 
-import java.util.Vector;
+import com.badlogic.gdx.utils.Array;
 
 public enum CommandController
 {
   instance;
 
   private final int stackSize = 100;
-  private Vector<Command> undoStack = new Vector<Command>();
-  private Vector<Command> redoStack = new Vector<Command>();
+  private Array<Command> undoStack = new Array<Command>();
+  private Array<Command> redoStack = new Array<Command>();
   
   public void addCommand(Command command)
   {
@@ -20,8 +20,8 @@ public enum CommandController
     if (!command.execute())
       return;
     
-    if (undoStack.size() >= stackSize)
-      undoStack.remove(0);
+    if (undoStack.size >= stackSize)
+      undoStack.removeIndex(0);
     undoStack.add(command);
     redoStack.clear();
 
@@ -31,11 +31,11 @@ public enum CommandController
   
   public void undo()
   {
-    if (undoStack.isEmpty())
+    if (undoStack.size <= 0)
       return;
     
-    Command command = undoStack.get(undoStack.size() - 1);
-    undoStack.remove(command);
+    Command command = undoStack.get(undoStack.size - 1);
+    undoStack.removeValue(command, true);
     redoStack.add(command);
     command.unExecute();
     command.update();
@@ -43,13 +43,19 @@ public enum CommandController
   
   public void redo()
   {
-    if (redoStack.isEmpty())
+    if (redoStack.size <= 0)
       return;
     
-    Command command = redoStack.get(redoStack.size() - 1);
-    redoStack.remove(command);
+    Command command = redoStack.get(redoStack.size - 1);
+    redoStack.removeValue(command, true);
     undoStack.add(command);
     command.execute();
     command.update();
+  }
+
+  public void clear()
+  {
+    undoStack.clear();
+    redoStack.clear();
   }
 }
