@@ -1,11 +1,13 @@
 package com.shellGDX.model2D;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
@@ -82,20 +84,25 @@ public class Group2D extends Group
   }
   
   protected Rectangle bound = new Rectangle(0, 0, 0, 0);
+  
+  @Override
+  public float getWidth()
+  {
+    return bound.width;
+  }
+  
+  @Override
+  public float getHeight()
+  {
+    return bound.height;
+  }
 
   public Rectangle getBound()
   {
-    return getBound(true);
-  }
-  
-  public Rectangle getBound(boolean update)
-  {
-    if (update)
-      updateBound();
     return bound;
   }
   
-  protected void updateBound()
+  public void updateBound()
   {
     bound.set(0, 0, 0, 0);
     
@@ -116,10 +123,16 @@ public class Group2D extends Group
   protected Rectangle getBoundChild(Actor child)
   {
     if (child instanceof Group2D)
+    {
+      ((Group2D)child).updateBound();
       return ((Group2D)child).getBound();
+    }
     
     if (child instanceof ModelObject2D)
+    {
+      ((ModelObject2D)child).updateBound();
       return ((ModelObject2D)child).getBound();
+    }
     
     return new Rectangle(0, 0, 0, 0);
   }
@@ -159,11 +172,35 @@ public class Group2D extends Group
     return isVisible();
   }
   
+  protected Scene2D scene = null;
+  
+  @Override
+  protected void setStage(Stage stage)
+  {
+    super.setStage(stage);
+    if (stage instanceof Scene2D)
+      scene = (Scene2D)stage;
+  }
+  
   @Override
   public void act(float delta)
   {
     if (update(delta))
       super.act(delta);
+  }
+  
+  @Override
+  public void draw(Batch batch, float parentAlpha)
+  {
+    if (scene == null)
+      return;
+
+    if (bound.width > 0.0f &&
+        bound.height > 0.0f &&
+        !scene.getCameraRectangle().overlaps(bound))
+      return;
+
+    super.draw(batch, parentAlpha);
   }
 
   //touch

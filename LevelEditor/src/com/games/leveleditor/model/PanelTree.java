@@ -75,9 +75,9 @@ public class PanelTree extends PanelScroll
             {
               GoInGroupCommand command = new GoInGroupCommand();
               if (object == null)
-                command.setGroup(group.getParent());
+                command.setGroup(group.getParent(), screen.getLayers().selectLayer.getCurrentGroup());
               else
-                command.setGroup((Group)object);
+                command.setGroup((Group)object, screen.getLayers().selectLayer.getCurrentGroup());
               command.addUpdater(panelUpdater);
               CommandController.instance.addCommand(command);
               return;

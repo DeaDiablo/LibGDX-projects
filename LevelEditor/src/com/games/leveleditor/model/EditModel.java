@@ -2,7 +2,6 @@ package com.games.leveleditor.model;
 
 import java.io.IOException;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FileTextureData;
 import com.badlogic.gdx.utils.XmlWriter;
@@ -133,11 +132,11 @@ public class EditModel extends ModelObject2D implements SelectObject
   }
 
   @Override
-  public void drawBound(Batch batch, float parentAlpha)
+  public void drawBound()
   {
     if (!select)
       return;
     
-    bb.draw(batch, parentAlpha);
+    bb.draw();
   }
 }

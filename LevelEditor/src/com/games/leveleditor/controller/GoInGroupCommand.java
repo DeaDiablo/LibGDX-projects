@@ -10,10 +10,10 @@ public class GoInGroupCommand extends Command
   protected Group         parent = null;
   protected MainScreen    screen  = null;
   
-  public void setGroup(Group group)
+  public void setGroup(Group group, Group prevGroup)
   {
     this.group = group;
-    parent = group.getParent();
+    parent = prevGroup;
     screen = (MainScreen)GameInstance.game.getScreen();
   }
 

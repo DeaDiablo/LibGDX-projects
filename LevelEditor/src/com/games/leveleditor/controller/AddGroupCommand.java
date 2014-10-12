@@ -73,7 +73,7 @@ public class AddGroupCommand extends Command
       group.addActor(child.model);
     }
 
-    parent.addActor(group);
+    parent.addActorAt(children.get(0).index, group);
     
     return true;
   }

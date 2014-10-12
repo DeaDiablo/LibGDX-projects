@@ -2,7 +2,6 @@ package com.games.leveleditor.model;
 
 import java.io.IOException;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -150,12 +149,11 @@ public class EditGroup extends Group2D implements SelectObject
   }
 
   @Override
-  public void drawBound(Batch batch, float parentAlpha)
+  public void drawBound()
   {
     if (!select)
       return;
 
-    updateBound();
-    bb.draw(batch, parentAlpha);
+    bb.draw();
   }
 }

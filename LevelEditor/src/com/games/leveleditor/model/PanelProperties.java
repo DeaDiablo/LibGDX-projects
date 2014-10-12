@@ -5,6 +5,7 @@ import java.util.Locale;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -76,12 +77,12 @@ public class PanelProperties extends Panel
       @Override
       public void keyTyped(TextField textField, char c)
       {
-        if (editActors == null || c == 0)
+        if (editActors == null || c == 0 || c == '\t')
           return;
         
-        if (c == '\r')
+        if (c == '\r' || c == '\n')
         {
-          getStage().unfocusAll();
+          getStage().setKeyboardFocus(null);
           return;
         }
         
@@ -156,9 +157,25 @@ public class PanelProperties extends Panel
       }
     };
     
+    InputListener tabListener = new InputListener()
+    {
+      @Override
+      public boolean keyUp(InputEvent event, int keycode)
+      {
+        if (event.getCharacter() == '\t')
+        {
+          Actor actor = event.getListenerActor();
+          if (actor instanceof TextField)
+            ((TextField)actor).selectAll();
+        }
+        return true;
+      }
+    };
+    
     // name
     name = new TextField("", skin);
     name.setTextFieldListener(listener);
+    name.addListener(tabListener);
     add(new Label("Name: ", skin));
     add(name);
 
@@ -193,9 +210,11 @@ public class PanelProperties extends Panel
     positionX = new TextField("", skin);
     positionX.setTextFieldListener(listener);
     positionX.setTextFieldFilter(filter);
+    positionX.addListener(tabListener);
     positionY = new TextField("", skin);
     positionY.setTextFieldListener(listener);
     positionY.setTextFieldFilter(filter);
+    positionY.addListener(tabListener);
     add(new Label("Position: ", skin));
     add(positionX);
     add(positionY);
@@ -206,6 +225,7 @@ public class PanelProperties extends Panel
     rotation = new TextField("", skin);
     rotation.setTextFieldListener(listener);
     rotation.setTextFieldFilter(filter);
+    rotation.addListener(tabListener);
     add(new Label("Angle: ", skin));
     add(rotation);
 
@@ -215,9 +235,11 @@ public class PanelProperties extends Panel
     scaleX = new TextField("", skin);
     scaleX.setTextFieldListener(listener);
     scaleX.setTextFieldFilter(filter);
+    scaleX.addListener(tabListener);
     scaleY = new TextField("", skin);
     scaleY.setTextFieldListener(listener);
     scaleY.setTextFieldFilter(filter);
+    scaleX.addListener(tabListener);
     add(new Label("Scale: ", skin));
     add(scaleX);
     add(scaleY);
@@ -330,7 +352,7 @@ public class PanelProperties extends Panel
     updateProperties = true;
 
     Actor model = editActors.get(0);
-    getStage().unfocusAll();
+    getStage().setKeyboardFocus(null);
     name.setText(model.getName());
     visible.setChecked(model.isVisible());
     positionX.setText(String.format(Locale.ENGLISH, "%.2f", model.getX()));

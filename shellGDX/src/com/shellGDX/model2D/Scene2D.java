@@ -100,6 +100,7 @@ public class Scene2D extends Stage
   public void act(float delta)
   {
     camera.update();
+    root.updateBound();
     super.act(delta);
     updateCameraRectangle();
   }

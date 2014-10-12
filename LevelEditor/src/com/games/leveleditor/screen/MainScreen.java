@@ -56,6 +56,8 @@ public class MainScreen extends GameScreen implements InputProcessor
   private final float height = 1080.0f;
   
   //scenes
+  private String fileName = "";
+
   private Scene2D mainScene = null;
   private Scene2D guiScene = null;
   
@@ -90,7 +92,23 @@ public class MainScreen extends GameScreen implements InputProcessor
   
   public MainScreen()
   {
+    this("");
+  }
+  
+  public MainScreen(String fileName)
+  {
     super();
+    this.fileName = fileName;
+  }
+  
+  public Scene2D getMainScene()
+  {
+    return mainScene;
+  }
+  
+  public Scene2D getGUIScene()
+  {
+    return guiScene;
   }
   
   public PanelMain getMain()
@@ -127,9 +145,8 @@ public class MainScreen extends GameScreen implements InputProcessor
     Gdx.input.setCatchBackKey(true);
     Gdx.input.setCatchMenuKey(true);
     setClearColor(0.25f, 0.25f, 0.25f, 1);
-    
+
     mainScene = new Scene2D(width, height);
-    
     Layer layer = new Layer("layer");
     mainScene.addActor(layer);
     
@@ -138,7 +155,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     Skin skin = ResourceManager.instance.getSkin("data/skin/uiskin.json");
    
     //main
-    main = new PanelMain("editor", skin);
+    main = new PanelMain(fileName, skin);
     main.setPosition(0, guiScene.getHeight() - main.getHeight());
     guiScene.addActor(main);
     
@@ -154,7 +171,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     guiScene.addActor(tree);
     
     //layers
-    layers = new PanelLayers("layers", skin, mainScene);
+    layers = new PanelLayers("layers", skin, mainScene, this);
     layers.setPosition(0, 0);
     guiScene.addActor(layers);
     
@@ -163,7 +180,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     graphics.setPosition(layers.getWidth(), 0);
     guiScene.addActor(graphics);
 
-    contoller.addProcessor(new UndoRedoProcessor());
+    contoller.addProcessor(new UndoRedoProcessor(this));
     contoller.addScene2D(mainScene);
     contoller.addScene2D(guiScene);
     contoller.addProcessor(this);
@@ -242,24 +259,35 @@ public class MainScreen extends GameScreen implements InputProcessor
         if (layers.selectLayer != null)
         {
           DelCommand command = new DelCommand();
-          command.setGroup(layers.selectLayer.getCurrentGroup());
           command.addModels(layers.selectLayer.getSelectedModels());
           command.addUpdater(propertiesUpdater);
           command.addUpdater(tree.panelUpdater);
           CommandController.instance.addCommand(command);
         }
         break;
-      case Input.Keys.N:
-        if (ctrlPress)
-          main.newFile();
+      case Input.Keys.LEFT:
+      case Input.Keys.RIGHT:
+        if (addModel != null)
+        {
+          float deltaAngle = ctrlPress ? 5.0f : 45.0f;
+          if (keycode == Input.Keys.RIGHT)
+            deltaAngle *= -1.0f;
+
+          addModel.rotateBy(deltaAngle);
+          if (!ctrlPress)
+            addModel.setRotation((float)Math.ceil(addModel.getRotation() / 45.0f) * 45.0f); 
+        }
         break;
-      case Input.Keys.O:
-        if (ctrlPress)
-          main.openFile();
-        break;
-      case Input.Keys.S:
-        if (ctrlPress)
-          main.saveFile(shiftPress);
+      case Input.Keys.UP:
+      case Input.Keys.DOWN:
+        if (addModel != null)
+        {
+          float deltaScale = ctrlPress ? 0.05f : 0.25f;
+          if (keycode == Input.Keys.DOWN)
+            deltaScale *= -1.0f;
+
+          addModel.scaleBy(deltaScale);
+        }
         break;
       case Input.Keys.V:
         if (ctrlPress)
@@ -364,6 +392,7 @@ public class MainScreen extends GameScreen implements InputProcessor
           bufferX = mainSelectModel.getX();
           bufferY = mainSelectModel.getY();
           buffer1.set(touch);
+          layers.selectLayer.getCurrentGroup().stageToLocalCoordinates(buffer1);
           buffer1.sub(bufferX, bufferY);
           translate = true;
           break;
@@ -375,6 +404,7 @@ public class MainScreen extends GameScreen implements InputProcessor
           mainSelectModel = selected.get(i);
           bufferX = mainSelectModel.getScaleX();
           bufferY = mainSelectModel.getScaleY();
+          layers.selectLayer.getCurrentGroup().stageToLocalCoordinates(newTouch);
           break;
         }
       }
@@ -444,46 +474,76 @@ public class MainScreen extends GameScreen implements InputProcessor
     delta.set(newTouch);
     delta.sub(touch);
     
-    if (addModel == null && command == null && button == Buttons.LEFT)
+    if (button == Buttons.LEFT && addModel == null)
     {
-      boolean firstSelect = false;
       Array<Actor> models = layers.selectLayer.getCurrentGroup().getChildren();
-      for(int i = models.size - 1; i >= 0; i--)
+
+      if (move)
       {
-        SelectObject model = (SelectObject)models.get(i);
-        if (delta.x > 5.0f  || delta.y >  5.0f ||
-            delta.x < -5.0f || delta.y < -5.0f)
-        {          
-          selectRectangle.set(touch.x, touch.y, delta.x, delta.y);
-          if (selectRectangle.width < 0.0f)
-          {
-            selectRectangle.width = -selectRectangle.width;
-            selectRectangle.x -= selectRectangle.width;
-          }
-          if (selectRectangle.height < 0.0f)
-          {
-            selectRectangle.height = -selectRectangle.height;
-            selectRectangle.y -= selectRectangle.height;
-          }
-          
-          if (model.getBound().overlaps(selectRectangle))
-          {
+        if (!ctrlPress)
+          clearSelection();
+
+        selectRectangle.set(touch.x, touch.y, delta.x, delta.y);
+        if (selectRectangle.width < 0.0f)
+        {
+          selectRectangle.width = -selectRectangle.width;
+          selectRectangle.x -= selectRectangle.width;
+        }
+        if (selectRectangle.height < 0.0f)
+        {
+          selectRectangle.height = -selectRectangle.height;
+          selectRectangle.y -= selectRectangle.height;
+        }
+        
+        for(int i = models.size - 1; i >= 0; i--)
+        {
+          SelectObject model = (SelectObject)models.get(i);
+          if (selectRectangle.contains(model.getBound()))
             model.setSelection(true);
-          }
-          continue;
-        }
-        if (!move && 
-            model.getBound().contains(touch) &&
-            (!firstSelect || ctrlPress))
-        {
-          model.setSelection(!model.isSelected());
-          firstSelect = true;
-        }
-        else if (!ctrlPress)
-        {
-          model.setSelection(false);
         }
       }
+      else if (delta.len() < minDelta)
+      {
+        boolean emptySelect = layers.selectLayer.getSelectedModels().size <= 0;
+        SelectObject selectObject = null;       
+        
+        for(int i = models.size - 1; i >= 0; i--)
+        {
+          SelectObject model = (SelectObject)models.get(i);
+          if (model.getBound().contains(touch))
+          {
+            emptySelect = false;
+            if (model instanceof EditGroup)
+            {
+              if (model.isSelected())
+              {
+                setCurrentGroup((EditGroup)model);
+                break;
+              }
+            }
+            
+            selectObject = model;
+            break;
+          }
+        }
+        
+        if (!ctrlPress)
+          clearSelection();
+
+        if (selectObject != null)
+          selectObject.setSelection(true);
+
+        if (emptySelect)
+        {
+          Group currentGroup = layers.selectLayer.getCurrentGroup();
+          if (currentGroup instanceof EditGroup)
+          {
+            currentGroup = currentGroup.getParent();
+            setCurrentGroup(currentGroup);
+          }
+        }
+      }
+      
       propertiesUpdater.update();
       tree.panelUpdater.update();
     }
@@ -520,33 +580,36 @@ public class MainScreen extends GameScreen implements InputProcessor
 
     if (translate)
     {
-      float x = newTouch.x - buffer1.x;
-      float y = newTouch.y - buffer1.y;
-
-      if (shiftPress)
-      {
-        x = (float)Math.ceil(x / gridSize) * gridSize;
-        y = (float)Math.ceil(y / gridSize) * gridSize;
-      }
-
-      x = x - bufferX;
-      y = y - bufferY;
+      float deltaX = mainSelectModel.getX() - bufferX;
+      float deltaY = mainSelectModel.getY() - bufferY;
       
-      TranslateCommand transCommand = (TranslateCommand)command;
-      transCommand.setDelta(x, y);
-      CommandController.instance.addCommand(transCommand);
+      if (deltaX != 0.0f || deltaY != 0.0f)
+      {
+        TranslateCommand transCommand = (TranslateCommand)command;
+        transCommand.setDelta(deltaX, deltaY);
+        CommandController.instance.addCommand(transCommand);
+      }
     }
     else if (rotate)
     {
-      RotateCommand rotateCommand = (RotateCommand)command;
-      rotateCommand.setDelta(mainSelectModel.getRotation() - bufferX);
-      CommandController.instance.addCommand(rotateCommand);
+      float delta = mainSelectModel.getRotation() - bufferX;
+      if (delta != 0)
+      {
+        RotateCommand rotateCommand = (RotateCommand)command;
+        rotateCommand.setDelta(delta);
+        CommandController.instance.addCommand(rotateCommand);
+      }
     }
     else if (scale)
     {
-      ScaleCommand scaleCommand = (ScaleCommand)command;
-      scaleCommand.setDelta(mainSelectModel.getScaleX() - bufferX, mainSelectModel.getScaleY() - bufferY);
-      CommandController.instance.addCommand(scaleCommand);
+      float deltaX = mainSelectModel.getScaleX() - bufferX;
+      float deltaY = mainSelectModel.getScaleY() - bufferY;
+      if (deltaX != 0.0f || deltaY != 0.0f)
+      {
+        ScaleCommand scaleCommand = (ScaleCommand)command;
+        scaleCommand.setDelta(deltaX, deltaY);
+        CommandController.instance.addCommand(scaleCommand);
+      }
     }
 
     translate = false;
@@ -573,6 +636,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     if (translate)
     {
       newTouch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
+      layers.selectLayer.getCurrentGroup().stageToLocalCoordinates(newTouch);
 
       float x = newTouch.x - buffer1.x;
       float y = newTouch.y - buffer1.y;
@@ -599,17 +663,18 @@ public class MainScreen extends GameScreen implements InputProcessor
       delta.set(newTouch);
       newTouch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
       Array<Actor> models = layers.selectLayer.getSelectedModels();
+
+      buffer1.set(delta);
+      mainSelectModel.stageToLocalCoordinates(buffer1);
+
+      buffer2.set(newTouch);
+      mainSelectModel.stageToLocalCoordinates(buffer2);
+      
+      float deltaAngle = (MathUtils.atan2(buffer2.y, buffer2.x) - MathUtils.atan2(buffer1.y, buffer1.x)) * MathUtils.radiansToDegrees;
+
       for(int i = 0; i < models.size; i++)
       {
         Actor model = models.get(i);
-
-        buffer1.set(delta);
-        buffer1 = mainSelectModel.stageToLocalCoordinates(buffer1);
-
-        buffer2.set(newTouch);
-        buffer2 = mainSelectModel.stageToLocalCoordinates(buffer2);
-          
-        float deltaAngle = (MathUtils.atan2(buffer2.y, buffer2.x) - MathUtils.atan2(buffer1.y, buffer1.x)) * MathUtils.radiansToDegrees;
 
         float angle = model.getRotation() + deltaAngle;
         while(angle > 360 || angle < 0)
@@ -648,72 +713,83 @@ public class MainScreen extends GameScreen implements InputProcessor
     {
       delta.set(newTouch);
       newTouch.set(mainScene.screenToSceneCoordinates(screenX, screenY));
+      layers.selectLayer.getCurrentGroup().stageToLocalCoordinates(newTouch);
       delta.sub(newTouch);
+      
+      float oldScaleX = mainSelectModel.getScaleX();
+      float oldScaleY = mainSelectModel.getScaleY();
+
+      buffer1.set(delta);
+      buffer1.scl(2.0f);
+      buffer1.x /= oldScaleX;
+      buffer1.y /= oldScaleY;
+      float scaleX = oldScaleX / mainSelectModel.getWidth();
+      float scaleY = oldScaleY / mainSelectModel.getHeight();
+
+      switch(operation)
+      {
+        case SCALE_MINUS_X:
+          scaleX *= (mainSelectModel.getWidth() + buffer1.x);
+          mainSelectModel.setScaleX(scaleX);
+          break;
+        case SCALE_PLUS_X:
+          scaleX *= (mainSelectModel.getWidth() - buffer1.x);
+          mainSelectModel.setScaleX(scaleX);
+          break;
+        case SCALE_MINUS_Y:
+          scaleY *= (mainSelectModel.getHeight() + buffer1.y);
+          mainSelectModel.setScaleY(scaleY);
+          break;
+        case SCALE_PLUS_Y:
+          scaleY *= (mainSelectModel.getHeight() - buffer1.y);
+          mainSelectModel.setScaleY(scaleY);
+          break;
+        case SCALE_X0Y0:
+        case SCALE_X1Y1:
+        case SCALE_X1Y0:
+        case SCALE_X0Y1:
+          if (operation == Operation.SCALE_X0Y0 ||
+              operation == Operation.SCALE_X0Y1)
+          {
+            scaleX *= (mainSelectModel.getWidth() + buffer1.x);
+          }
+          else
+          {
+            scaleX *= (mainSelectModel.getWidth() - buffer1.x);
+          }
+          
+          if (operation == Operation.SCALE_X0Y0 ||
+              operation == Operation.SCALE_X1Y0)
+          {
+            scaleY *= (mainSelectModel.getHeight() + buffer1.y);
+          }
+          else
+          {
+            scaleY *= (mainSelectModel.getHeight() - buffer1.y);
+          }
+
+          if (!shiftPress)
+          {
+            mainSelectModel.setScaleX(scaleX);
+            mainSelectModel.setScaleY(scaleY);
+          }
+          else
+            mainSelectModel.setScale((scaleX + scaleY) * 0.5f);
+
+          break;
+        default:
+          break;
+      }
+
+      scaleX = mainSelectModel.getScaleX() - oldScaleX;
+      scaleY = mainSelectModel.getScaleY() - oldScaleY;
+      
       Array<Actor> models = layers.selectLayer.getSelectedModels();
+      models.removeValue(mainSelectModel, true);
       for(int i = 0; i < models.size; i++)
       {
         Actor model = models.get(i);
-
-        buffer1.set(delta);
-        buffer1.scl(2.0f);
-        buffer1.x /= model.getScaleX();
-        buffer1.y /= model.getScaleY();
-        float scaleX = model.getScaleX() / model.getWidth();
-        float scaleY = model.getScaleY() / model.getHeight();
-        
-        switch(operation)
-        {
-          case SCALE_MINUS_X:
-            scaleX *= (model.getWidth() + buffer1.x);
-            model.setScaleX(scaleX);
-            break;
-          case SCALE_PLUS_X:
-            scaleX *= (model.getWidth() - buffer1.x);
-            model.setScaleX(scaleX);
-            break;
-          case SCALE_MINUS_Y:
-            scaleY *= (model.getHeight() + buffer1.y);
-            model.setScaleY(scaleY);
-            break;
-          case SCALE_PLUS_Y:
-            scaleY *= (model.getHeight() - buffer1.y);
-            model.setScaleY(scaleY);
-            break;
-          case SCALE_X0Y0:
-          case SCALE_X1Y1:
-          case SCALE_X1Y0:
-          case SCALE_X0Y1:
-            if (operation == Operation.SCALE_X0Y0 ||
-                operation == Operation.SCALE_X0Y1)
-            {
-              scaleX *= (model.getWidth() + buffer1.x);
-            }
-            else
-            {
-              scaleX *= (model.getWidth() - buffer1.x);
-            }
-            
-            if (operation == Operation.SCALE_X0Y0 ||
-                operation == Operation.SCALE_X1Y0)
-            {
-              scaleY *= (model.getHeight() + buffer1.y);
-            }
-            else
-            {
-              scaleY *= (model.getHeight() - buffer1.y);
-            }
-
-            if (shiftPress)
-              model.setScale((scaleX + scaleY) * 0.5f);
-            else
-            {
-              model.setScaleX(scaleX);
-              model.setScaleY(scaleY);
-            }
-            break;
-          default:
-            break;
-        }
+        model.scaleBy(scaleX, scaleY);
       }
       return true;
     }
@@ -892,6 +968,9 @@ public class MainScreen extends GameScreen implements InputProcessor
     CommandController.instance.addCommand(command);
   }
   
+  protected Vector2 bufferPosition = new Vector2();
+  protected Vector2 bufferScale = new Vector2();
+  
   public boolean copy()
   {
     if (layers.selectLayer == null)
@@ -907,14 +986,39 @@ public class MainScreen extends GameScreen implements InputProcessor
     for(int i = 0; i < selectedModels.size; i++)
     {
       Actor model = selectedModels.get(i);
+      Actor copyModel = null;
       if (model instanceof EditModel)
       {
-        copyModels.add(((EditModel)model).copy());
+        copyModel = ((EditModel)model).copy();
       }
       else if (model instanceof EditGroup)
       {
-        copyModels.add(((EditGroup)model).copy());
+        copyModel = ((EditGroup)model).copy();
       }
+      
+      Group group = layers.selectLayer.getCurrentGroup();
+      if (!(group instanceof Layer))
+      {
+        bufferPosition.set(copyModel.getX(), copyModel.getY());
+        group.localToStageCoordinates(bufferPosition);
+        
+        bufferScale.set(copyModel.getX() + 1.0f, copyModel.getY());
+        group.localToStageCoordinates(bufferScale);
+        bufferScale.sub(bufferPosition);
+        float angle = MathUtils.atan2(bufferScale.y, bufferScale.x) * MathUtils.radiansToDegrees;
+        float scaleX = bufferScale.len();
+
+        bufferScale.set(copyModel.getX(), copyModel.getY() + 1.0f);
+        group.localToStageCoordinates(bufferScale);
+        bufferScale.sub(bufferPosition);
+        float scaleY = bufferScale.len();
+
+        copyModel.setPosition(bufferPosition.x, bufferPosition.y);
+        copyModel.rotateBy(angle);
+        copyModel.setScale(model.getScaleX() * scaleX, model.getScaleY() * scaleY);
+      }
+      
+      copyModels.add(copyModel);
     }
     return true;
   }
@@ -924,7 +1028,6 @@ public class MainScreen extends GameScreen implements InputProcessor
     if (copy())
     {
       DelCommand command = new DelCommand();
-      command.setGroup(layers.selectLayer.getCurrentGroup());
       command.addModels(layers.selectLayer.getSelectedModels());
       command.addUpdater(propertiesUpdater);
       command.addUpdater(tree.panelUpdater);
@@ -1056,7 +1159,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       shapeRenderer.end();
 
       shapeRenderer.begin(ShapeType.Line);
-      shapeRenderer.line(mainSelectModel.getX(), mainSelectModel.getY(), newTouch.x, newTouch.y);
+      shapeRenderer.line(mainSelectModel.localToStageCoordinates(new Vector2(0, 0)), newTouch);
       shapeRenderer.end();
     }
     

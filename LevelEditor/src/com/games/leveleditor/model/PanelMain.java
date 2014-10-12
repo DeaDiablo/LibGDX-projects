@@ -54,10 +54,11 @@ public class PanelMain extends Panel
   protected String       fileName   = "";
   protected JFileChooser chooser    = null;
   
-  public PanelMain(String title, Skin skin)
+  public PanelMain(String filename, Skin skin)
   {
-    super(title, skin);
+    super(filename, skin);
     
+    this.fileName = filename;
     //visible
     newButton = new TextButton("new", skin);
     openButton = new TextButton("open", skin);
@@ -71,7 +72,7 @@ public class PanelMain extends Panel
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        newFile();
+        newFile("");
       }
     });
     
@@ -130,11 +131,10 @@ public class PanelMain extends Panel
     return chooser;
   }
   
-  public void newFile()
+  public void newFile(String fileName)
   {
-    fileName = "";
     LevelEditor.game.getScreen().dispose();
-    LevelEditor.game.setScreen(new MainScreen());
+    LevelEditor.game.setScreen(new MainScreen(fileName));
   }
 
   
@@ -143,10 +143,10 @@ public class PanelMain extends Panel
     if(getFileChooser().showOpenDialog(null) != JFileChooser.APPROVE_OPTION)
       return;
 
-    newFile();
-
     fileName = getFileChooser().getSelectedFile().getAbsolutePath();
     fileName = fileName.replace("\\", "/");
+
+    newFile(fileName);
 
     try
     {
@@ -164,7 +164,7 @@ public class PanelMain extends Panel
     catch (IOException e)
     {
       GameLog.instance.writeError("File not load: " + fileName);
-      newFile();
+      newFile("");
     }
   }
   

@@ -10,6 +10,7 @@ public class DelLayerCommand extends Command
     super();
   }
 
+  protected int     index = 0;
   protected Scene2D scene = null;
   protected Layer   layer = null;
 
@@ -32,6 +33,7 @@ public class DelLayerCommand extends Command
     if (!scene.getActors().contains(layer, true))
       return false;
     
+    index = scene.getRoot().getChildren().indexOf(layer, true);
     layer.remove();
     
     return true;
@@ -40,6 +42,6 @@ public class DelLayerCommand extends Command
   @Override
   public void unExecute()
   {
-    scene.addActor(layer);
+    scene.getRoot().addActorAt(index, layer);
   }
 }

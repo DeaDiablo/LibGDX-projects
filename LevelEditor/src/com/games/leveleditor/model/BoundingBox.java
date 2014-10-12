@@ -1,6 +1,5 @@
 package com.games.leveleditor.model;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
@@ -29,10 +28,8 @@ public class BoundingBox
       scaleRectangles.add(new Rectangle(0, 0, sizeSmallCube, sizeSmallCube));
   }
 
-  public void draw(Batch batch, float parentAlpha)
+  public void draw()
   {
-    batch.end();
-    
     //big cubes
     scaleRectangles.get(0).setPosition(bound.x - deltaBigCube, bound.y - deltaBigCube);
     scaleRectangles.get(1).setPosition(bound.x + bound.width - deltaBigCube, bound.y + bound.height - deltaBigCube);
@@ -44,7 +41,6 @@ public class BoundingBox
     scaleRectangles.get(6).setPosition(bound.x + bound.width * 0.5f  - deltaSmallCube, bound.y + bound.height - deltaSmallCube);
     scaleRectangles.get(7).setPosition(bound.x + bound.width * 0.5f - deltaSmallCube, bound.y - deltaSmallCube);
 
-    shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
     shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 1);
 
     shapeRenderer.begin(ShapeType.Line);
@@ -58,8 +54,6 @@ public class BoundingBox
       shapeRenderer.rect(rect.x, rect.y, rect.width, rect.height);
     }
     shapeRenderer.end();
-
-    batch.begin();
   }
 
   public Operation getOperationType(Vector2 touch)

@@ -272,15 +272,13 @@ public class ModelObject2D extends Actor
   @Override
   public void draw(Batch batch, float parentAlpha)
   {
-    if (!isVisible() || region == null)
+    if (!isVisible() || scene == null || region == null)
       return;
-    
-    if (scene != null)
-    {
-      updateBound();
-      if (!scene.getCameraRectangle().overlaps(bound))
-        return;
-    }
+
+    if (bound.width > 0.0f &&
+        bound.height > 0.0f &&
+        !scene.getCameraRectangle().overlaps(bound))
+      return;
 
     Color color = getColor();
     batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);

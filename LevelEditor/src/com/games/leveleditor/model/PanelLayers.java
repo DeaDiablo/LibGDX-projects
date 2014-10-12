@@ -2,6 +2,7 @@ package com.games.leveleditor.model;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -21,7 +22,6 @@ import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.DelLayerCommand;
 import com.games.leveleditor.controller.Updater;
 import com.games.leveleditor.screen.MainScreen;
-import com.shellGDX.GameInstance;
 import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model2D.Scene2D;
 
@@ -29,7 +29,7 @@ public class PanelLayers extends PanelScroll
 {
   public Layer       selectLayer = null;
   public Tree        tree        = null;
-  
+
   protected TextButton addButton    = null;
   protected TextButton removeButton = null;
   protected TextButton upButton = null;
@@ -39,44 +39,57 @@ public class PanelLayers extends PanelScroll
   protected Scene2D scene = null;
   protected TextureRegionDrawable visibleDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/visible.png"));
   
+  protected InputListener tabListener = new InputListener()
+  {
+    @Override
+    public boolean keyUp(InputEvent event, int keycode)
+    {
+      if (event.getCharacter() == '\t')
+      {
+        Actor actor = event.getListenerActor();
+        if (actor instanceof TextField)
+          ((TextField)actor).selectAll();
+      }
+      return true;
+    }
+  };
+  
   public final Updater rebuildUpdater = new Updater()
   {
     @Override
     public void update()
     {      
       rebuildTree();
-
-      if (tree.getNodes().size > 0)
+      
+      if (selectLayer != null)
       {
-        Node node = tree.getNodes().get(0);
-        tree.getSelection().add(node);
-        selectLayer = (Layer)node.getObject();
+        tree.getSelection().clear();
+        for (Node node : tree.getNodes())
+        {
+          if (node.getObject() == selectLayer)
+          {
+            tree.getSelection().add(node);
+            return;
+          }
+        }
       }
+
+      selectLayer(0);
     }
   };
   
-  public PanelLayers(String title, final Skin skin, final Scene2D scene)
+  public PanelLayers(String title, final Skin skin, final Scene2D scene, final MainScreen screen)
   {
     super(title, skin);
     content.align(Align.bottom);
     this.scene = scene;
     this.skin = skin;
     
+    scroll.getListeners().removeIndex(0);
+    
     tree = new Tree(skin);
     tree.getSelection().setMultiple(false);
     tree.getSelection().setRequired(true);
-    
-    tree.addListener(new ChangeListener()
-    {
-      @Override
-      public void changed(ChangeEvent event, Actor actor)
-      {
-        Node node = tree.getSelection().getLastSelected();
-        selectLayer = (Layer)node.getObject();
-        ((MainScreen)GameInstance.game.getScreen()).getTree().setGroup(selectLayer);
-      }
-    });
-    
     content.add(tree).fill().expand();
     
     rebuildUpdater.update();
@@ -99,7 +112,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        getStage().unfocusAll();
+        getStage().setKeyboardFocus(null);
         
         int indexTemp = 0;
         Node lastLayer = tree.getSelection().getLastSelected();
@@ -136,6 +149,7 @@ public class PanelLayers extends PanelScroll
         
         command.addUpdater(addUpdater);
         CommandController.instance.addCommand(command);
+        getStage().setScrollFocus(content);
       }
     });
     
@@ -144,7 +158,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        getStage().unfocusAll();
+        getStage().setKeyboardFocus(null);
         
         if (tree.getNodes().size <= 1)
           return;
@@ -178,7 +192,7 @@ public class PanelLayers extends PanelScroll
             else
             {
               insertLayer(layer, layerIndex);
-              selectLayer(tree.getNodes().size - 1);
+              selectLayer(layerIndex);
             }
             execute = !execute;
           }
@@ -203,7 +217,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        ((MainScreen)GameInstance.game.getScreen()).UpDownLayer(-1);
+        screen.UpDownLayer(-1);
       }
     });
 
@@ -213,7 +227,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        ((MainScreen)GameInstance.game.getScreen()).UpDownLayer(1);
+        screen.UpDownLayer(1);
       }
     });
     
@@ -226,6 +240,23 @@ public class PanelLayers extends PanelScroll
     add(buttons);
     
     setSize(450, 350);
+
+    tree.addListener(new ChangeListener()
+    {
+      @Override
+      public void changed(ChangeEvent event, Actor actor)
+      {
+        Node node = tree.getSelection().getLastSelected();
+        Layer layer = (Layer)node.getObject();
+        if (layer != selectLayer)
+        {
+          screen.clearSelection();
+          selectLayer = layer;
+          screen.getTree().setGroup(selectLayer);
+        }
+      }
+    });
+    
   }
   
   protected void rebuildTree()
@@ -255,7 +286,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        getStage().unfocusAll();
+        getStage().setKeyboardFocus(null);
         layer.setVisible(!layer.isVisible());
       }
     });
@@ -269,13 +300,14 @@ public class PanelLayers extends PanelScroll
       {
         if (c == '\r')
         {
-          getStage().unfocusAll();
+          getStage().setKeyboardFocus(null);
           return;
         }
         
         layer.setName(textField.getText());
       }
     });
+    name.addListener(tabListener);
     item.add(name).width(300);
     
     Node node = new Node(item);

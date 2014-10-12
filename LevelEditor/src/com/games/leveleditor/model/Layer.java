@@ -95,6 +95,8 @@ public class Layer extends Group2D
   {
     super.draw(batch, parentAlpha);
 
+    batch.end();
+    
     SnapshotArray<Actor> children = currentGroup.getChildren();
     Actor[] actors = children.begin();
     for(int i = 0; i < actors.length; i++)
@@ -102,10 +104,12 @@ public class Layer extends Group2D
       Actor model = actors[i];
       if (model instanceof SelectObject)
       {
-        ((SelectObject)model).drawBound(batch, parentAlpha);
+        ((SelectObject)model).drawBound();
       }
     }
     children.end();
+    
+    batch.begin();
   }
   
   public Group getCurrentGroup()

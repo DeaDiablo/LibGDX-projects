@@ -6,37 +6,47 @@ import com.badlogic.gdx.utils.Array;
 
 public class DelCommand extends Command
 {
+  protected class ActorDel
+  {
+    int index;
+    Actor actor;
+    Group parent;
+  }
+  
   public DelCommand()
   {
     super();
   }
-  
-  protected Group group = null;
-  protected Array<Actor> newModels = new Array<Actor>();
-  
-  public void setGroup(Group group)
-  {
-    this.group = group;
-  }
+
+  protected Array<ActorDel> adArray = new Array<ActorDel>();
   
   public void addModel(Actor model)
   {
-    newModels.add(model);
+    Group parent = model.getParent();
+    if (parent == null)
+      return;
+    
+    ActorDel ad = new ActorDel();
+    ad.actor = model;
+    ad.parent = parent;
+    ad.index = parent.getChildren().indexOf(model, true);
+    adArray.add(ad);
   }
   
   public void addModels(Array<Actor> models)
   {
-    newModels.addAll(models);
+    for(Actor model : models)
+      addModel(model);
   }
 
   @Override
   public boolean execute()
   {
-    if (group == null || newModels.size <= 0)
+    if (adArray.size <= 0)
       return false;
     
-    for(Actor model : newModels)
-      model.remove();
+    for(ActorDel model : adArray)
+      model.actor.remove();
     
     return true;
   }
@@ -44,7 +54,7 @@ public class DelCommand extends Command
   @Override
   public void unExecute()
   {
-    for(Actor model : newModels)
-      group.addActor(model);
+    for(ActorDel model : adArray)
+      model.parent.addActorAt(model.index, model.actor);
   }
 }
