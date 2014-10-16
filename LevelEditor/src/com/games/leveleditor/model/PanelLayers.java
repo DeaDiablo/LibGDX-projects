@@ -298,7 +298,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void keyTyped(TextField textField, char c)
       {
-        if (c == '\r')
+        if (c == '\r' || c == '\n')
         {
           getStage().setKeyboardFocus(null);
           return;

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldFilter;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
@@ -37,7 +38,7 @@ public class PanelProperties extends Panel
   public TextField  scaleX    = null;
   public TextField  scaleY    = null;
   public CheckBox   lockRatio = null;
-  public TextButton customButton = null;
+  public TextButton variablesButton = null;
   
   protected boolean updateProperties = false;
   protected String  textBuffer = null;
@@ -275,16 +276,20 @@ public class PanelProperties extends Panel
       }
     });
     
-    customButton = new TextButton("Variables", skin);
-    customButton.addListener(new ClickListener()
+    final TextButtonStyle styleButton = skin.get(TextButtonStyle.class);
+    TextButtonStyle style = new TextButtonStyle(styleButton.up, styleButton.down, styleButton.down, styleButton.font);
+    variablesButton = new TextButton("Variables", style);
+    variablesButton.addListener(new ClickListener()
     {
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
+        PanelVariables variables = ((MainScreen)GameInstance.game.getScreen()).getVariables();
+        variables.setVisible(variablesButton.isChecked());
       }
     });
     add(new Label("Advanced:", skin));
-    add(customButton);
+    add(variablesButton);
     add(lockRatio);
 
     setSize(450, 250);
@@ -312,7 +317,7 @@ public class PanelProperties extends Panel
     lockRatio.setDisabled(disable);
     scaleX.setDisabled(disable);
     scaleY.setDisabled(disable);
-    customButton.setDisabled(disable);
+    //variablesButton.setDisabled(disable);
     
     Color color = disable ? disableColor : enableColor;
 

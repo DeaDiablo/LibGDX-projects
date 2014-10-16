@@ -1,9 +1,12 @@
 package com.games.leveleditor.model;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FileTextureData;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.shellGDX.manager.ResourceManager;
@@ -70,6 +73,18 @@ public class EditModel extends ModelObject2D implements SelectObject
       setScaleY(scale.getFloat("y"));
     }
     
+    {
+      Element variablesGroup = element.getChildByName("variables");
+      if (variablesGroup != null)
+      {
+        Array<Element> variables = variablesGroup.getChildrenByName("variable");
+        for (Element variable : variables)
+        {
+          this.variables.put(variable.get("key"), variable.get("value"));
+        }
+      }
+    }
+    
     setAlign(element.getInt("horzAlign"), element.getInt("vertAlign"));
   }
   
@@ -108,6 +123,19 @@ public class EditModel extends ModelObject2D implements SelectObject
     
     xml.element("horzAlign", getHorzAlign());
     xml.element("vertAlign", getVertAlign());
+    
+    if (!variables.isEmpty())
+    {
+      xml.element("variables");
+      for(Entry<String, String> variable : variables.entrySet())
+      {
+        xml.element("variable");
+        xml.element("key", variable.getKey());
+        xml.element("value", variable.getValue());
+        xml.pop();
+      }
+      xml.pop();
+    }
     xml.pop();
   }
 
@@ -138,5 +166,42 @@ public class EditModel extends ModelObject2D implements SelectObject
       return;
     
     bb.draw();
+  }
+  
+  protected HashMap<String, String> variables = new HashMap<String, String>();
+  
+  @Override
+  public void setVariable(String key, String value)
+  {
+    variables.put(key, value);
+  }
+  
+  @Override
+  public void removeVariable(String key)
+  {
+    variables.remove(key);
+  }
+  
+  @Override
+  public void setNewKey(String oldKey, String newKey)
+  {
+    String value = variables.get(oldKey);
+    if (value == null)
+      return;
+    
+    variables.remove(oldKey);
+    variables.put(newKey, value);
+  }
+  
+  @Override
+  public String getVariableValue(String key)
+  {
+    return variables.get(key);
+  }
+  
+  @Override
+  public HashMap<String, String> getVariables()
+  {
+    return variables;
   }
 }

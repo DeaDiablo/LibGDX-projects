@@ -16,6 +16,9 @@ public class PanelScroll extends Panel
   public PanelScroll(String title, Skin skin)
   {
     super(title, skin);
+    defaults().spaceLeft(0);
+    defaults().spaceRight(0);
+    defaults().spaceTop(0);
     defaults().spaceBottom(0);
     defaults().space(0);
 

@@ -26,6 +26,7 @@ import com.games.leveleditor.controller.AddGroupCommand;
 import com.games.leveleditor.controller.Command;
 import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.DelCommand;
+import com.games.leveleditor.controller.GoInGroupCommand;
 import com.games.leveleditor.controller.GroupCommand;
 import com.games.leveleditor.controller.RemoveGroupCommand;
 import com.games.leveleditor.controller.RotateCommand;
@@ -43,6 +44,7 @@ import com.games.leveleditor.model.PanelLayers;
 import com.games.leveleditor.model.PanelMain;
 import com.games.leveleditor.model.PanelProperties;
 import com.games.leveleditor.model.PanelTree;
+import com.games.leveleditor.model.PanelVariables;
 import com.games.leveleditor.model.SelectObject;
 import com.shellGDX.GameInstance;
 import com.shellGDX.GameLog;
@@ -66,6 +68,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   
   private PanelMain       main       = null;
   private PanelProperties properties = null;
+  private PanelVariables  variables  = null;
   private PanelTree       tree       = null;
   private PanelLayers     layers     = null;
   private PanelGraphics   graphics   = null;
@@ -87,6 +90,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     public void update()
     {
       properties.setEditActors(layers.selectLayer.getSelectedModels());
+      variables.setEditActors(layers.selectLayer.getSelectedModels());
     }
   };
   
@@ -119,6 +123,11 @@ public class MainScreen extends GameScreen implements InputProcessor
   public PanelProperties getProperties()
   {
     return properties;
+  }
+  
+  public PanelVariables getVariables()
+  {
+    return variables;
   }
   
   public PanelTree getTree()
@@ -163,6 +172,11 @@ public class MainScreen extends GameScreen implements InputProcessor
     properties = new PanelProperties("properties", skin); 
     properties.setPosition(0, main.getY() - properties.getHeight());  
     guiScene.addActor(properties);
+    
+    variables = new PanelVariables("variables", skin);
+    variables.setPosition(properties.getWidth(), guiScene.getHeight() - variables.getHeight());
+    variables.setVisible(false);
+    guiScene.addActor(variables);
     
     //tree
     tree = new PanelTree(skin, this);
@@ -505,7 +519,8 @@ public class MainScreen extends GameScreen implements InputProcessor
       else if (delta.len() < minDelta)
       {
         boolean emptySelect = layers.selectLayer.getSelectedModels().size <= 0;
-        SelectObject selectObject = null;       
+        SelectObject selectObject = null;
+        SelectObject unSelectObject = null;    
         
         for(int i = models.size - 1; i >= 0; i--)
         {
@@ -513,17 +528,25 @@ public class MainScreen extends GameScreen implements InputProcessor
           if (model.getBound().contains(touch))
           {
             emptySelect = false;
-            if (model instanceof EditGroup)
+            if (!ctrlPress && model instanceof EditGroup)
             {
               if (model.isSelected())
               {
-                setCurrentGroup((EditGroup)model);
+                GoInGroupCommand command = new GoInGroupCommand();
+                command.setGroup((EditGroup)model, layers.selectLayer.getCurrentGroup());
+                command.addUpdater(tree.panelUpdater);
+                CommandController.instance.addCommand(command);
                 break;
               }
             }
             
-            selectObject = model;
-            break;
+            if (!model.isSelected())
+            {
+              selectObject = model;
+              break;
+            }
+            else if (unSelectObject == null)
+              unSelectObject = model;
           }
         }
         
@@ -532,14 +555,18 @@ public class MainScreen extends GameScreen implements InputProcessor
 
         if (selectObject != null)
           selectObject.setSelection(true);
+        else if (unSelectObject != null)
+          unSelectObject.setSelection(false);
 
         if (emptySelect)
         {
           Group currentGroup = layers.selectLayer.getCurrentGroup();
           if (currentGroup instanceof EditGroup)
           {
-            currentGroup = currentGroup.getParent();
-            setCurrentGroup(currentGroup);
+            GoInGroupCommand command = new GoInGroupCommand();
+            command.setGroup(currentGroup.getParent(), layers.selectLayer.getCurrentGroup());
+            command.addUpdater(tree.panelUpdater);
+            CommandController.instance.addCommand(command);
           }
         }
       }
