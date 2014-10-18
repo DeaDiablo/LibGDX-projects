@@ -1,6 +1,7 @@
 package com.games.leveleditor.screen;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -19,7 +20,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.badlogic.gdx.utils.XmlWriter;
@@ -65,6 +68,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   private Scene2D mainScene = null;
   private Scene2D guiScene = null;
   
+  private Label           cursorText = null;
   private EditModel       addModel   = null;
   private Array<Actor>    copyModels = new Array<Actor>();
   
@@ -215,6 +219,11 @@ public class MainScreen extends GameScreen implements InputProcessor
     contoller.addScene2D(mainScene);
     contoller.addScene2D(guiScene);
     contoller.addProcessor(this);
+    
+    cursorText = new Label("", skin);
+    cursorText.setAlignment(Align.right);
+    cursorText.setPosition(guiScene.getWidth() - 20, graphics.getHeight() + 20);
+    guiScene.addActor(cursorText);
   }
   
   @Override
@@ -393,6 +402,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   protected Vector2 newTouch = new Vector2();
   protected Vector2 delta = new Vector2();
   protected Vector2 mouseMove = new Vector2();
+  protected Vector2 cursorPos = new Vector2();
   protected Vector2 buffer1 = new Vector2();
   protected Vector2 buffer2 = new Vector2();
   protected Command command = null;
@@ -859,17 +869,20 @@ public class MainScreen extends GameScreen implements InputProcessor
   public boolean mouseMoved(int screenX, int screenY)
   {
     mouseMove.set(mainScene.screenToSceneCoordinates(screenX, screenY));
+    
+    cursorPos.set(mouseMove);
+    if (shiftPress)
+    {
+      cursorPos.x = (float)Math.ceil(cursorPos.x / gridSize) * gridSize;
+      cursorPos.y = (float)Math.ceil(cursorPos.y / gridSize) * gridSize;
+    }
+    
+    OrthographicCamera camera = (OrthographicCamera)mainScene.getCamera();
+    cursorText.setText(String.format(Locale.ENGLISH, "x: %.2f   y: %.2f   z: %.1f", cursorPos.x, cursorPos.y, camera.zoom));
 
     if (addModel != null)
     {
-      if (shiftPress)
-      {
-        float x = (float)Math.ceil(mouseMove.x / gridSize) * gridSize;
-        float y = (float)Math.ceil(mouseMove.y / gridSize) * gridSize;
-        addModel.setPosition(x, y);
-      }
-      else
-        addModel.setPosition(mouseMove);
+      addModel.setPosition(cursorPos);
       return true;
     }
 
