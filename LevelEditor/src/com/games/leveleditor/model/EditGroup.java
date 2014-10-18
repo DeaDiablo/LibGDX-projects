@@ -37,6 +37,7 @@ public class EditGroup extends Group2D implements SelectObject
     newModel.setVisible(isVisible());
     newModel.setRotation(getRotation());
     newModel.setScale(getScaleX(), getScaleY());
+    newModel.variables.putAll(variables);
     
     for(Actor actor : getChildren())
     {

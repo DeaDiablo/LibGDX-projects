@@ -243,24 +243,32 @@ public class PanelTree extends PanelScroll
   
   public void updateButtons()
   {
-    boolean selectionEmpty = tree.getSelection().isEmpty();
+    int sizeTree = tree.getNodes().size; 
+    int sizeSelection = tree.getSelection().size();
+    boolean disable = sizeSelection <= 0;
 
-    Color color = selectionEmpty ? disableColor : enableColor;
+    Color color = disable ? disableColor : enableColor;
     
     groupButton.setColor(color);
+    groupButton.setDisabled(disable);
+    
+    disable = sizeSelection <= 0 || sizeTree <= 1;
+    color = disable ? disableColor : enableColor;
+    
     upButton.setColor(color);
     downButton.setColor(color);
     
-    groupButton.setDisabled(selectionEmpty);
-    upButton.setDisabled(selectionEmpty);
-    downButton.setDisabled(selectionEmpty);
+    upButton.setDisabled(disable);
+    downButton.setDisabled(disable);
     
-    color = group instanceof Layer ? disableColor : enableColor;
+    disable = (group instanceof Layer);
     
-    ungroupButton.setDisabled(group instanceof Layer);
+    color = disable ? disableColor : enableColor;
+    
+    ungroupButton.setDisabled(disable);
     ungroupButton.setColor(color);
     
-    if (!selectionEmpty)
+    if (sizeSelection > 0)
     {
       Selection<Node> nodes = tree.getSelection();
       for(Node node : nodes)
@@ -269,6 +277,7 @@ public class PanelTree extends PanelScroll
         if (object instanceof Group)
         {
           ungroupButton.setDisabled(false);
+          ungroupButton.setColor(enableColor);
           break;
         }
       }

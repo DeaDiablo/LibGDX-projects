@@ -224,6 +224,8 @@ public class MainScreen extends GameScreen implements InputProcessor
     cursorText.setAlignment(Align.right);
     cursorText.setPosition(guiScene.getWidth() - 20, graphics.getHeight() + 20);
     guiScene.addActor(cursorText);
+
+    mainScene.getCamera().position.set(-main.getWidth() * 0.5f, -graphics.getHeight() * 0.5f, 0.0f);
   }
   
   @Override

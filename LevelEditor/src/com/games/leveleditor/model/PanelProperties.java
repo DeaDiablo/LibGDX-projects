@@ -112,49 +112,56 @@ public class PanelProperties extends Panel
             if (textField.getText().isEmpty())
               return;
             
-            Float value = Float.valueOf(textField.getText());
-            if (textField == positionX && value != model.getX())
+            try
             {
-              TranslateCommand transCommand = new TranslateCommand();
-              transCommand.setNewPosition(value, model.getY());
-              transCommand.addActor(model);
-              groupCommand.addCommand(transCommand);
+              Float value = Float.valueOf(textField.getText());
+              if (textField == positionX && value != model.getX())
+              {
+                TranslateCommand transCommand = new TranslateCommand();
+                transCommand.setNewPosition(value, model.getY());
+                transCommand.addActor(model);
+                groupCommand.addCommand(transCommand);
+              }
+              else if (textField == positionY)
+              {
+                TranslateCommand transCommand = new TranslateCommand();
+                transCommand.setNewPosition(model.getX(), value);
+                transCommand.addActor(model);
+                groupCommand.addCommand(transCommand);
+              }
+              else if (textField == rotation)
+              {
+                RotateCommand rotateCommand = new RotateCommand();
+                rotateCommand.setAngle(value);
+                rotateCommand.addActor(model);
+                groupCommand.addCommand(rotateCommand);
+              }
+              else if (textField == scaleX)
+              {
+                ScaleCommand scaleCommand = new ScaleCommand();
+                scaleCommand.setNewScale(value, lockRatio.isChecked() ? value : model.getScaleY());
+                scaleCommand.addActor(model);
+                groupCommand.addCommand(scaleCommand);
+                
+                if (lockRatio.isChecked())
+                  scaleY.setText(scaleX.getText());
+              }
+              else if (textField == scaleY)
+              {
+                ScaleCommand scaleCommand = new ScaleCommand();
+                scaleCommand.setNewScale(model.getScaleX(), value);
+                scaleCommand.addActor(model);
+                groupCommand.addCommand(scaleCommand);
+              }
             }
-            else if (textField == positionY)
+            catch (NumberFormatException exception)
             {
-              TranslateCommand transCommand = new TranslateCommand();
-              transCommand.setNewPosition(model.getX(), value);
-              transCommand.addActor(model);
-              groupCommand.addCommand(transCommand);
-            }
-            else if (textField == rotation)
-            {
-              RotateCommand rotateCommand = new RotateCommand();
-              rotateCommand.setAngle(value);
-              rotateCommand.addActor(model);
-              groupCommand.addCommand(rotateCommand);
-            }
-            else if (textField == scaleX)
-            {
-              ScaleCommand scaleCommand = new ScaleCommand();
-              scaleCommand.setNewScale(value, lockRatio.isChecked() ? value : model.getScaleY());
-              scaleCommand.addActor(model);
-              groupCommand.addCommand(scaleCommand);
-              
-              if (lockRatio.isChecked())
-                scaleY.setText(scaleX.getText());
-            }
-            else if (textField == scaleY)
-            {
-              ScaleCommand scaleCommand = new ScaleCommand();
-              scaleCommand.setNewScale(model.getScaleX(), value);
-              scaleCommand.addActor(model);
-              groupCommand.addCommand(scaleCommand);
             }
           }
         }
-        //groupCommand.addUpdater(panelUpdater);
-        CommandController.instance.addCommand(groupCommand, false);
+        
+        if (groupCommand.getCommands().size > 0)
+          CommandController.instance.addCommand(groupCommand, false);
       }
     };
     

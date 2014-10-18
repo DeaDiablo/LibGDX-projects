@@ -40,6 +40,7 @@ public class EditModel extends ModelObject2D implements SelectObject
     newModel.setRotation(getRotation());
     newModel.setScale(getScaleX(), getScaleY());
     newModel.setAlign(getHorzAlign(), getVertAlign());
+    newModel.variables.putAll(variables);
     return newModel;
   }
   
