@@ -2,6 +2,7 @@ package com.games.leveleditor.screen;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.games.leveleditor.controller.CommandController;
 
 public class UndoRedoProcessor extends InputAdapter
@@ -74,6 +75,12 @@ public class UndoRedoProcessor extends InputAdapter
           screen.propertiesUpdater.update();
         }
         return true;
+      case Input.Keys.K:
+        if (ctrlPress)
+        {
+          ((OrthographicCamera)screen.getMainScene().getCamera()).zoom = 1.0f;
+        }
+        return true;
       case Input.Keys.CONTROL_LEFT:
       case Input.Keys.CONTROL_RIGHT:
         ctrlPress = false;
@@ -84,5 +91,22 @@ public class UndoRedoProcessor extends InputAdapter
         break;
     }
     return false;
+  }
+  
+  protected final float maxZoom = 5.0f;
+  protected final float minZoom = 0.2f;
+  
+  @Override
+  public boolean scrolled(int amount)
+  {
+    if (!ctrlPress)
+      return false;
+    OrthographicCamera camera = (OrthographicCamera)screen.getMainScene().getCamera();
+    camera.zoom += 0.1 * amount;
+    if (camera.zoom > maxZoom)
+      camera.zoom = maxZoom;
+    if (camera.zoom < minZoom)
+      camera.zoom = minZoom;
+    return true;
   }
 }

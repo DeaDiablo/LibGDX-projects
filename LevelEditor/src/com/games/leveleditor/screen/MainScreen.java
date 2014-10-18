@@ -7,8 +7,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -76,7 +76,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   private PanelGraphics   graphics   = null;
   
   private final float     minGridSize = 16.0f;
-  private final float     maxGridSize = 512.0f;
+  private final float     maxGridSize = 2048.0f;
   private float           gridSize    = 64.0f;
   private boolean         showGrid    = true;
   
@@ -1164,37 +1164,21 @@ public class MainScreen extends GameScreen implements InputProcessor
     {
       shapeRenderer.setProjectionMatrix(mainScene.getBatch().getProjectionMatrix());
   
-      Camera camera = mainScene.getCamera();
-      float minX = camera.position.x - width * 0.5f;
-      float maxX = camera.position.x + width * 0.5f;
-      float minY = camera.position.y - height * 0.5f;
-      float maxY = camera.position.y + height * 0.5f;
-      
-      if (gridSize != minGridSize)
-      {
-        shapeRenderer.setColor(0.35f, 0.35f, 0.35f, 0.5f);
-        shapeRenderer.begin(ShapeType.Line);
-        float start = (float)Math.ceil(minX / minGridSize) * minGridSize; 
-        for(float i = start; i < maxX; i += minGridSize)
-          shapeRenderer.line(i, minY, i, maxY);
-        
-        start = (float)Math.ceil(minY / minGridSize) * minGridSize; 
-        for(float i = start; i < maxY; i += minGridSize)
-          shapeRenderer.line(minX, i, maxX, i);
-        shapeRenderer.end();
-      }
+      OrthographicCamera camera = (OrthographicCamera)mainScene.getCamera();
+      float minX = camera.position.x - width * 0.5f * camera.zoom;
+      float maxX = camera.position.x + width * 0.5f * camera.zoom;
+      float minY = camera.position.y - height * 0.5f * camera.zoom;
+      float maxY = camera.position.y + height * 0.5f * camera.zoom;
 
-      shapeRenderer.setColor(0.35f, 0.35f, 0.35f, 0.75f);
-      shapeRenderer.begin(ShapeType.Filled);
-
+      shapeRenderer.setColor(0.35f, 0.35f, 0.35f, 0.5f);
+      shapeRenderer.begin(ShapeType.Line);
       float start = (float)Math.ceil(minX / gridSize) * gridSize; 
       for(float i = start; i < maxX; i += gridSize)
-        shapeRenderer.rect(i - 1, minY, 3, height);
+        shapeRenderer.line(i, minY, i, maxY);
       
-      start = (float)Math.ceil(minY / gridSize) * gridSize;
+      start = (float)Math.ceil(minY / gridSize) * gridSize; 
       for(float i = start; i < maxY; i += gridSize)
-        shapeRenderer.rect(minX, i - 1, width, 3);
-
+        shapeRenderer.line(minX, i, maxX, i);
       shapeRenderer.end();
     }
     
