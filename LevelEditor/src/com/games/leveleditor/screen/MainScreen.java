@@ -644,6 +644,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     scale = false;
     command = null;
     properties.updateProperties();
+    mouseMoved(screenX, screenY);
 
     return true;
   }
@@ -870,6 +871,12 @@ public class MainScreen extends GameScreen implements InputProcessor
         SelectObject model = (SelectObject)selected.get(i);
         BoundingBox bb = model.getBoundingBox();
         operation = bb.getOperationType(mouseMove);
+
+        mouseMove.set(guiScene.screenToSceneCoordinates(screenX, screenY));
+        
+        if (guiScene.hit(mouseMove.x, mouseMove.y, false) != null)
+          operation = Operation.NONE;
+
         switch(operation)
         {
           case SCALE_X0Y0:
