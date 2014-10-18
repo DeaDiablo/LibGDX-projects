@@ -17,6 +17,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -83,6 +85,15 @@ public class MainScreen extends GameScreen implements InputProcessor
   private Pixmap          hCursor    = new Pixmap(Gdx.files.internal("data/editor/cursors/horizontal.png"));
   private Pixmap          drCursor   = new Pixmap(Gdx.files.internal("data/editor/cursors/diagonal_right.png"));
   private Pixmap          dlCursor   = new Pixmap(Gdx.files.internal("data/editor/cursors/diagonal_left.png"));
+  
+  protected InputListener clickListener = new InputListener()
+  {
+    @Override
+    public boolean touchDown (InputEvent event, float x, float y, int pointer, int button)
+    {
+      return true;
+    }
+  };
 
   public final Updater propertiesUpdater = new Updater()
   {
@@ -166,32 +177,38 @@ public class MainScreen extends GameScreen implements InputProcessor
     //main
     main = new PanelMain(fileName, skin);
     main.setPosition(0, guiScene.getHeight() - main.getHeight());
+    main.addListener(clickListener);
     guiScene.addActor(main);
     
     //properties
-    properties = new PanelProperties("properties", skin); 
-    properties.setPosition(0, main.getY() - properties.getHeight());  
+    properties = new PanelProperties("Properties", skin); 
+    properties.setPosition(0, main.getY() - properties.getHeight());
+    properties.addListener(clickListener);
     guiScene.addActor(properties);
     
     variables = new PanelVariables("variables", skin);
     variables.setPosition(properties.getWidth(), guiScene.getHeight() - variables.getHeight());
     variables.setVisible(false);
+    variables.addListener(clickListener);
     guiScene.addActor(variables);
     
     //tree
     tree = new PanelTree(skin, this);
     tree.setPosition(0, properties.getY() - tree.getHeight());
     tree.setGroup(layer);
+    tree.addListener(clickListener);
     guiScene.addActor(tree);
     
     //layers
-    layers = new PanelLayers("layers", skin, mainScene, this);
+    layers = new PanelLayers("Layers", skin, mainScene, this);
     layers.setPosition(0, 0);
+    layers.addListener(clickListener);
     guiScene.addActor(layers);
     
     //graphics
-    graphics = new PanelGraphics("graphics", skin, this);
+    graphics = new PanelGraphics("Graphics", skin, this);
     graphics.setPosition(layers.getWidth(), 0);
+    graphics.addListener(clickListener);
     guiScene.addActor(graphics);
 
     contoller.addProcessor(new UndoRedoProcessor(this));

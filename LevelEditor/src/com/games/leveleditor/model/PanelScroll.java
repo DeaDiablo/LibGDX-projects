@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 public class PanelScroll extends Panel
 {
-  public static final Color disableColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+  public static final Color disableColor = new Color(0.65f, 0.65f, 0.65f, 1.0f);
   public static final Color enableColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
   
   protected Table content = null;

@@ -9,9 +9,12 @@ import javax.swing.filechooser.FileFilter;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -19,6 +22,8 @@ import com.games.leveleditor.LevelEditor;
 import com.games.leveleditor.screen.MainScreen;
 import com.shellGDX.GameInstance;
 import com.shellGDX.GameLog;
+import com.shellGDX.manager.ResourceManager;
+
 public class PanelMain extends Panel
 {
   protected class FilterLevelEditor extends FileFilter
@@ -45,28 +50,50 @@ public class PanelMain extends Panel
     }
   }
   
-  public TextButton  newButton  = null;
-  public TextButton  openButton = null;
-  public TextButton  saveButton = null;
-  public TextButton  saveAsButton = null;
-  public TextButton  exitButton = null;
+  public ImageButton newButton  = null;
+  public ImageButton openButton = null;
+  public ImageButton saveButton = null;
+  public ImageButton saveAsButton = null;
+  public ImageButton exitButton = null;
   
   protected String       fileName   = "";
   protected JFileChooser chooser    = null;
+
+  protected TextureRegionDrawable newDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/new.png"));
+  protected TextureRegionDrawable openDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/open.png"));
+  protected TextureRegionDrawable saveDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/save.png"));
+  protected TextureRegionDrawable saveAsDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/saveAs.png"));
+  protected TextureRegionDrawable exitDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/exit.png"));
   
   public PanelMain(String filename, Skin skin)
   {
     super(filename, skin);
     
     this.fileName = filename;
-    //visible
-    newButton = new TextButton("new", skin);
-    openButton = new TextButton("open", skin);
-    saveButton = new TextButton("save", skin);
-    saveAsButton = new TextButton("save as...", skin);
-    exitButton = new TextButton("exit", skin);
+    
+    final ButtonStyle styleButton = skin.get(ButtonStyle.class);
 
-    add(newButton);
+    ImageButtonStyle style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                                  newDrawable, newDrawable, null);
+    newButton = new ImageButton(style);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 openDrawable, openDrawable, null);
+    openButton = new ImageButton(style);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 saveDrawable, saveDrawable, null);
+    saveButton = new ImageButton(style);
+
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 saveAsDrawable, saveAsDrawable, null);
+    saveAsButton = new ImageButton(style);
+
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 exitDrawable, exitDrawable, null);
+    exitButton = new ImageButton(style);
+
+    add(newButton).size(48, 48);
     newButton.addListener(new ClickListener()
     {
       @Override
@@ -76,7 +103,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(openButton);
+    add(openButton).size(48, 48);
     openButton.addListener(new ClickListener()
     {
       @Override
@@ -86,7 +113,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(saveButton);
+    add(saveButton).size(48, 48);
     final ClickListener saveListner = new ClickListener()
     {
       @Override
@@ -97,7 +124,7 @@ public class PanelMain extends Panel
     };
     saveButton.addListener(saveListner);
     
-    add(saveAsButton);
+    add(saveAsButton).size(48, 48);
     saveAsButton.addListener(new ClickListener()
     {
       @Override
@@ -107,7 +134,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(exitButton);
+    add(exitButton).size(48, 48);
     exitButton.addListener(new ClickListener()
     {
       @Override
@@ -127,6 +154,7 @@ public class PanelMain extends Panel
       chooser = new JFileChooser();
       chooser.setAcceptAllFileFilterUsed(false);
       chooser.addChoosableFileFilter(new FilterLevelEditor());
+      chooser.setCurrentDirectory(new File("data"));
     }
     return chooser;
   }

@@ -1,23 +1,28 @@
 package com.games.leveleditor.model;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Tree;
+import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Selection;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.GoInGroupCommand;
 import com.games.leveleditor.controller.Updater;
 import com.games.leveleditor.screen.MainScreen;
 import com.shellGDX.controller.TimeController;
+import com.shellGDX.manager.ResourceManager;
 
 public class PanelTree extends PanelScroll
 {
@@ -26,10 +31,15 @@ public class PanelTree extends PanelScroll
   protected Skin  skin = null;
   protected MainScreen screen = null;
   protected boolean updateNodes = false;
-  protected TextButton groupButton = null;
-  protected TextButton ungroupButton = null;
-  protected TextButton upButton = null;
-  protected TextButton downButton = null;
+  protected ImageButton groupButton = null;
+  protected ImageButton ungroupButton = null;
+  protected ImageButton upButton = null;
+  protected ImageButton downButton = null;
+
+  protected TextureRegionDrawable groupDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/group.png"));
+  protected TextureRegionDrawable ungroupDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/ungroup.png"));
+  protected TextureRegionDrawable upDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/up.png"));
+  protected TextureRegionDrawable downDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/down.png"));
   
   public Updater panelUpdater = new Updater()
   {
@@ -108,8 +118,12 @@ public class PanelTree extends PanelScroll
     groupButtons.defaults().spaceBottom(5);
     groupButtons.defaults().space(10);
     
-    groupButton = new TextButton("group", skin);
-    groupButton.getStyle().disabledFontColor = disableColor;
+    final ButtonStyle styleButton = skin.get(ButtonStyle.class);
+
+    ImageButtonStyle style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                                  groupDrawable, groupDrawable, null);
+    
+    groupButton = new ImageButton(style);
     groupButton.addListener(new ClickListener()
     {
       @Override
@@ -118,8 +132,11 @@ public class PanelTree extends PanelScroll
         screen.group();
       }
     });
-    ungroupButton = new TextButton("ungroup", skin);
-    ungroupButton.getStyle().disabledFontColor = disableColor;
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 ungroupDrawable, ungroupDrawable, null);
+    
+    ungroupButton = new ImageButton(style);
     ungroupButton.addListener(new ClickListener()
     {
       @Override
@@ -129,16 +146,18 @@ public class PanelTree extends PanelScroll
       }
     });
  
-    groupButtons.add(groupButton);
-    groupButtons.add(ungroupButton);
+    groupButtons.add(groupButton).size(40, 40);;
+    groupButtons.add(ungroupButton).size(40, 40);
     buttons.add(groupButtons).space(100);
     
     Table updownButtons = new Table(skin);
     updownButtons.defaults().spaceBottom(5);
     updownButtons.defaults().space(10);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 upDrawable, upDrawable, null);
 
-    upButton = new TextButton("up", skin);
-    upButton.getStyle().disabledFontColor = disableColor;
+    upButton = new ImageButton(style);
     upButton.addListener(new ClickListener()
     {
       @Override
@@ -147,9 +166,11 @@ public class PanelTree extends PanelScroll
         screen.UpDownElement(-1);
       }
     });
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 downDrawable, downDrawable, null);
 
-    downButton = new TextButton("down", skin);
-    downButton.getStyle().disabledFontColor = disableColor;
+    downButton = new ImageButton(style);
     downButton.addListener(new ClickListener()
     {
       @Override
@@ -159,8 +180,8 @@ public class PanelTree extends PanelScroll
       }
     });
     
-    updownButtons.add(upButton);
-    updownButtons.add(downButton);
+    updownButtons.add(upButton).size(40, 40);;
+    updownButtons.add(downButton).size(40, 40);;
     buttons.add(updownButtons);
     
     row();
@@ -224,11 +245,20 @@ public class PanelTree extends PanelScroll
   {
     boolean selectionEmpty = tree.getSelection().isEmpty();
 
+    Color color = selectionEmpty ? disableColor : enableColor;
+    
+    groupButton.setColor(color);
+    upButton.setColor(color);
+    downButton.setColor(color);
+    
     groupButton.setDisabled(selectionEmpty);
     upButton.setDisabled(selectionEmpty);
     downButton.setDisabled(selectionEmpty);
     
+    color = group instanceof Layer ? disableColor : enableColor;
+    
     ungroupButton.setDisabled(group instanceof Layer);
+    ungroupButton.setColor(color);
     
     if (!selectionEmpty)
     {

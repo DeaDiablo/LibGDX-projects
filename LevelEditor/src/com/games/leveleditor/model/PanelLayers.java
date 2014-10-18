@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
@@ -30,14 +29,18 @@ public class PanelLayers extends PanelScroll
   public Layer       selectLayer = null;
   public Tree        tree        = null;
 
-  protected TextButton addButton    = null;
-  protected TextButton removeButton = null;
-  protected TextButton upButton = null;
-  protected TextButton downButton = null;
+  protected ImageButton addButton    = null;
+  protected ImageButton removeButton = null;
+  protected ImageButton upButton = null;
+  protected ImageButton downButton = null;
 
   protected Skin skin = null;
   protected Scene2D scene = null;
   protected TextureRegionDrawable visibleDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/visible.png"));
+  protected TextureRegionDrawable plusDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/plus.png"));
+  protected TextureRegionDrawable minusDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/minus.png"));
+  protected TextureRegionDrawable upDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/up.png"));
+  protected TextureRegionDrawable downDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/down.png"));
   
   protected InputListener tabListener = new InputListener()
   {
@@ -104,8 +107,16 @@ public class PanelLayers extends PanelScroll
     layerButtons.defaults().spaceBottom(5);
     layerButtons.defaults().space(10);
     
-    addButton = new TextButton("add", skin);
-    removeButton = new TextButton("remove", skin);
+    final ButtonStyle styleButton = skin.get(ButtonStyle.class);
+
+    ImageButtonStyle style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                                  plusDrawable, plusDrawable, null);
+    
+    addButton = new ImageButton(style);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 minusDrawable, minusDrawable, null);
+    removeButton = new ImageButton(style);
     
     addButton.addListener(new ClickListener()
     {
@@ -203,15 +214,17 @@ public class PanelLayers extends PanelScroll
       }
     });
     
-    layerButtons.add(addButton);
-    layerButtons.add(removeButton);
+    layerButtons.add(addButton).size(40, 40);
+    layerButtons.add(removeButton).size(40, 40);
     buttons.add(layerButtons).space(100);
 
     Table updownButtons = new Table(skin);
     updownButtons.defaults().spaceBottom(5);
     updownButtons.defaults().space(10);
 
-    upButton = new TextButton("up", skin);
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 upDrawable, upDrawable, null);
+    upButton = new ImageButton(style);
     upButton.addListener(new ClickListener()
     {
       @Override
@@ -221,7 +234,9 @@ public class PanelLayers extends PanelScroll
       }
     });
 
-    downButton = new TextButton("down", skin);
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 downDrawable, downDrawable, null);
+    downButton = new ImageButton(style);
     downButton.addListener(new ClickListener()
     {
       @Override
@@ -232,8 +247,8 @@ public class PanelLayers extends PanelScroll
     });
     
     
-    updownButtons.add(upButton);
-    updownButtons.add(downButton);
+    updownButtons.add(upButton).size(40, 40);
+    updownButtons.add(downButton).size(40, 40);
     buttons.add(updownButtons);
     
     row();

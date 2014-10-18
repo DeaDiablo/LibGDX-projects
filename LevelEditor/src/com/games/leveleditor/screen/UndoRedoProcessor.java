@@ -63,6 +63,7 @@ public class UndoRedoProcessor extends InputAdapter
         {
           screen.getGUIScene().setKeyboardFocus(null);
           CommandController.instance.redo();
+          screen.propertiesUpdater.update();
         }
         return true;
       case Input.Keys.Z:
@@ -70,6 +71,7 @@ public class UndoRedoProcessor extends InputAdapter
         {
           screen.getGUIScene().setKeyboardFocus(null);
           CommandController.instance.undo();
+          screen.propertiesUpdater.update();
         }
         return true;
       case Input.Keys.CONTROL_LEFT:
