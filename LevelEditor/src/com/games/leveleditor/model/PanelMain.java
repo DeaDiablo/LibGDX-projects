@@ -54,6 +54,9 @@ public class PanelMain extends Panel
   public ImageButton openButton = null;
   public ImageButton saveButton = null;
   public ImageButton saveAsButton = null;
+  public ImageButton cutButton = null;
+  public ImageButton copyButton = null;
+  public ImageButton pasteButton = null;
   public ImageButton exitButton = null;
   
   protected String       fileName   = "";
@@ -63,6 +66,9 @@ public class PanelMain extends Panel
   protected TextureRegionDrawable openDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/open.png"));
   protected TextureRegionDrawable saveDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/save.png"));
   protected TextureRegionDrawable saveAsDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/saveAs.png"));
+  protected TextureRegionDrawable cutDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/cut.png"));
+  protected TextureRegionDrawable copyDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/copy.png"));
+  protected TextureRegionDrawable pasteDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/paste.png"));
   protected TextureRegionDrawable exitDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/exit.png"));
   
   public PanelMain(String filename, Skin skin)
@@ -88,12 +94,24 @@ public class PanelMain extends Panel
     style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
                                  saveAsDrawable, saveAsDrawable, null);
     saveAsButton = new ImageButton(style);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 cutDrawable, cutDrawable, null);
+    cutButton = new ImageButton(style);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 copyDrawable, copyDrawable, null);
+    copyButton = new ImageButton(style);
+    
+    style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
+                                 pasteDrawable, pasteDrawable, null);
+    pasteButton = new ImageButton(style);
 
     style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
                                  exitDrawable, exitDrawable, null);
     exitButton = new ImageButton(style);
 
-    add(newButton).size(48, 48);
+    add(newButton).size(40, 40);
     newButton.addListener(new ClickListener()
     {
       @Override
@@ -103,7 +121,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(openButton).size(48, 48);
+    add(openButton).size(40, 40);
     openButton.addListener(new ClickListener()
     {
       @Override
@@ -113,7 +131,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(saveButton).size(48, 48);
+    add(saveButton).size(40, 40);
     final ClickListener saveListner = new ClickListener()
     {
       @Override
@@ -124,7 +142,7 @@ public class PanelMain extends Panel
     };
     saveButton.addListener(saveListner);
     
-    add(saveAsButton).size(48, 48);
+    add(saveAsButton).size(40, 40).spaceRight(25);
     saveAsButton.addListener(new ClickListener()
     {
       @Override
@@ -134,7 +152,37 @@ public class PanelMain extends Panel
       }
     });
     
-    add(exitButton).size(48, 48);
+    add(cutButton).size(40, 40);
+    cutButton.addListener(new ClickListener()
+    {
+      @Override
+      public void clicked(InputEvent event, float x, float y)
+      {
+        ((MainScreen)GameInstance.game.getScreen()).cut();
+      }
+    });
+    
+    add(copyButton).size(40, 40);
+    copyButton.addListener(new ClickListener()
+    {
+      @Override
+      public void clicked(InputEvent event, float x, float y)
+      {
+        ((MainScreen)GameInstance.game.getScreen()).copy();
+      }
+    });
+    
+    add(pasteButton).size(40, 40);
+    pasteButton.addListener(new ClickListener()
+    {
+      @Override
+      public void clicked(InputEvent event, float x, float y)
+      {
+        ((MainScreen)GameInstance.game.getScreen()).paste();
+      }
+    });
+    
+    add(exitButton).size(40, 40).spaceLeft(25);
     exitButton.addListener(new ClickListener()
     {
       @Override
