@@ -268,6 +268,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       ((SelectObject)model).setSelection(false);
   }
 
+  protected boolean altPress = false;
   protected boolean ctrlPress = false;
   protected boolean shiftPress = false;
 
@@ -283,6 +284,10 @@ public class MainScreen extends GameScreen implements InputProcessor
       case Input.Keys.SHIFT_LEFT:
       case Input.Keys.SHIFT_RIGHT:
         shiftPress = true;
+        break;
+      case Input.Keys.ALT_LEFT:
+      case Input.Keys.ALT_RIGHT:
+        altPress = true;
         break;
     }
     return false;
@@ -386,6 +391,10 @@ public class MainScreen extends GameScreen implements InputProcessor
       case Input.Keys.SHIFT_RIGHT:
         shiftPress = false;
         break;
+      case Input.Keys.ALT_LEFT:
+      case Input.Keys.ALT_RIGHT:
+        altPress = false;
+        break;
     }
     return false;
   }
@@ -396,6 +405,8 @@ public class MainScreen extends GameScreen implements InputProcessor
     return false;
   }
 
+  protected boolean brushMode = false;
+  protected Array<Actor> newBrushModels = new Array<Actor>();
   protected Operation operation = Operation.NONE;
   protected Rectangle selectRectangle = new Rectangle();
   protected final float minDelta = 3.0f;
@@ -407,6 +418,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   protected Vector2 cursorPos = new Vector2();
   protected Vector2 buffer1 = new Vector2();
   protected Vector2 buffer2 = new Vector2();
+  protected Vector2 guiBuffer = new Vector2();
   protected Command command = null;
   protected Actor   mainSelectModel = null;
   protected float   bufferX = 0, bufferY = 0;
@@ -422,7 +434,10 @@ public class MainScreen extends GameScreen implements InputProcessor
     newTouch.set(touch);
     
     if (addModel != null)
+    {
+      brushMode = altPress;
       return true;
+    }
     
     Array<Actor> selected = layers.selectLayer.getSelectedModels();
     for(int i = 0; i < selected.size; i++)
@@ -616,13 +631,16 @@ public class MainScreen extends GameScreen implements InputProcessor
       {
         case Buttons.LEFT:
         {
-          EditModel newModel = addModel.copy();
-          
-          AddCommand command = new AddCommand();
-          command.addModel(newModel);
-          command.setGroup(layers.selectLayer.getCurrentGroup());
-          command.addUpdater(tree.panelUpdater);
-          CommandController.instance.addCommand(command);
+          if (!brushMode)
+          {
+            EditModel newModel = addModel.copy();
+            
+            AddCommand command = new AddCommand();
+            command.addModel(newModel);
+            command.setGroup(layers.selectLayer.getCurrentGroup());
+            command.addUpdater(tree.panelUpdater);
+            CommandController.instance.addCommand(command);
+          }
           break;
         }
         case Buttons.RIGHT:
@@ -631,6 +649,8 @@ public class MainScreen extends GameScreen implements InputProcessor
           break;
         }
       }
+      brushMode = false;
+      newBrushModels.clear();
       return true;
     }
 
@@ -687,6 +707,28 @@ public class MainScreen extends GameScreen implements InputProcessor
     if (addModel != null)
     {
       mouseMoved(screenX, screenY);
+      
+      if (brushMode)
+      {
+        float x = addModel.getX();
+        float y = addModel.getY();
+        for(Actor model : newBrushModels)
+        {
+          if (model.getX() == x &&
+              model.getY() == y)
+            return true;
+        }
+
+        EditModel newModel = addModel.copy();
+        newBrushModels.add(newModel);
+        
+        AddCommand command = new AddCommand();
+        command.addModel(newModel);
+        command.setGroup(layers.selectLayer.getCurrentGroup());
+        command.addUpdater(tree.panelUpdater);
+        CommandController.instance.addCommand(command);
+      }
+      
       return true;
     }
     
@@ -873,7 +915,14 @@ public class MainScreen extends GameScreen implements InputProcessor
     mouseMove.set(mainScene.screenToSceneCoordinates(screenX, screenY));
     
     cursorPos.set(mouseMove);
-    if (shiftPress)
+    if (brushMode)
+    {
+      float width = addModel.getWidth();
+      float height = addModel.getHeight();
+      cursorPos.x = ((float)Math.ceil(cursorPos.x / width) - 0.5f) * width;
+      cursorPos.y = ((float)Math.ceil(cursorPos.y / height) - 0.5f) * height;
+    }
+    else if (shiftPress || altPress)
     {
       cursorPos.x = (float)Math.ceil(cursorPos.x / gridSize) * gridSize;
       cursorPos.y = (float)Math.ceil(cursorPos.y / gridSize) * gridSize;
@@ -904,9 +953,9 @@ public class MainScreen extends GameScreen implements InputProcessor
         BoundingBox bb = model.getBoundingBox();
         operation = bb.getOperationType(mouseMove);
 
-        mouseMove.set(guiScene.screenToSceneCoordinates(screenX, screenY));
+        guiBuffer.set(guiScene.screenToSceneCoordinates(screenX, screenY));
         
-        if (guiScene.hit(mouseMove.x, mouseMove.y, false) != null)
+        if (guiScene.hit(guiBuffer.x, guiBuffer.y, false) != null)
           operation = Operation.NONE;
 
         switch(operation)
@@ -931,11 +980,11 @@ public class MainScreen extends GameScreen implements InputProcessor
             Gdx.input.setCursorImage(moveCursor, 16, 16);
             return false;
           default:
-            Gdx.input.setCursorImage(null, 0, 0);
             break;
         }
       }
     }
+    Gdx.input.setCursorImage(null, 0, 0);
     return false;
   }
 
