@@ -16,7 +16,7 @@ public class LoadingScreen extends GameScreen
   public void show()
   {
     ResourceManager.instance.loadFolder("data");
-    ResourceManager.instance.loadGleed2DMap("data/testLevel1.xml");
+    ResourceManager.instance.loadEditorLevel("data/levels/testLevel.xml");
     LightWorld3D.instance.init();
   }
 

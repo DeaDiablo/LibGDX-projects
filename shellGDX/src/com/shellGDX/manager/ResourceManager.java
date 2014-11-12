@@ -25,8 +25,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.shellGDX.GameLog;
-import com.shellGDX.utils.gleed.Level;
-import com.shellGDX.utils.gleed.LevelLoader;
+import com.shellGDX.utils.gleed.LevelGleed2D;
+import com.shellGDX.utils.gleed.LevelGleed2DLoader;
+import com.shellGDX.utils.leveleditor2d.Editor2DLevel;
+import com.shellGDX.utils.leveleditor2d.LevelEditor2DLoader;
 
 public class ResourceManager extends AssetManager
 {
@@ -41,7 +43,8 @@ public class ResourceManager extends AssetManager
   {
     super(resolver);
     setLoader(TiledMap.class, new TmxMapLoader(resolver));
-    setLoader(Level.class, new LevelLoader(resolver));
+    setLoader(LevelGleed2D.class, new LevelGleed2DLoader(resolver));
+    setLoader(Editor2DLevel.class, new LevelEditor2DLoader(resolver));
   }
   
   public void loadFolder(String folder)
@@ -117,12 +120,22 @@ public class ResourceManager extends AssetManager
 
   public void loadGleed2DMap(String fileName)
   {
-    load(fileName, Level.class);
+    load(fileName, LevelGleed2D.class);
   }
 
-  public Level getGleed2DMap(String fileName)
+  public LevelGleed2D getGleed2DMap(String fileName)
   {
-    return get(fileName, Level.class);
+    return get(fileName, LevelGleed2D.class);
+  }
+  
+  public void loadEditorLevel(String fileName)
+  {
+    load(fileName, Editor2DLevel.class);
+  }
+
+  public Editor2DLevel getEditorLevel(String fileName)
+  {
+    return get(fileName, Editor2DLevel.class);
   }
 
   public void loadTexture(String fileName)

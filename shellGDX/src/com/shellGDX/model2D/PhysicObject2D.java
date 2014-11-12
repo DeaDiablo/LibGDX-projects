@@ -90,7 +90,7 @@ public abstract class PhysicObject2D extends Actor
     }
   }
   
-  protected abstract Body initPhysicObject(World physicsWorls);
+  protected abstract Body initPhysicObject(World physicsWorld);
   
   @Override
   protected void setStage(Stage stage)

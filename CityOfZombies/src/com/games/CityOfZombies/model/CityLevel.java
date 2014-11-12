@@ -6,36 +6,45 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.Shader;
-import com.shellGDX.utils.gleed.Layer;
-import com.shellGDX.utils.gleed.Level;
+import com.shellGDX.utils.leveleditor2d.Layer;
+import com.shellGDX.utils.leveleditor2d.Editor2DLevel;
 
 public class CityLevel
 {
-  protected Level gleedLevel = null;
+  protected Editor2DLevel editor2Dlevel = null;
   protected HashMap<String, ModelLayer> modelLayers = new HashMap<String, ModelLayer>();
   
-  public CityLevel(Level gleedLevel)
+  public CityLevel(Editor2DLevel editor2Dlevel)
   {
-    this.gleedLevel = gleedLevel;
+    this.editor2Dlevel = editor2Dlevel;
 
-    for(Layer layer : gleedLevel.getLayers().values())
+    for(Layer layer : editor2Dlevel.getLayers().values())
     {
       ModelLayer modelLayer = new ModelLayer();
       modelLayer.parseLayer(layer);
       modelLayers.put(modelLayer.getName(), modelLayer);
     }
   }
+  
+  public Editor2DLevel getEditor2DLevel()
+  {
+    return editor2Dlevel;
+  }
 
   public boolean update(Camera camera, float deltaTime)
   {
-    return gleedLevel.update(camera, deltaTime);
+    return editor2Dlevel.update(camera, deltaTime);
   }
   
   public void draw2D(Batch batch, String name)
   {
-    batch.begin();
-    gleedLevel.getLayer(name).draw(batch, 1.0f);
-    batch.end();
+    Layer layer = editor2Dlevel.getLayer(name);
+    if (layer != null)
+    {
+      batch.begin();
+      layer.draw(batch, 1.0f);
+      batch.end();
+    }
   }
   
   public void draw3DAll(Camera camera, ModelBatch batch, Shader shader)

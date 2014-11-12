@@ -1,8 +1,8 @@
 package com.shellGDX.utils.gleed;
 
-import com.shellGDX.model2D.ParallaxModelObject2D;
+import com.shellGDX.model2D.ModelObject2D;
 
-public class LayerObject extends ParallaxModelObject2D
+public class LayerObject extends ModelObject2D
 {
   protected Properties properties = new Properties();
   

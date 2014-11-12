@@ -2,13 +2,12 @@ package com.games.CityOfZombies.model;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
-import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model3D.Group3D;
 import com.shellGDX.model3D.ModelObject3D;
-import com.shellGDX.utils.gleed.Layer;
-import com.shellGDX.utils.gleed.Settings;
-import com.shellGDX.utils.gleed.TextureElement;
+import com.shellGDX.utils.leveleditor2d.Layer;
+import com.shellGDX.utils.leveleditor2d.Settings;
 
 public class ModelLayer extends Group3D
 {
@@ -36,21 +35,21 @@ public class ModelLayer extends Group3D
   {
     name = layer.getName();
     
-    HashMap<String, Array<TextureElement>> textures = layer.getTextures();
+    HashMap<String, Array<Actor>> objects = layer.getObjects();
     
-    for(Array<TextureElement> arrayTextures : textures.values())
+    for(Array<Actor> actors : objects.values())
     {
-      for (int i = arrayTextures.size - 1; i >= 0; i--)
+      for (int i = 0; i < actors.size; i++)
       {
-        TextureElement texture = arrayTextures.get(i);
-        if (texture.getFile().compareToIgnoreCase("window.png") == 0)
+        Actor actor = actors.get(i);
+        /*if (actor.getFile().compareToIgnoreCase("window.png") == 0)
         {
           Wall model = new Wall(ResourceManager.instance.getModel("window.obj"));
           model.setPosition(texture.getX(), texture.getY(), 0);
           model.setRotation(0, 0, texture.getRotation() - 90);
           addModel(model);
           arrayTextures.removeValue(texture, true);
-        }
+        }*/
       }
     }
   }

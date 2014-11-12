@@ -915,14 +915,14 @@ public class MainScreen extends GameScreen implements InputProcessor
     mouseMove.set(mainScene.screenToSceneCoordinates(screenX, screenY));
     
     cursorPos.set(mouseMove);
-    if (brushMode)
+    if (brushMode || altPress)
     {
       float width = addModel.getWidth();
       float height = addModel.getHeight();
       cursorPos.x = ((float)Math.ceil(cursorPos.x / width) - 0.5f) * width;
       cursorPos.y = ((float)Math.ceil(cursorPos.y / height) - 0.5f) * height;
     }
-    else if (shiftPress || altPress)
+    else if (shiftPress)
     {
       cursorPos.x = (float)Math.ceil(cursorPos.x / gridSize) * gridSize;
       cursorPos.y = (float)Math.ceil(cursorPos.y / gridSize) * gridSize;
