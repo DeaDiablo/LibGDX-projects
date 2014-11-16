@@ -4,10 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.games.CityOfZombies.light.Light2D3D;
 import com.games.CityOfZombies.light.LightFilter;
-import com.games.CityOfZombies.model.Car;
+import com.games.CityOfZombies.light.ShadowFilter;
 import com.games.CityOfZombies.model.CityLevel;
 import com.games.CityOfZombies.model.Player;
 import com.shellGDX.GameInstance;
@@ -17,6 +18,7 @@ import com.shellGDX.box2dLight.LightWorld2D;
 import com.shellGDX.controller.PhysicsWorld2D;
 import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model2D.EffectObject2D;
+import com.shellGDX.model2D.PhysicObject2D;
 import com.shellGDX.model2D.Scene2D;
 import com.shellGDX.model3D.Scene3D;
 import com.shellGDX.model3D.light.LightWorld3D;
@@ -33,7 +35,6 @@ public class CityScreen extends GameScreen
   protected Scene2D            scene2D   = null;
   protected OrthographicCamera camera2D  = null;
   protected Player             player    = null;
-  protected Car                car       = null;
   protected EffectObject2D     rain      = null;
 
   //3d objects
@@ -43,7 +44,7 @@ public class CityScreen extends GameScreen
   //all objects
   protected CityLevel          level        = null;
   protected boolean            clearWeather = true;
-  protected DayNightCycle      dayNight     = new DayNightCycle(22, 0.5f / 48.0f, clearWeather);
+  protected DayNightCycle      dayNight     = new DayNightCycle(22, 0.5f, clearWeather);
   
   public CityScreen(float width, float height)
   {
@@ -66,15 +67,13 @@ public class CityScreen extends GameScreen
     camera2D = (OrthographicCamera)scene2D.getCamera();
     LightWorld2D.init(camera2D);
     Light2D.setContactFilter(new LightFilter());
-    
-    car = new Car(ResourceManager.instance.getTextureRegion("taxi.png"));
-    car.setPosition(-500, 0);
 
-    level = new CityLevel(ResourceManager.instance.getGleed2DMap("testLevel1.xml"));
+    level = new CityLevel(ResourceManager.instance.getEditorLevel("testLevel.xml"));
+    scene2D.addActor(level.getEditor2DLevel());
     
     player = new Player(ResourceManager.instance.getTextureRegion("player_pistol.png"));
     scene2D.addActor(player);
-    scene2D.addActor(car);
+    
     GameInstance.contoller.addScene2D(scene2D);
 
     //3d objects
@@ -140,13 +139,12 @@ public class CityScreen extends GameScreen
   @Override
   public void draw(float deltaTime)
   {
-    level.draw2D(scene2D.getBatch(), "0");
     scene2D.draw();
-    Gdx.gl.glClear(GL30.GL_DEPTH_BUFFER_BIT);
     view.drawLightWorld();
-    scene3D.draw();
-    level.draw3DAll(camera3D, scene3D.getModelBatch(), scene3D.getShader());
-    level.draw2D(scene2D.getBatch(), "100");
-    //view.drawPhysicsDebug(scene2D.getCamera());
+    //Gdx.gl.glClear(GL30.GL_DEPTH_BUFFER_BIT);
+    //scene3D.draw();
+    //level.draw3DAll(camera3D, scene3D.getModelBatch(), scene3D.getShader());
+    //level.draw2D(scene2D.getBatch(), "100");
+    view.drawPhysicsDebug(scene2D.getCamera());
   }
 }

@@ -60,10 +60,11 @@ public class Player extends CompositeObject2D implements InputProcessor
   
   protected boolean initLights(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
   {
-    PointLight2D3D pointLight = new PointLight2D3D(lightsWorld, 512, new Color(1, 1, 1, 1), 800, 0, 0);
+    PointLight2D3D pointLight = new PointLight2D3D(lightsWorld, 512, new Color(0.5f, 0.5f, 0.5f, 0.5f), 1200, 0, 0);
     pointLight.attachToBody(getBody(), 0, 0);
     pointLight.setActive(true);
     pointLight.setStaticLight(false);
+    pointLight.setSoft(false);
     lights.add(pointLight);
     
     return true;

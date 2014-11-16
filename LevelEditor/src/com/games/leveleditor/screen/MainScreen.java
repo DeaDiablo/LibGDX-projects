@@ -406,6 +406,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   }
 
   protected boolean brushMode = false;
+  protected Vector2 brushStartPos = new Vector2();
   protected Array<Actor> newBrushModels = new Array<Actor>();
   protected Operation operation = Operation.NONE;
   protected Rectangle selectRectangle = new Rectangle();
@@ -727,9 +728,9 @@ public class MainScreen extends GameScreen implements InputProcessor
         command.setGroup(layers.selectLayer.getCurrentGroup());
         command.addUpdater(tree.panelUpdater);
         CommandController.instance.addCommand(command);
+        
+        return true;
       }
-      
-      return true;
     }
     
     if (translate)
@@ -915,17 +916,24 @@ public class MainScreen extends GameScreen implements InputProcessor
     mouseMove.set(mainScene.screenToSceneCoordinates(screenX, screenY));
     
     cursorPos.set(mouseMove);
-    if (brushMode || altPress)
+    if (addModel != null)
     {
-      float width = addModel.getWidth();
-      float height = addModel.getHeight();
-      cursorPos.x = ((float)Math.ceil(cursorPos.x / width) - 0.5f) * width;
-      cursorPos.y = ((float)Math.ceil(cursorPos.y / height) - 0.5f) * height;
-    }
-    else if (shiftPress)
-    {
-      cursorPos.x = (float)Math.ceil(cursorPos.x / gridSize) * gridSize;
-      cursorPos.y = (float)Math.ceil(cursorPos.y / gridSize) * gridSize;
+      float width = addModel.getBound().getWidth();
+      float height = addModel.getBound().getHeight();
+      if (brushMode)
+      {
+        cursorPos.x = brushStartPos.x + (float)Math.round((cursorPos.x - brushStartPos.x) / width) * width;
+        cursorPos.y = brushStartPos.y + (float)Math.round((cursorPos.y - brushStartPos.y) / height) * height;
+      }
+      else if (shiftPress || altPress)
+      {
+        cursorPos.x = (float)Math.round(cursorPos.x / gridSize) * gridSize;
+        cursorPos.y = (float)Math.round(cursorPos.y / gridSize) * gridSize;
+        if (altPress)
+        {
+          brushStartPos.set(cursorPos);
+        }
+      }
     }
     
     OrthographicCamera camera = (OrthographicCamera)mainScene.getCamera();
