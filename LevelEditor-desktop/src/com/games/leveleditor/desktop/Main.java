@@ -14,7 +14,7 @@ public class Main
     config.width = 1440;
     config.height = 810;
     config.fullscreen = false;
-    config.vSyncEnabled = false;
+    config.vSyncEnabled = true;
     config.foregroundFPS = 0;
     new LwjglApplication(new LevelEditor(), config);
   }

@@ -335,6 +335,13 @@ public class MainScreen extends GameScreen implements InputProcessor
 
           addModel.scaleBy(deltaScale);
         }
+        else
+        {
+          if (keycode == Input.Keys.UP)
+            UpDownElement(1);
+          else
+            UpDownElement(-1);
+        }
         break;
       case Input.Keys.V:
         if (ctrlPress)
@@ -1140,7 +1147,8 @@ public class MainScreen extends GameScreen implements InputProcessor
         copyModel.rotateBy(angle);
         copyModel.setScale(model.getScaleX() * scaleX, model.getScaleY() * scaleY);
       }
-      
+
+      copyModel.setZIndex(group.getChildren().indexOf(model, true) + 1);
       copyModels.add(copyModel);
     }
     return true;
@@ -1162,19 +1170,26 @@ public class MainScreen extends GameScreen implements InputProcessor
   {
     if (layers.selectLayer == null || copyModels.size <= 0)
       return;
+    
+    clearSelection();
 
+    Group group = layers.selectLayer.getCurrentGroup();
     AddCommand command = new AddCommand();
-    command.setGroup(layers.selectLayer.getCurrentGroup());
-    for(int i = 0; i < copyModels.size; i++)
+    command.setGroup(group);
+    for(int i = copyModels.size - 1; i >= 0; i--)
     {
       Actor model = copyModels.get(i);
       if (model instanceof EditModel)
       {
-        command.addModel(((EditModel)model).copy());
+        EditModel newModel = ((EditModel)model).copy();
+        newModel.setSelection(true);
+        command.addModel(newModel, model.getZIndex());
       }
       else if (model instanceof EditGroup)
       {
-        command.addModel(((EditGroup)model).copy());
+        EditGroup newGroup = ((EditGroup)model).copy();
+        newGroup.setSelection(true);
+        command.addModel(newGroup, model.getZIndex());
       }
     }
     command.addUpdater(tree.panelUpdater);

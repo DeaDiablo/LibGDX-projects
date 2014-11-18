@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.games.leveleditor.controller.AddLayerCommand;
 import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.DelLayerCommand;
@@ -146,8 +147,8 @@ public class PanelLayers extends PanelScroll
           {
             if (execute)
             {
-              addLayer(layer);
-              selectLayer(tree.getNodes().size - 1);
+              insertLayer(layer, 0);
+              selectLayer(0);
             }
             else
             {
@@ -230,7 +231,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        screen.UpDownLayer(-1);
+        screen.UpDownLayer(1);
       }
     });
 
@@ -242,7 +243,7 @@ public class PanelLayers extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        screen.UpDownLayer(1);
+        screen.UpDownLayer(-1);
       }
     });
     
@@ -277,8 +278,10 @@ public class PanelLayers extends PanelScroll
   protected void rebuildTree()
   {
     tree.clearChildren();
-    for(Actor actor : scene.getActors())
+    Array<Actor> actors = scene.getActors();
+    for(int i = actors.size - 1; i >= 0; i--)
     {
+      Actor actor = actors.get(i);
       if (actor instanceof Layer)
       {
         Layer layer = (Layer)actor;

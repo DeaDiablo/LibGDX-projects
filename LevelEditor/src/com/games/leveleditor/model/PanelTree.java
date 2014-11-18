@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Selection;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.SnapshotArray;
 import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.GoInGroupCommand;
 import com.games.leveleditor.controller.Updater;
@@ -163,7 +164,7 @@ public class PanelTree extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        screen.UpDownElement(-1);
+        screen.UpDownElement(1);
       }
     });
     
@@ -176,7 +177,7 @@ public class PanelTree extends PanelScroll
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        screen.UpDownElement(1);
+        screen.UpDownElement(-1);
       }
     });
     
@@ -219,8 +220,10 @@ public class PanelTree extends PanelScroll
       tree.add(node);
     }
     
-    for (Actor actor : group.getChildren())
+    SnapshotArray<Actor> children = group.getChildren();
+    for (int i = children.size - 1; i >= 0; i--)
     {
+      Actor actor = children.get(i);
       Node node = new Node(new Label(actor.getName(), skin));
       node.setObject(actor);
       if (((SelectObject)actor).isSelected())

@@ -9,6 +9,12 @@ import com.games.leveleditor.model.Layer;
 
 public class AddCommand extends Command
 {
+  protected class NewActor
+  {
+    Actor actor;
+    int index;
+  }
+  
   public AddCommand()
   {
     super();
@@ -17,7 +23,7 @@ public class AddCommand extends Command
   protected Vector2 bufferPosition = new Vector2();
   protected Vector2 bufferScale = new Vector2();
   protected Group   group = null;
-  protected Array<Actor> newModels = new Array<Actor>();
+  protected Array<NewActor> newModels = new Array<NewActor>();
   
   public void setGroup(Group group)
   {
@@ -26,13 +32,32 @@ public class AddCommand extends Command
   
   public void addModel(Actor model)
   {
-    newModels.add(model);
+    NewActor newActor = new NewActor();
+    newActor.actor = model;
+    newActor.index = -1;
+    newModels.add(newActor);
+  }
+  
+  public void addModel(Actor model, int index)
+  {
+    NewActor newActor = new NewActor();
+    newActor.actor = model;
+    newActor.index = index;
+    newModels.add(newActor);
   }
   
   public void addModels(Array<Actor> models)
   {
-    newModels.addAll(models);
+    for(Actor actor : models)
+      addModel(actor);
   }
+  
+  public void addModels(Array<Actor> models, int index)
+  {
+    for(Actor actor : models)
+      addModel(actor, index++);
+  }
+
 
   @Override
   public boolean execute()
@@ -40,29 +65,33 @@ public class AddCommand extends Command
     if (group == null || newModels.size <= 0)
       return false;
     
-    for(Actor model : newModels)
+    for(NewActor newActor : newModels)
     {
       if (!(group instanceof Layer))
       {
-        bufferPosition.set(model.getX(), model.getY());
+        bufferPosition.set(newActor.actor.getX(), newActor.actor.getY());
         group.stageToLocalCoordinates(bufferPosition);
         
-        bufferScale.set(model.getX() + 1.0f, model.getY());
+        bufferScale.set(newActor.actor.getX() + 1.0f, newActor.actor.getY());
         group.stageToLocalCoordinates(bufferScale);
         bufferScale.sub(bufferPosition);
         float angle = MathUtils.atan2(bufferScale.y, bufferScale.x) * MathUtils.radiansToDegrees;
         float scaleX = bufferScale.len();
   
-        bufferScale.set(model.getX(), model.getY() + 1.0f);
+        bufferScale.set(newActor.actor.getX(), newActor.actor.getY() + 1.0f);
         group.stageToLocalCoordinates(bufferScale);
         bufferScale.sub(bufferPosition);
         float scaleY = bufferScale.len();
 
-        model.setPosition(bufferPosition.x, bufferPosition.y);
-        model.rotateBy(angle);
-        model.setScale(model.getScaleX() * scaleX, model.getScaleY() * scaleY);
+        newActor.actor.setPosition(bufferPosition.x, bufferPosition.y);
+        newActor.actor.rotateBy(angle);
+        newActor.actor.setScale(newActor.actor.getScaleX() * scaleX, newActor.actor.getScaleY() * scaleY);
       }
-      group.addActor(model);
+
+      if (newActor.index > 0)
+        group.addActorAt(newActor.index, newActor.actor);
+      else
+        group.addActor(newActor.actor);
     }
     
     return true;
@@ -71,7 +100,7 @@ public class AddCommand extends Command
   @Override
   public void unExecute()
   {
-    for(Actor model : newModels)
-      model.remove();
+    for(NewActor newActor : newModels)
+      newActor.actor.remove();
   }
 }
