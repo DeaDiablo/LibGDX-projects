@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlWriter;
@@ -75,6 +76,17 @@ public class EditGroup extends Group2D implements SelectObject
     }
     
     {
+      Element color = element.getChildByName("color");
+      if (color != null)
+      {
+        getColor().r = color.getFloat("r");
+        getColor().g = color.getFloat("g");
+        getColor().b = color.getFloat("b");
+        getColor().a = color.getFloat("a");
+      }
+    }
+    
+    {
       Element variablesGroup = element.getChildByName("variables");
       if (variablesGroup != null)
       {
@@ -128,6 +140,16 @@ public class EditGroup extends Group2D implements SelectObject
       xml.element("scale");
       xml.element("x", getScaleX());
       xml.element("y", getScaleY());
+      xml.pop();
+    }
+    
+    {
+      Color color = getColor();
+      xml.element("color");
+      xml.element("r", color.r);
+      xml.element("g", color.g);
+      xml.element("b", color.b);
+      xml.element("a", color.a);
       xml.pop();
     }
     

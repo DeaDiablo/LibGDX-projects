@@ -24,7 +24,7 @@ import com.shellGDX.GameInstance;
 import com.shellGDX.GameLog;
 import com.shellGDX.manager.ResourceManager;
 
-public class PanelMain extends Panel
+public class PanelMain extends PanelScroll
 {
   protected class FilterLevelEditor extends FileFilter
   {
@@ -75,6 +75,8 @@ public class PanelMain extends Panel
   {
     super(filename, skin);
     
+    scroll.getListeners().removeIndex(0);
+    
     this.fileName = filename;
     
     final ButtonStyle styleButton = skin.get(ButtonStyle.class);
@@ -111,7 +113,7 @@ public class PanelMain extends Panel
                                  exitDrawable, exitDrawable, null);
     exitButton = new ImageButton(style);
 
-    add(newButton).size(40, 40);
+    content.add(newButton).size(40, 40);
     newButton.addListener(new ClickListener()
     {
       @Override
@@ -121,7 +123,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(openButton).size(40, 40);
+    content.add(openButton).size(40, 40);
     openButton.addListener(new ClickListener()
     {
       @Override
@@ -131,7 +133,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(saveButton).size(40, 40);
+    content.add(saveButton).size(40, 40);
     final ClickListener saveListner = new ClickListener()
     {
       @Override
@@ -142,7 +144,7 @@ public class PanelMain extends Panel
     };
     saveButton.addListener(saveListner);
     
-    add(saveAsButton).size(40, 40).spaceRight(25);
+    content.add(saveAsButton).size(40, 40).spaceRight(25);
     saveAsButton.addListener(new ClickListener()
     {
       @Override
@@ -152,7 +154,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(cutButton).size(40, 40);
+    content.add(cutButton).size(40, 40);
     cutButton.addListener(new ClickListener()
     {
       @Override
@@ -162,7 +164,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(copyButton).size(40, 40);
+    content.add(copyButton).size(40, 40);
     copyButton.addListener(new ClickListener()
     {
       @Override
@@ -172,7 +174,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(pasteButton).size(40, 40);
+    content.add(pasteButton).size(40, 40);
     pasteButton.addListener(new ClickListener()
     {
       @Override
@@ -182,7 +184,7 @@ public class PanelMain extends Panel
       }
     });
     
-    add(exitButton).size(40, 40).spaceLeft(25);
+    content.add(exitButton).size(40, 40).spaceLeft(25);
     exitButton.addListener(new ClickListener()
     {
       @Override

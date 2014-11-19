@@ -255,7 +255,7 @@ public class PanelLayers extends PanelScroll
     row();
     add(buttons);
     
-    setSize(450, 350);
+    setSize(450, 300);
 
     tree.addListener(new ChangeListener()
     {

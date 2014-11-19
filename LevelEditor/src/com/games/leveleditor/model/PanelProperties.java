@@ -4,11 +4,13 @@ import java.util.Locale;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -17,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
+import com.games.leveleditor.controller.ColorCommand;
 import com.games.leveleditor.controller.CommandController;
 import com.games.leveleditor.controller.GroupCommand;
 import com.games.leveleditor.controller.NameCommand;
@@ -28,7 +32,7 @@ import com.games.leveleditor.controller.VisibleCommand;
 import com.games.leveleditor.screen.MainScreen;
 import com.shellGDX.GameInstance;
 
-public class PanelProperties extends Panel
+public class PanelProperties extends PanelScroll
 {
   public TextField  name      = null;
   public CheckBox   visible   = null;
@@ -37,6 +41,7 @@ public class PanelProperties extends Panel
   public TextField  rotation  = null;
   public TextField  scaleX    = null;
   public TextField  scaleY    = null;
+  public TextField  r, g, b, a = null;
   public CheckBox   lockRatio = null;
   public TextButton variablesButton = null;
   
@@ -56,6 +61,8 @@ public class PanelProperties extends Panel
   public PanelProperties(String title, Skin skin)
   {
     super(title, skin);
+    
+    scroll.getListeners().removeIndex(0);
 
     TextFieldFilter filter = new TextFieldFilter()
     {
@@ -153,6 +160,22 @@ public class PanelProperties extends Panel
                 scaleCommand.addActor(model);
                 groupCommand.addCommand(scaleCommand);
               }
+              else
+              {
+                ColorCommand colorCommand = new ColorCommand();
+                colorCommand.addActor(model);
+                value /= 255.0f;
+                value = Math.min(1.0f, Math.max(0.0f, value));
+                if (textField == r)
+                  colorCommand.setR(value);
+                else if (textField == g)
+                  colorCommand.setG(value);
+                else if (textField == b)
+                  colorCommand.setB(value);
+                else
+                  colorCommand.setA(value);
+                groupCommand.addCommand(colorCommand);
+              }
             }
             catch (NumberFormatException exception)
             {
@@ -184,11 +207,12 @@ public class PanelProperties extends Panel
     name = new TextField("", skin);
     name.setTextFieldListener(listener);
     name.addListener(tabListener);
-    add(new Label("Name: ", skin));
-    add(name);
+    content.add(new Label("Name: ", skin));
+    content.add(name);
 
     // visible
     visible = new CheckBox(" visible", skin);
+    visible.getStyle().disabledFontColor = disableColor;
     visible.addListener(new ChangeListener()
     {
       @Override
@@ -210,9 +234,9 @@ public class PanelProperties extends Panel
         CommandController.instance.addCommand(groupCommand);
       }
     });
-    add(visible);
+    content.add(visible);
 
-    row();
+    content.row();
 
     // position
     positionX = new TextField("", skin);
@@ -223,38 +247,22 @@ public class PanelProperties extends Panel
     positionY.setTextFieldListener(listener);
     positionY.setTextFieldFilter(filter);
     positionY.addListener(tabListener);
-    add(new Label("Position: ", skin));
-    add(positionX);
-    add(positionY);
+    content.add(new Label("Position: ", skin));
+    content.add(positionX);
+    content.add(positionY);
 
-    row();
+    content.row();
 
     // angle
     rotation = new TextField("", skin);
     rotation.setTextFieldListener(listener);
     rotation.setTextFieldFilter(filter);
     rotation.addListener(tabListener);
-    add(new Label("Angle: ", skin));
-    add(rotation);
-
-    row();
-
-    // scale
-    scaleX = new TextField("", skin);
-    scaleX.setTextFieldListener(listener);
-    scaleX.setTextFieldFilter(filter);
-    scaleX.addListener(tabListener);
-    scaleY = new TextField("", skin);
-    scaleY.setTextFieldListener(listener);
-    scaleY.setTextFieldFilter(filter);
-    scaleX.addListener(tabListener);
-    add(new Label("Scale: ", skin));
-    add(scaleX);
-    add(scaleY);
-    
-    row();
+    content.add(new Label("Angle: ", skin));
+    content.add(rotation);
     
     lockRatio = new CheckBox(" ratio", skin);
+    lockRatio.getStyle().disabledFontColor = disableColor;
     lockRatio.addListener(new ChangeListener()
     {
       @Override
@@ -282,9 +290,61 @@ public class PanelProperties extends Panel
         }
       }
     });
+    content.add(lockRatio);
+
+    content.row();
+
+    // scale
+    scaleX = new TextField("", skin);
+    scaleX.setTextFieldListener(listener);
+    scaleX.setTextFieldFilter(filter);
+    scaleX.addListener(tabListener);
+    scaleY = new TextField("", skin);
+    scaleY.setTextFieldListener(listener);
+    scaleY.setTextFieldFilter(filter);
+    scaleX.addListener(tabListener);
+    content.add(new Label("Scale: ", skin));
+    content.add(scaleX);
+    content.add(scaleY);
+    
+    content.row();
+
+    r = new TextField("", skin);
+    r.setTextFieldListener(listener);
+    r.setTextFieldFilter(filter);
+    r.addListener(tabListener);
+    g = new TextField("", skin);
+    g.setTextFieldListener(listener);
+    g.setTextFieldFilter(filter);
+    g.addListener(tabListener);
+    b = new TextField("", skin);
+    b.setTextFieldListener(listener);
+    b.setTextFieldFilter(filter);
+    b.addListener(tabListener);
+    a = new TextField("", skin);
+    a.setTextFieldListener(listener);
+    a.setTextFieldFilter(filter);
+    a.addListener(tabListener);
+    content.add(new Label("Color: ", skin));
+    
+    Table colorTable = new Table(skin);
+    colorTable.defaults().spaceBottom(10);
+    colorTable.defaults().space(10);
+    colorTable.add(r).width(75);
+    colorTable.add(g).width(75);   
+    content.add(colorTable); 
+    colorTable = new Table(skin);
+    colorTable.defaults().spaceBottom(10);
+    colorTable.defaults().space(10);
+    colorTable.add(b).width(75);
+    colorTable.add(a).width(75);
+    content.add(colorTable);
+    
+    content.row();
     
     final TextButtonStyle styleButton = skin.get(TextButtonStyle.class);
     TextButtonStyle style = new TextButtonStyle(styleButton.up, styleButton.down, styleButton.down, styleButton.font);
+    style.disabledFontColor = disableColor;
     variablesButton = new TextButton("Variables", style);
     variablesButton.addListener(new ClickListener()
     {
@@ -295,11 +355,10 @@ public class PanelProperties extends Panel
         variables.setVisible(variablesButton.isChecked());
       }
     });
-    add(new Label("Advanced:", skin));
-    add(variablesButton);
-    add(lockRatio);
+    content.add(new Label("Advanced:", skin));
+    content.add(variablesButton);
 
-    setSize(450, 250);
+    setSize(450, 300);
     setEditActors(null);
   }
 
@@ -324,13 +383,32 @@ public class PanelProperties extends Panel
     lockRatio.setDisabled(disable);
     scaleX.setDisabled(disable);
     scaleY.setDisabled(disable);
+    r.setDisabled(disable);
+    g.setDisabled(disable);
+    b.setDisabled(disable);
+    a.setDisabled(disable);
     //variablesButton.setDisabled(disable);
     
-    Color color = disable ? disableColor : enableColor;
+    disableActors(getChildren(), disable);
+    
+    updateProperties = false;
 
-    for (Actor actor : getChildren())
+    if (!disable)
+      updateProperties();
+  }
+  
+  protected void disableActors(SnapshotArray<Actor> actors, boolean disable)
+  {
+    Color color = disable ? disableColor : enableColor;
+    for (Actor actor : actors)
     {
       actor.setColor(color);
+
+      if (actor instanceof Group)
+      {
+        if (!(actor instanceof CheckBox))
+          disableActors(((Group)actor).getChildren(), disable);
+      }
       
       if (disable)
       {
@@ -342,18 +420,9 @@ public class PanelProperties extends Panel
         {
           CheckBox checkBox = (CheckBox) actor;
           checkBox.setChecked(false);
-          checkBox.getStyle().disabledFontColor = disableColor;
-        }
-        else if (actor instanceof TextButton)
-        {
-          ((TextButton)actor).getStyle().disabledFontColor = disableColor;
         }
       }
     }
-    updateProperties = false;
-
-    if (!disable)
-      updateProperties();
   }
 
   public void updateProperties()
@@ -373,6 +442,11 @@ public class PanelProperties extends Panel
     lockRatio.setChecked(Math.abs(model.getScaleX() - model.getScaleY()) < 0.01f);
     scaleX.setText(String.format(Locale.ENGLISH, "%.2f", model.getScaleX()));
     scaleY.setText(String.format(Locale.ENGLISH, "%.2f", model.getScaleY()));
+    Color color = model.getColor();
+    r.setText(String.format(Locale.ENGLISH, "%.0f", color.r * 255));
+    g.setText(String.format(Locale.ENGLISH, "%.0f", color.g * 255));
+    b.setText(String.format(Locale.ENGLISH, "%.0f", color.b * 255));
+    a.setText(String.format(Locale.ENGLISH, "%.0f", color.a * 255));
     
     scaleY.setDisabled(lockRatio.isChecked());
     scaleY.setColor(lockRatio.isChecked() ? disableColor : enableColor);
