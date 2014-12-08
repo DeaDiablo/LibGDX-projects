@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FileTextureData;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.shellGDX.manager.ResourceManager;
@@ -36,13 +37,49 @@ public class EditModel extends ModelObject2D implements SelectObject
 
   public EditModel copy()
   {
-    EditModel newModel = new EditModel(getName(), region, getX(), getY());
+    EditModel newModel = new EditModel(getName(), new TextureRegion(region), getX(), getY());
     newModel.setVisible(isVisible());
     newModel.setRotation(getRotation());
     newModel.setScale(getScaleX(), getScaleY());
     newModel.setAlign(getHorzAlign(), getVertAlign());
     newModel.variables.putAll(variables);
     return newModel;
+  }
+  
+  public String getPath()
+  {
+    return ((FileTextureData)region.getTexture().getTextureData()).getFileHandle().path();
+  }
+
+  public void setPath(String path)
+  {
+    try
+    {
+      setTextureRegion(ResourceManager.instance.getTextureRegion(path));
+    }
+    catch(GdxRuntimeException exception)
+    {
+    }
+  }
+
+  public float getU0()
+  {
+    return 0.0f;
+  }
+  
+  public float getV0()
+  {
+    return 0.0f;
+  }
+  
+  public float getU1()
+  {
+    return 1.0f;
+  }
+  
+  public float getV1()
+  {
+    return 1.0f;
   }
   
   @Override

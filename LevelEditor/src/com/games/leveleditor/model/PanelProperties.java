@@ -39,11 +39,11 @@ public class PanelProperties extends PanelScroll
   public TextField  positionX = null;
   public TextField  positionY = null;
   public TextField  rotation  = null;
+  public CheckBox   lockRatio = null;
   public TextField  scaleX    = null;
   public TextField  scaleY    = null;
   public TextField  r, g, b, a = null;
-  public CheckBox   lockRatio = null;
-  public TextButton variablesButton = null;
+  public TextButton advancedButton = null;
   
   protected boolean updateProperties = false;
   protected String  textBuffer = null;
@@ -345,18 +345,18 @@ public class PanelProperties extends PanelScroll
     final TextButtonStyle styleButton = skin.get(TextButtonStyle.class);
     TextButtonStyle style = new TextButtonStyle(styleButton.up, styleButton.down, styleButton.down, styleButton.font);
     style.disabledFontColor = disableColor;
-    variablesButton = new TextButton("Variables", style);
-    variablesButton.addListener(new ClickListener()
+    advancedButton = new TextButton("Advanced", style);
+    advancedButton.addListener(new ClickListener()
     {
       @Override
       public void clicked(InputEvent event, float x, float y)
       {
-        PanelVariables variables = ((MainScreen)GameInstance.game.getScreen()).getVariables();
-        variables.setVisible(variablesButton.isChecked());
+        PanelAdvanced advanced = ((MainScreen)GameInstance.game.getScreen()).getAdvanced();
+        advanced.setVisible(advancedButton.isChecked());
       }
     });
-    content.add(new Label("Advanced:", skin));
-    content.add(variablesButton);
+    content.add(new Label("Settings: ", skin));
+    content.add(advancedButton);
 
     setSize(450, 300);
     setEditActors(null);

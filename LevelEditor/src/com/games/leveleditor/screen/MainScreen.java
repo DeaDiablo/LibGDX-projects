@@ -49,7 +49,7 @@ import com.games.leveleditor.model.PanelLayers;
 import com.games.leveleditor.model.PanelMain;
 import com.games.leveleditor.model.PanelProperties;
 import com.games.leveleditor.model.PanelTree;
-import com.games.leveleditor.model.PanelVariables;
+import com.games.leveleditor.model.PanelAdvanced;
 import com.games.leveleditor.model.SelectObject;
 import com.shellGDX.GameInstance;
 import com.shellGDX.GameLog;
@@ -74,7 +74,7 @@ public class MainScreen extends GameScreen implements InputProcessor
   
   private PanelMain       main       = null;
   private PanelProperties properties = null;
-  private PanelVariables  variables  = null;
+  private PanelAdvanced   advanced   = null;
   private PanelTree       tree       = null;
   private PanelLayers     layers     = null;
   private PanelGraphics   graphics   = null;
@@ -105,7 +105,7 @@ public class MainScreen extends GameScreen implements InputProcessor
     public void update()
     {
       properties.setEditActors(layers.selectLayer.getSelectedModels());
-      variables.setEditActors(layers.selectLayer.getSelectedModels());
+      advanced.setEditActors(layers.selectLayer.getSelectedModels());
     }
   };
   
@@ -140,9 +140,9 @@ public class MainScreen extends GameScreen implements InputProcessor
     return properties;
   }
   
-  public PanelVariables getVariables()
+  public PanelAdvanced getAdvanced()
   {
-    return variables;
+    return advanced;
   }
   
   public PanelTree getTree()
@@ -190,11 +190,11 @@ public class MainScreen extends GameScreen implements InputProcessor
     properties.addListener(clickListener);
     guiScene.addActor(properties);
     
-    variables = new PanelVariables("variables", skin);
-    variables.setPosition(properties.getWidth(), guiScene.getHeight() - variables.getHeight());
-    variables.setVisible(false);
-    variables.addListener(clickListener);
-    guiScene.addActor(variables);
+    advanced = new PanelAdvanced("Advanced", skin);
+    advanced.setPosition(properties.getWidth(), guiScene.getHeight() - advanced.getHeight());
+    advanced.setVisible(false);
+    advanced.addListener(clickListener);
+    guiScene.addActor(advanced);
     
     //tree
     tree = new PanelTree(skin, this);
