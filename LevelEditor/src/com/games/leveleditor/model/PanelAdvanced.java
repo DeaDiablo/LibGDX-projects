@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldFilter;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -25,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.games.leveleditor.controller.CommandController;
+import com.games.leveleditor.controller.TexCoordCommand;
 import com.games.leveleditor.controller.TextureCommand;
 import com.shellGDX.manager.ResourceManager;
 
@@ -38,6 +40,9 @@ public class PanelAdvanced extends PanelScroll
 
   protected TextField  texture        = null;
   protected TextField  u0, v0, u1, v1 = null;
+  protected String     textBuffer     = null;
+  protected int        cursorBuffer   = 0;
+  protected boolean    updateProperties = false;
 
   protected TextureRegionDrawable plusDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/plus.png"));
   protected TextureRegionDrawable minusDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/minus.png"));
@@ -100,13 +105,85 @@ public class PanelAdvanced extends PanelScroll
     table.add(texture).width(350);
     table.row();
     
+    TextFieldFilter filter = new TextFieldFilter()
+    {
+      @Override
+      public boolean acceptChar(TextField textField, char c)
+      {
+        textBuffer = textField.getText();
+        cursorBuffer = textField.getCursorPosition();
+        if (c == '-' && (cursorBuffer == 0 || updateProperties))
+          return true;
+        if (c >= '0' && c <= '9' || c == '.')
+          return true;
+
+        return false;
+      }
+    };
+    
+    TextFieldListener texCoordListner = new TextFieldListener()
+    {
+      @Override
+      public void keyTyped(TextField textField, char c)
+      {
+        if (editActors == null || c == 0 || c == '\t')
+          return;
+        
+        if (c == '\r' || c == '\n')
+        {
+          getStage().setKeyboardFocus(null);
+          return;
+        }
+        
+        if (c == '.' &&
+            textField.getText().indexOf(c) != textField.getText().lastIndexOf(c))
+        {
+          textField.setText(textBuffer);
+          textField.setCursorPosition(cursorBuffer);
+          return;
+        }
+        
+        TexCoordCommand textureCommand = new TexCoordCommand();
+        for (Actor actor : editActors)
+        {
+          if (actor instanceof EditModel)
+            textureCommand.addActor((EditModel)actor);
+        }
+        
+        try
+        {
+          float u0f = Float.valueOf(u0.getText());
+          float v0f = Float.valueOf(v0.getText());
+          float u1f = Float.valueOf(u1.getText());
+          float v1f = Float.valueOf(v1.getText());
+          
+          textureCommand.setTexCoord(u0f, v0f, u1f, v1f);
+          CommandController.instance.addCommand(textureCommand, false);
+        }
+        catch (NumberFormatException exception)
+        {
+        }
+      }
+    };
+    
     u0 = new TextField("", skin);
+    u0.setTextFieldListener(texCoordListner);
+    u0.setTextFieldFilter(filter);
     u0.addListener(tabListener);
+    
     v0 = new TextField("", skin);
+    v0.setTextFieldListener(texCoordListner);
+    v0.setTextFieldFilter(filter);
     v0.addListener(tabListener);
+    
     u1 = new TextField("", skin);
+    u1.setTextFieldListener(texCoordListner);
+    u1.setTextFieldFilter(filter);
     u1.addListener(tabListener);
+    
     v1 = new TextField("", skin);
+    v1.setTextFieldListener(texCoordListner);
+    v1.setTextFieldFilter(filter);
     v1.addListener(tabListener);
     
     Table texCoordTable = new Table(skin);
@@ -125,7 +202,7 @@ public class PanelAdvanced extends PanelScroll
 
     table.add(new Label("TexCoord: ", skin));
     table.add(texCoordTable);
-    add(table);
+    add(table).spaceBottom(10);
     row();
 
     scroll = new ScrollPane(content, skin);
@@ -143,7 +220,7 @@ public class PanelAdvanced extends PanelScroll
     buttons.defaults().space(10);
     
     row();
-    add(buttons);
+    add(buttons).spaceTop(5);
     
     final ButtonStyle styleButton = skin.get(ButtonStyle.class);
 
@@ -196,18 +273,20 @@ public class PanelAdvanced extends PanelScroll
 
     updateTable();
     
-    setSize(500, 450);
+    setSize(500, 500);
   }
   
   protected Array<Actor> editActors = null;
 
   public void setEditActors(Array<Actor> models)
-  {    
+  {
+    updateProperties = true;
     if (models == null || models.size <= 0)
       editActors = null;
     else
       editActors = models;
     updateTable();
+    updateProperties = false;
   }
   
   public void updateTable()

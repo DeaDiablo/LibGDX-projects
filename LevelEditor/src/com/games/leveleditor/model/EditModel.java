@@ -64,23 +64,30 @@ public class EditModel extends ModelObject2D implements SelectObject
 
   public float getU0()
   {
-    return 0.0f;
+    return region.getU();
   }
   
   public float getV0()
   {
-    return 0.0f;
+    return region.getV();
   }
   
   public float getU1()
   {
-    return 1.0f;
+    return region.getU2();
   }
   
   public float getV1()
   {
-    return 1.0f;
+    return region.getV2();
   }
+  
+  public void setRegion(float u0, float v0, float u1, float v1)
+  {
+    region.setRegion(u0, v0, u1, v1);
+    setTextureRegion(region);
+  }
+  
   
   @Override
   public void load(Element element) throws IOException
@@ -91,11 +98,11 @@ public class EditModel extends ModelObject2D implements SelectObject
     {
       Element texture = element.getChildByName("texture");
       String file = texture.get("file");
-      int x = texture.getInt("x");
-      int y = texture.getInt("y");
-      int width = texture.getInt("width");
-      int height = texture.getInt("height");
-      setTextureRegion(ResourceManager.instance.getTextureRegion(file, x, y, width, height));
+      float u0 = texture.getFloat("u0");
+      float v0 = texture.getFloat("v0");
+      float u1 = texture.getFloat("u1");
+      float v1 = texture.getFloat("v1");
+      setTextureRegion(ResourceManager.instance.getTextureRegion(file, u0, v0, u1, v1));
     }
     
     {
@@ -147,11 +154,11 @@ public class EditModel extends ModelObject2D implements SelectObject
     
     {
       xml.element("texture");
-      xml.element("file", ((FileTextureData)getTextureRegion().getTexture().getTextureData()).getFileHandle().path());
-      xml.element("x", getTextureRegion().getRegionX());
-      xml.element("y", getTextureRegion().getRegionY());
-      xml.element("width", getTextureRegion().getRegionWidth());
-      xml.element("height", getTextureRegion().getRegionHeight());
+      xml.element("file", ((FileTextureData)region.getTexture().getTextureData()).getFileHandle().path());
+      xml.element("u0", region.getU());
+      xml.element("v0", region.getV());
+      xml.element("u1", region.getU2());
+      xml.element("v1", region.getV2());
       xml.pop();
     }
     

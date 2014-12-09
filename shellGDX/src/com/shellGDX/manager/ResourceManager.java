@@ -13,6 +13,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
@@ -143,6 +144,8 @@ public class ResourceManager extends AssetManager
     TextureParameter param = new TextureParameter();
     param.minFilter = TextureFilter.Linear;
     param.genMipMaps = false;
+    param.wrapU = TextureWrap.Repeat;
+    param.wrapV = TextureWrap.Repeat;
     load(fileName, Texture.class, param);
   }
   

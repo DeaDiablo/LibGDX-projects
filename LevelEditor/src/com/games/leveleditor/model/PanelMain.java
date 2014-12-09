@@ -209,12 +209,11 @@ public class PanelMain extends PanelScroll
     return chooser;
   }
   
-  public void newFile(String fileName)
+  public void newFile(String path)
   {
     LevelEditor.game.getScreen().dispose();
-    LevelEditor.game.setScreen(new MainScreen(fileName));
+    LevelEditor.game.setScreen(new MainScreen(getFilename(path)));
   }
-
   
   public void openFile()
   {
@@ -257,6 +256,7 @@ public class PanelMain extends PanelScroll
       fileName.replace("\\", "/");
       if (fileName.lastIndexOf(".xml") != fileName.length() - 4)
         fileName += ".xml";
+      setTitle(getFilename(fileName));
     }
     
     try
@@ -274,5 +274,21 @@ public class PanelMain extends PanelScroll
     {
       GameLog.instance.writeError("File not save: " + fileName);
     }
+  }
+
+  protected String getFilename(String path)
+  {
+    if (path.isEmpty())
+      return "";
+    
+    int index = path.lastIndexOf('/');
+    if (index >= 0)
+      return path.substring(index + 1);
+    
+    index = path.lastIndexOf('\\');
+    if (index >= 0)
+      return path.substring(index + 1);
+    
+    return path;
   }
 }
