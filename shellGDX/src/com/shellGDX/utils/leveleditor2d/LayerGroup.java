@@ -1,75 +1,88 @@
 package com.shellGDX.utils.leveleditor2d;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.shellGDX.model2D.Group2D;
 
-public class LayerGroup extends Group2D
-{
-  protected HashMap<String, String> variables = new HashMap<String, String>();
+public class LayerGroup extends LayerModel
+{  
+  public final SnapshotArray<LayerModel> children = new SnapshotArray<LayerModel>(true, 4, LayerModel.class);
   
   public LayerGroup()
   {
     super();
   }
-
-  public HashMap<String, String> getVariables()
+  
+  @Override
+  public LayerGroup asGroup()
   {
-    return variables;
+    return this;
   }
 
+  @Override
   public void load(Element element) throws IOException
   {
-    setName(element.get("name"));
-    setVisible(element.getBoolean("visible"));
+    name = element.get("name");
+    visible = element.getBoolean("visible");
     
+    Element position = element.getChildByName("position");
+    if (position != null)
     {
-      Element position = element.getChildByName("position");
-      setX(position.getFloat("x"));
-      setY(position.getFloat("y"));
+      this.position.x = position.getFloat("x");
+      this.position.y = position.getFloat("y");
     }
     
-    setRotation(element.getFloat("rotation"));
+    this.angle = element.getFloat("rotation");
 
+    Element scale = element.getChildByName("scale");
+    if (scale != null)
     {
-      Element scale = element.getChildByName("scale");
-      setScaleX(scale.getFloat("x"));
-      setScaleY(scale.getFloat("y"));
+      this.scale.x = scale.getFloat("x");
+      this.scale.y = scale.getFloat("y");
     }
     
+    Element color = element.getChildByName("color");
+    if (color != null)
     {
-      Element variablesGroup = element.getChildByName("variables");
-      if (variablesGroup != null)
+      this.color.r = color.getFloat("r");
+      this.color.g = color.getFloat("g");
+      this.color.b = color.getFloat("b");
+      this.color.a = color.getFloat("a");
+    }
+    
+    Element variablesGroup = element.getChildByName("variables");
+    if (variablesGroup != null)
+    {
+      Array<Element> variables = variablesGroup.getChildrenByName("variable");
+      for (Element variable : variables)
       {
-        Array<Element> variables = variablesGroup.getChildrenByName("variable");
-        for (Element variable : variables)
-        {
-          this.variables.put(variable.get("key"), variable.get("value"));
-        }
+        this.variables.put(variable.get("key"), variable.get("value"));
       }
     }
     
     Element children = element.getChildByName("children");
-    for(int i = 0; i < children.getChildCount(); i++)
+    if (children != null)
     {
-      Element child = children.getChild(i);
-      if (child.getName().compareToIgnoreCase("model") == 0)
+      for(int i = 0; i < children.getChildCount(); i++)
       {
-        LayerModel model = new LayerModel();
-        model.load(child);
-        addActor(model);
-        continue;
-      }
-      
-      if (child.getName().compareToIgnoreCase("group") == 0)
-      {
-        LayerGroup group = new LayerGroup();
-        group.load(child);
-        addActor(group);
-        continue;
+        Element child = children.getChild(i);
+        if (child.getName().compareToIgnoreCase("model") == 0)
+        {
+          LayerModel model = new LayerModel();
+          model.load(child);
+          this.children.add(model);
+          continue;
+        }
+        
+        if (child.getName().compareToIgnoreCase("group") == 0)
+        {
+          LayerGroup group = new LayerGroup();
+          group.load(child);
+          this.children.add(group);
+          continue;
+        }
       }
     }
   }

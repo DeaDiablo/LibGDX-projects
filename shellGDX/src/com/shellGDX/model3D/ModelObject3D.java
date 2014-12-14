@@ -583,7 +583,6 @@ public class ModelObject3D extends ModelInstance implements Disposable
   public void setName(String name)
   {
     this.name = name;
-
   }
 
   public String getName()

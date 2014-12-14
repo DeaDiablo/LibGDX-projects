@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
 public class Group3D extends ModelObject3D
 {
   private final SnapshotArray<ModelObject3D> children = new SnapshotArray<ModelObject3D>(true, 4, ModelObject3D.class);
-  public int                           visibleCount;
+  public  int   visibleCount;
 
   public Group3D()
   {

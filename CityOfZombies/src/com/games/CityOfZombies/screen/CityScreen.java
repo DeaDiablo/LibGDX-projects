@@ -4,11 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.games.CityOfZombies.light.Light2D3D;
 import com.games.CityOfZombies.light.LightFilter;
-import com.games.CityOfZombies.light.ShadowFilter;
 import com.games.CityOfZombies.model.CityLevel;
 import com.games.CityOfZombies.model.Player;
 import com.shellGDX.GameInstance;
@@ -18,7 +16,6 @@ import com.shellGDX.box2dLight.LightWorld2D;
 import com.shellGDX.controller.PhysicsWorld2D;
 import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model2D.EffectObject2D;
-import com.shellGDX.model2D.PhysicObject2D;
 import com.shellGDX.model2D.Scene2D;
 import com.shellGDX.model3D.Scene3D;
 import com.shellGDX.model3D.light.LightWorld3D;
@@ -67,12 +64,6 @@ public class CityScreen extends GameScreen
     camera2D = (OrthographicCamera)scene2D.getCamera();
     LightWorld2D.init(camera2D);
     Light2D.setContactFilter(new LightFilter());
-
-    level = new CityLevel(ResourceManager.instance.getEditorLevel("testLevel.xml"));
-    scene2D.addActor(level.getEditor2DLevel());
-    
-    player = new Player(ResourceManager.instance.getTextureRegion("player_pistol.png"));
-    scene2D.addActor(player);
     
     GameInstance.contoller.addScene2D(scene2D);
 
@@ -87,15 +78,10 @@ public class CityScreen extends GameScreen
 
     scene3D = new Scene3D(width, height, camera3D);
     
-    /*ModelLevel modelLevel = new ModelLevel();
-    for(Layer layer : level.getLayers())
-    {
-      ModelLayer modelLayer = new ModelLayer();
-      modelLayer.parseLayer(layer);
-      modelLevel.addModel3D(modelLayer);
-    }
-    
-    scene3D.addModel3D(modelLevel);*/
+    level = new CityLevel(ResourceManager.instance.getEditorLevel("testLevel.xml"), scene2D, scene3D);
+    player = new Player(ResourceManager.instance.getTextureRegion("player_pistol.png"));
+    scene2D.addActor(player);
+
     GameInstance.contoller.addScene3D(scene3D);
 
     GameInstance.contoller.addProcessor(player);
@@ -110,7 +96,6 @@ public class CityScreen extends GameScreen
   {
     dayNight.update(deltaTime, clearWeather);
     super.update(deltaTime);
-    level.update(camera2D, deltaTime);
     
     camera2D.position.x = player.getOriginX() + player.getX();
     camera2D.position.y = player.getOriginY() + player.getY();
@@ -140,10 +125,15 @@ public class CityScreen extends GameScreen
   public void draw(float deltaTime)
   {
     scene2D.draw();
-    view.drawLightWorld();
-    //Gdx.gl.glClear(GL30.GL_DEPTH_BUFFER_BIT);
-    //scene3D.draw();
+    scene2D.getBatch().begin();
+    //level.draw2DAll(scene2D.getBatch());
+    scene2D.getBatch().end();
+    //view.drawLightWorld();
+    Gdx.gl.glClear(GL30.GL_DEPTH_BUFFER_BIT);
+    scene3D.draw();
+    scene3D.getModelBatch().begin(camera3D);
     //level.draw3DAll(camera3D, scene3D.getModelBatch(), scene3D.getShader());
+    scene3D.getModelBatch().end();
     //level.draw2D(scene2D.getBatch(), "100");
     view.drawPhysicsDebug(scene2D.getCamera());
   }

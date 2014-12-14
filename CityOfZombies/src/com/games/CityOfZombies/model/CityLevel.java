@@ -2,63 +2,42 @@ package com.games.CityOfZombies.model;
 
 import java.util.HashMap;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.graphics.g3d.Shader;
-import com.shellGDX.utils.leveleditor2d.Layer;
+import com.shellGDX.model2D.Scene2D;
+import com.shellGDX.model3D.Scene3D;
 import com.shellGDX.utils.leveleditor2d.Editor2DLevel;
+import com.shellGDX.utils.leveleditor2d.Layer;
 
 public class CityLevel
-{
-  protected Editor2DLevel editor2Dlevel = null;
+{ 
   protected HashMap<String, ModelLayer> modelLayers = new HashMap<String, ModelLayer>();
-  
-  public CityLevel(Editor2DLevel editor2Dlevel)
-  {
-    this.editor2Dlevel = editor2Dlevel;
+  protected HashMap<String, CityLayer>  cityLayers  = new HashMap<String, CityLayer>();
 
-    for(Layer layer : editor2Dlevel.getLayers().values())
+  public CityLevel(Editor2DLevel editor2Dlevel, Scene2D scene2D, Scene3D scene3D)
+  {
+    super();
+    parseLevel(editor2Dlevel, scene2D, scene3D);
+  }
+  
+  protected void parseLevel(Editor2DLevel editor2Dlevel, Scene2D scene2D, Scene3D scene3D)
+  {
+    for(Layer layer : editor2Dlevel.layers)
     {
-      ModelLayer modelLayer = new ModelLayer();
-      modelLayer.parseLayer(layer);
-      modelLayers.put(modelLayer.getName(), modelLayer);
+      if (layer.name.compareTo("walls") == 0)
+      {
+        ModelLayer modelLayer = new ModelLayer(layer);
+        modelLayers.put(modelLayer.getName(), modelLayer);
+        scene3D.addModel3D(modelLayer);
+      }
+
+      CityLayer layerGroup = new CityLayer(layer);
+      cityLayers.put(layer.name, layerGroup);
+      scene2D.addActor(layerGroup);
     }
   }
-  
-  public Editor2DLevel getEditor2DLevel()
-  {
-    return editor2Dlevel;
-  }
 
-  public boolean update(Camera camera, float deltaTime)
+  public void showLayer(String name, boolean visible)
   {
-    return editor2Dlevel.update(camera, deltaTime);
-  }
-  
-  public void draw2D(Batch batch, String name)
-  {
-    Layer layer = editor2Dlevel.getLayer(name);
-    if (layer != null)
-    {
-      batch.begin();
-      layer.draw(batch, 1.0f);
-      batch.end();
-    }
-  }
-  
-  public void draw3DAll(Camera camera, ModelBatch batch, Shader shader)
-  {
-    batch.begin(camera);
-    for(ModelLayer layer : modelLayers.values())
-      layer.draw(batch, null, shader);
-    batch.end();
-  }
-  
-  public void draw3D(Batch batch, String name)
-  {
-    batch.begin();
-
-    batch.end();
+    cityLayers.get(name).setVisible(visible);
+    modelLayers.get(name).setVisible(visible);
   }
 }

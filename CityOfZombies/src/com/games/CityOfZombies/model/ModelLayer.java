@@ -2,85 +2,114 @@ package com.games.CityOfZombies.model;
 
 import java.util.HashMap;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.utils.Array;
+import com.shellGDX.manager.ResourceManager;
 import com.shellGDX.model3D.Group3D;
 import com.shellGDX.model3D.ModelObject3D;
 import com.shellGDX.utils.leveleditor2d.Layer;
-import com.shellGDX.utils.leveleditor2d.Settings;
+import com.shellGDX.utils.leveleditor2d.LayerModel;
 
 public class ModelLayer extends Group3D
-{
-  private String name = "";
-  
-  public ModelLayer()
+{  
+  public ModelLayer(Layer layer)
   {
+    super();
+    parseLayer(layer);
   }
-  
-  public String getName()
-  {
-    return name;
-  }
-
-  private HashMap<String, Array<ModelObject3D>> models = new HashMap<String, Array<ModelObject3D>>();
-  
-  public HashMap<String, Array<ModelObject3D>> getModels()
-  {
-    return models;
-  }
-  
-  protected String buffer = new String();
   
   public void parseLayer(Layer layer)
   {
-    name = layer.getName();
+    setName(layer.name);
+    setVisible(layer.visible);
     
-    HashMap<String, Array<Actor>> objects = layer.getObjects();
-    
-    for(Array<Actor> actors : objects.values())
+    for (LayerModel model : layer.children)
+      createModel(model, this);
+  }
+
+  protected void createModel(LayerModel model, Group3D group)
+  {
+    if (model.asGroup() != null)
     {
-      for (int i = 0; i < actors.size; i++)
+      Group3D group3D = null;
+      
+      group3D = new Group3D();
+
+      if (group3D != null)
       {
-        Actor actor = actors.get(i);
-        /*if (actor.getFile().compareToIgnoreCase("window.png") == 0)
-        {
-          Wall model = new Wall(ResourceManager.instance.getModel("window.obj"));
-          model.setPosition(texture.getX(), texture.getY(), 0);
-          model.setRotation(0, 0, texture.getRotation() - 90);
-          addModel(model);
-          arrayTextures.removeValue(texture, true);
-        }*/
+        group3D.setName(model.name);
+        group3D.setVisible(model.visible);
+        group3D.setPosition(model.position.x, model.position.y, 0);
+        group3D.setRotation(0.0f, 0.0f, model.angle - 90);
+        group3D.setScale(model.scale.x, model.scale.y, 1.0f);
+        group3D.setColor(model.color);
+        
+        for (LayerModel childModel : model.asGroup().children)
+          createModel(childModel, group3D);
+      }
+      
+      group.addModel3D(group3D);
+    }
+    else
+    {
+      ModelObject3D model3D = null;
+
+      model3D = new Wall(ResourceManager.instance.getModel("window.obj"));
+      
+      if (model3D != null)
+      {
+        model3D.setName(model.name);
+        model3D.setVisible(model.visible);
+        model3D.setPosition(model.position.x, model.position.y, 0);
+        model3D.setRotation(0.0f, 0.0f, model.angle - 90);
+        model3D.setScale(model.scale.x, model.scale.y, 1.0f);
+        model3D.setColor(model.color);
+        group.addModel3D(model3D);
       }
     }
+  }
+
+  private HashMap<String, Array<ModelObject3D>> mapModels = new HashMap<String, Array<ModelObject3D>>();
+  
+  public HashMap<String, Array<ModelObject3D>> getModels()
+  {
+    return mapModels;
+  }
+  
+  @Override
+  public void addModel3D(ModelObject3D model)
+  {
+    String key = String.format("%d %d", (int)model.getX() / CityLayer.xGridSize, (int)model.getY() / CityLayer.yGridSize);
+    Array<ModelObject3D> arrayModel = mapModels.get(key);
+    if (arrayModel == null)
+    {
+      arrayModel = new Array<ModelObject3D>();
+      mapModels.put(key, arrayModel);
+    }
+    arrayModel.add(model);
   }
   
   public Array<ModelObject3D> getModels(int x, int y)
   {
-    return models.get(String.format("%d %d", x, y));
+    return mapModels.get(String.format("%d %d", x, y));
   }
-  
-  public void addModel(ModelObject3D model)
-  {
-    String key = String.format("%d %d", (int)model.getX() / Settings.xGridSize, (int)model.getY() / Settings.yGridSize);
-    Array<ModelObject3D> arrayModel = models.get(key);
-    if (arrayModel == null)
-    {
-      arrayModel = new Array<ModelObject3D>();
-      models.put(key, arrayModel);
-    }
-    arrayModel.add(model);
-    addModel3D(model);
-  }
-  
+
+  protected int oldBlockX = -100000, oldBlockY = -100000;
+
   @Override
   public boolean update(float delta)
   {
-    getChildren().clear();
-    if (!isVisible())
+    if (!super.update(delta))
       return false;
     
-    int blockX = (int)scene.getCamera().position.x / Settings.xGridSize;
-    int blockY = (int)scene.getCamera().position.y / Settings.yGridSize;
+    Camera camera = scene.getCamera();
+    int blockX = (int)camera.position.x / CityLayer.xGridSize;
+    int blockY = (int)camera.position.y / CityLayer.yGridSize;
+    
+    if (blockX == oldBlockX && blockY == oldBlockY)
+      return true;
+    
+    getChildren().clear();
     
     for (int i = -1; i <= 1; i ++)
     {
@@ -89,10 +118,10 @@ public class ModelLayer extends Group3D
         Array<ModelObject3D> models = getModels(blockX + i, blockY + j);
         if (models != null && models.size > 0)
           for(ModelObject3D model : models)
-            getChildren().add(model);
+            super.addModel3D(model);
       }
     }
     
-    return super.update(delta);
+    return true;
   }
 }

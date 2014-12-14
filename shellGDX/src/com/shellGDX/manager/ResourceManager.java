@@ -324,7 +324,7 @@ public class ResourceManager extends AssetManager
   { 
     super.addAsset(convertFilename(fileName), type, asset);
   }
-  
+
   protected String convertFilename(String fileName)
   {
     int index = fileName.lastIndexOf("/");    

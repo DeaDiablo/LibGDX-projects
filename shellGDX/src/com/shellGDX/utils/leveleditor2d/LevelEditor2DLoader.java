@@ -53,8 +53,9 @@ public class LevelEditor2DLoader extends AsynchronousAssetLoader<Editor2DLevel, 
       {
         Layer layer = new Layer();
         layer.load(element);
-        level.addActor(layer);
+        level.layers.add(layer);
       }
+      GameLog.instance.writeLog("Loading file complite: " + fileName);
     }
     catch (Exception e)
     {
@@ -68,37 +69,11 @@ public class LevelEditor2DLoader extends AsynchronousAssetLoader<Editor2DLevel, 
     return level;
   }
 
-  @SuppressWarnings({ "rawtypes" })
+  @SuppressWarnings("rawtypes")
   @Override
   public Array<AssetDescriptor> getDependencies (String fileName, FileHandle file, LevelParameter parameter)
   {
-    GameLog.instance.writeLog("Getting asset dependencies for: " + fileName);
-    Array<AssetDescriptor> dependencies = new Array<AssetDescriptor>();
-    
-    try
-    {
-      // Parse xml document
-      XmlReader reader = new XmlReader();
-      Element root = reader.parse(Gdx.files.internal(fileName));
-
-      level = new Editor2DLevel();
-      
-      // Load layers
-      GameLog.instance.writeLog("Loading layers");
-      Array<Element> elementsLayer = root.getChildrenByName("layer");
-      for(Element element : elementsLayer)
-      {
-        Layer layer = new Layer();
-        layer.load(element);
-        level.addActor(layer);
-      }
-      
-    }
-    catch (Exception e)
-    {
-      GameLog.instance.writeLog("Error loading asset dependencies: " + fileName + " " + e.getMessage());
-    }
-    
+    Array<AssetDescriptor> dependencies = new Array<AssetDescriptor>();   
     return dependencies;
   }
 
