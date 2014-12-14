@@ -58,9 +58,26 @@ public class CityLayer extends Group2D
     }
     else
     {
-      ModelObject2D model2D = null;
-
-      model2D = new ModelObject2D(ResourceManager.instance.getTextureRegion(model.textureFile, model.u0, model.v0, model.u1, model.v1));
+      Actor model2D = null;
+      
+      String value = model.variables.get("type");
+      if (value != null)
+      {
+        if (value.compareTo("box") == 0)
+        {
+          float w = Float.parseFloat(model.variables.get("width"));
+          float h = Float.parseFloat(model.variables.get("height"));
+          
+          model2D = new Box(w, h);
+        }
+        else if (value.compareTo("circle") == 0)
+        {
+          
+        }
+      }
+      
+      if (model2D == null)
+        model2D = new ModelObject2D(ResourceManager.instance.getTextureRegion(model.textureFile, model.u0, model.v0, model.u1, model.v1));
       
       if (model2D != null)
       {

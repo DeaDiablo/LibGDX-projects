@@ -54,14 +54,14 @@ public class ModelLayer extends Group3D
     {
       ModelObject3D model3D = null;
 
-      model3D = new Wall(ResourceManager.instance.getModel("window.obj"));
+      model3D = new ModelObject3D(ResourceManager.instance.getModel("window.obj"));
       
       if (model3D != null)
       {
         model3D.setName(model.name);
         model3D.setVisible(model.visible);
         model3D.setPosition(model.position.x, model.position.y, 0);
-        model3D.setRotation(0.0f, 0.0f, model.angle - 90);
+        model3D.setRotation(0.0f, 0.0f, model.angle);
         model3D.setScale(model.scale.x, model.scale.y, 1.0f);
         model3D.setColor(model.color);
         group.addModel3D(model3D);

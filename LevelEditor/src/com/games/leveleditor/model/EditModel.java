@@ -2,6 +2,7 @@ package com.games.leveleditor.model;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.Color;
@@ -235,7 +236,7 @@ public class EditModel extends ModelObject2D implements SelectObject
     bb.draw();
   }
   
-  protected HashMap<String, String> variables = new HashMap<String, String>();
+  protected LinkedHashMap<String, String> variables = new LinkedHashMap<String, String>();
   
   @Override
   public void setVariable(String key, String value)

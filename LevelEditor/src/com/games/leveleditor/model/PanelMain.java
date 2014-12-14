@@ -59,7 +59,7 @@ public class PanelMain extends PanelScroll
   public ImageButton pasteButton = null;
   public ImageButton exitButton = null;
   
-  protected String       fileName   = "";
+  protected String       pathFile   = "";
   protected JFileChooser chooser    = null;
 
   protected TextureRegionDrawable newDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/new.png"));
@@ -71,13 +71,14 @@ public class PanelMain extends PanelScroll
   protected TextureRegionDrawable pasteDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/paste.png"));
   protected TextureRegionDrawable exitDrawable = new TextureRegionDrawable(ResourceManager.instance.getTextureRegion("data/editor/exit.png"));
   
-  public PanelMain(String filename, Skin skin)
+  public PanelMain(String pathFile, Skin skin)
   {
-    super(filename, skin);
+    super(pathFile, skin);
     
     scroll.getListeners().removeIndex(0);
     
-    this.fileName = filename;
+    this.pathFile = pathFile;
+    setTitle(getFilename(pathFile));
     
     final ButtonStyle styleButton = skin.get(ButtonStyle.class);
 
@@ -212,7 +213,7 @@ public class PanelMain extends PanelScroll
   public void newFile(String path)
   {
     LevelEditor.game.getScreen().dispose();
-    LevelEditor.game.setScreen(new MainScreen(getFilename(path)));
+    LevelEditor.game.setScreen(new MainScreen(path));
   }
   
   public void openFile()
@@ -220,19 +221,19 @@ public class PanelMain extends PanelScroll
     if(getFileChooser().showOpenDialog(null) != JFileChooser.APPROVE_OPTION)
       return;
 
-    fileName = getFileChooser().getSelectedFile().getAbsolutePath();
-    fileName = fileName.replace("\\", "/");
+    pathFile = getFileChooser().getSelectedFile().getAbsolutePath();
+    pathFile = pathFile.replace("\\", "/");
 
-    newFile(fileName);
+    newFile(pathFile);
 
     try
     {
       XmlReader xml = new XmlReader();
-      Element root = xml.parse(Gdx.files.internal(fileName).reader("UTF-8"));
+      Element root = xml.parse(Gdx.files.internal(pathFile).reader("UTF-8"));
 
       if (root.getName().compareToIgnoreCase("LevelEditor2D") != 0)
       {
-        GameLog.instance.writeError("Invalid file format: " + fileName);
+        GameLog.instance.writeError("Invalid file format: " + pathFile);
         return;
       }
       
@@ -240,28 +241,28 @@ public class PanelMain extends PanelScroll
     }
     catch (IOException e)
     {
-      GameLog.instance.writeError("File not load: " + fileName);
+      GameLog.instance.writeError("File not load: " + pathFile);
       newFile("");
     }
   }
   
   public void saveFile(boolean saveAs)
   {
-    if (saveAs || fileName.isEmpty())
+    if (saveAs || pathFile.isEmpty())
     {
       if(getFileChooser().showSaveDialog(null) != JFileChooser.APPROVE_OPTION)
         return;
 
-      fileName = getFileChooser().getSelectedFile().getAbsolutePath();
-      fileName.replace("\\", "/");
-      if (fileName.lastIndexOf(".xml") != fileName.length() - 4)
-        fileName += ".xml";
-      setTitle(getFilename(fileName));
+      pathFile = getFileChooser().getSelectedFile().getAbsolutePath();
+      pathFile.replace("\\", "/");
+      if (pathFile.lastIndexOf(".xml") != pathFile.length() - 4)
+        pathFile += ".xml";
+      setTitle(getFilename(pathFile));
     }
     
     try
     {
-      FileWriter writer = new FileWriter(fileName);
+      FileWriter writer = new FileWriter(pathFile);
       XmlWriter xml = new XmlWriter(writer);
       
       xml.element("LevelEditor2D");      
@@ -272,7 +273,7 @@ public class PanelMain extends PanelScroll
     }
     catch (IOException e)
     {
-      GameLog.instance.writeError("File not save: " + fileName);
+      GameLog.instance.writeError("File not save: " + pathFile);
     }
   }
 

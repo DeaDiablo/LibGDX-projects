@@ -67,7 +67,7 @@ public class PanelAdvanced extends PanelScroll
     super(title, skin);
     this.skin = skin;
     
-    clear();
+    clearChildren();
     
     texture = new TextField("", skin);
     texture.setTextFieldListener(new TextFieldListener()
@@ -406,7 +406,7 @@ public class PanelAdvanced extends PanelScroll
     }
     return true;
   }
-  
+
   protected void addVariable(final String key, final String value)
   {    
     final TextField editKey = new TextField(key, skin);
@@ -466,8 +466,14 @@ public class PanelAdvanced extends PanelScroll
 
     ImageButtonStyle style = new ImageButtonStyle(styleButton.up, styleButton.down, null,
                                                   minusDrawable, minusDrawable, null);
-
+    
     final ImageButton removeButton = new ImageButton(style);
+    
+    table.add(editKey).width(200);
+    table.add(editValue).width(200);
+    table.add(removeButton).size(32, 32);
+    table.row();
+    
     removeButton.addListener(new ClickListener()
     {
       @Override
@@ -482,16 +488,9 @@ public class PanelAdvanced extends PanelScroll
           ((SelectObject)model).removeVariable(key);
         }
         
-        editKey.remove();
-        editValue.remove();
-        removeButton.remove();
+        updateTable();
       }
     });
-
-    table.add(editKey);
-    table.add(editValue);
-    table.add(removeButton).size(32, 32);
-    table.row();
   }
 
   private void addNewVariable()
