@@ -3,6 +3,7 @@ package com.games.CityOfZombies.model;
 import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.shellGDX.manager.ResourceManager;
@@ -60,24 +61,56 @@ public class CityLayer extends Group2D
     {
       Actor model2D = null;
       
+      TextureRegion region = ResourceManager.instance.getTextureRegion(model.textureFile, model.u0, model.v0, model.u1, model.v1);
+      
       String value = model.variables.get("type");
       if (value != null)
       {
         if (value.compareTo("box") == 0)
         {
-          float w = Float.parseFloat(model.variables.get("width"));
-          float h = Float.parseFloat(model.variables.get("height"));
+          try
+          {
+            float w = Float.parseFloat(model.variables.get("width"));
+            if (w <= 1.0f)
+              w *= region.getRegionWidth();
+            float h = Float.parseFloat(model.variables.get("height"));
+            if (h <= 1.0f)
+              h *= region.getRegionHeight();
+            model2D = new Box(region, w * 0.5f, h * 0.5f);
+          }
+          catch(NullPointerException exception)
+          {
+          }
+          catch(NumberFormatException exception)
+          {
+          }
           
-          model2D = new Box(w, h);
+          if (model2D == null)
+            model2D = new Box(region, region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f);
         }
         else if (value.compareTo("circle") == 0)
         {
+          try
+          {
+            float r = Float.parseFloat(model.variables.get("radius"));
+            if (r <= 1.0f)
+              r *= region.getRegionWidth() * 0.5f;
+            model2D = new Circle(r);
+          }
+          catch(NullPointerException exception)
+          {
+          }
+          catch(NumberFormatException exception)
+          {
+          }
           
+          if (model2D == null)
+            model2D = new Circle(region.getRegionWidth() * 0.5f);
         }
       }
       
       if (model2D == null)
-        model2D = new ModelObject2D(ResourceManager.instance.getTextureRegion(model.textureFile, model.u0, model.v0, model.u1, model.v1));
+        model2D = new ModelObject2D(region);
       
       if (model2D != null)
       {

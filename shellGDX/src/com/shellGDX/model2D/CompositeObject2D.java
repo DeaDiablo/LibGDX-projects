@@ -47,7 +47,12 @@ public abstract class CompositeObject2D extends Group2D
         @Override
         public boolean initLightsObject(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
         {
-          return initLights(lightsWorld, lights);
+          if (CompositeObject2D.this.initLightsObject(lightsWorld, lights))
+          {
+            lightObject.lights = lights;
+            return true;
+          }
+          return false;
         }
       };
       addActor(lightObject);
@@ -61,7 +66,9 @@ public abstract class CompositeObject2D extends Group2D
         @Override
         public Body initPhysicObject(World physicsWorls)
         {
-          return initPhysic(physicsWorls);
+          Body body = CompositeObject2D.this.initPhysicObject(physicsWorls);
+          physicObject.body = body;
+          return body;
         }
       };
       addActor(physicObject);
@@ -74,12 +81,12 @@ public abstract class CompositeObject2D extends Group2D
       physicObject.attachModel(this, offsetX, offsetY);
   }
   
-  protected Body initPhysic(World physicsWorls)
+  protected Body initPhysicObject(World physicsWorld)
   {
     return null;
   }
 
-  protected boolean initLights(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
+  protected boolean initLightsObject(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
   {
     return false;
   }

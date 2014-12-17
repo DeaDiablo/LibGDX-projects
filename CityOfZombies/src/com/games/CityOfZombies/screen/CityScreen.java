@@ -1,7 +1,7 @@
 package com.games.CityOfZombies.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -77,6 +77,8 @@ public class CityScreen extends GameScreen
     camera3D.far  = camera3D.position.z;
 
     scene3D = new Scene3D(width, height, camera3D);
+    scene3D.getModelBatch().getRenderContext().setDepthTest(0);
+    scene3D.getModelBatch().getRenderContext().setCullFace(GL20.GL_FRONT);
     
     level = new CityLevel(ResourceManager.instance.getEditorLevel("testLevel.xml"), scene2D, scene3D);
     player = new Player(ResourceManager.instance.getTextureRegion("player_pistol.png"));
@@ -125,16 +127,9 @@ public class CityScreen extends GameScreen
   public void draw(float deltaTime)
   {
     scene2D.draw();
-    scene2D.getBatch().begin();
-    //level.draw2DAll(scene2D.getBatch());
-    scene2D.getBatch().end();
-    //view.drawLightWorld();
-    Gdx.gl.glClear(GL30.GL_DEPTH_BUFFER_BIT);
+    view.drawLightWorld();
+    Gdx.gl.glClear(GL20.GL_DEPTH_BUFFER_BIT);
     scene3D.draw();
-    scene3D.getModelBatch().begin(camera3D);
-    //level.draw3DAll(camera3D, scene3D.getModelBatch(), scene3D.getShader());
-    scene3D.getModelBatch().end();
-    //level.draw2D(scene2D.getBatch(), "100");
     view.drawPhysicsDebug(scene2D.getCamera());
   }
 }

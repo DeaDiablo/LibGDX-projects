@@ -205,7 +205,7 @@ public class PanelMain extends PanelScroll
       chooser = new JFileChooser();
       chooser.setAcceptAllFileFilterUsed(false);
       chooser.addChoosableFileFilter(new FilterLevelEditor());
-      chooser.setCurrentDirectory(new File("data"));
+      chooser.setCurrentDirectory(new File("data/levels"));
     }
     return chooser;
   }

@@ -70,7 +70,7 @@ public class Group3D extends ModelObject3D
       
       if (models[i] instanceof Group3D)
       {
-        ((Group3D) models[i]).drawChildren(modelBatch, environment, renderShader);
+        ((Group3D) models[i]).draw(modelBatch, environment, renderShader);
       }
       else
       {

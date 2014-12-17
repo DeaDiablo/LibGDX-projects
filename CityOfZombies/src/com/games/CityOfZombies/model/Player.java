@@ -29,7 +29,7 @@ public class Player extends CompositeObject2D implements InputProcessor
   }
 
   @Override
-  protected Body initPhysic(World world)
+  protected Body initPhysicObject(World world)
   {
     BodyDef bodyDef = new BodyDef();
     bodyDef.type = BodyType.DynamicBody;
@@ -58,9 +58,9 @@ public class Player extends CompositeObject2D implements InputProcessor
     return body;
   }
   
-  protected boolean initLights(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
+  protected boolean initLightsObject(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
   {
-    PointLight2D3D pointLight = new PointLight2D3D(lightsWorld, 512, new Color(0.5f, 0.5f, 0.5f, 0.5f), 1200, 0, 0);
+    PointLight2D3D pointLight = new PointLight2D3D(lightsWorld, 512, new Color(0.35f, 0.5f, 0.5f, 0.5f), 2000, 0, 0);
     pointLight.attachToBody(getBody(), 0, 0);
     pointLight.setActive(true);
     pointLight.setStaticLight(false);
@@ -71,7 +71,7 @@ public class Player extends CompositeObject2D implements InputProcessor
   }
   
   //control
-  protected final float speedValue = 300.0f; 
+  protected final float speedValue = 1000.0f; 
   protected Vector2 speed          = new Vector2();
   protected Vector2 moveVec        = new Vector2(0, 0);
   protected Vector2 mousePoint     = new Vector2(0, 0);

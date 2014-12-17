@@ -22,11 +22,18 @@ public class CityLevel
   {
     for(Layer layer : editor2Dlevel.layers)
     {
-      if (layer.name.compareTo("walls") == 0)
+      if (layer.name.compareTo("walls_") > 0)
       {
-        ModelLayer modelLayer = new ModelLayer(layer);
-        modelLayers.put(modelLayer.getName(), modelLayer);
-        scene3D.addModel3D(modelLayer);
+        try
+        {
+          int level = Integer.parseInt(layer.name.substring(6)) - 1;
+          ModelLayer modelLayer = new ModelLayer(layer, level);
+          modelLayers.put(modelLayer.getName(), modelLayer);
+          scene3D.addModel3D(modelLayer);
+        }
+        catch(NumberFormatException exception)
+        {
+        }
       }
 
       CityLayer layerGroup = new CityLayer(layer);
@@ -39,5 +46,11 @@ public class CityLevel
   {
     cityLayers.get(name).setVisible(visible);
     modelLayers.get(name).setVisible(visible);
+  }
+  
+  public void showOnlyLayer(String name, boolean visible)
+  {
+    //cityLayers.get(name).setVisible(visible);
+    //modelLayers.get(name).setVisible(visible);
   }
 }

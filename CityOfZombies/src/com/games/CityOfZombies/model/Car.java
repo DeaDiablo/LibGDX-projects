@@ -25,7 +25,7 @@ public class Car extends CompositeObject2D
   }
   
   @Override
-  public Body initPhysic(World world)
+  public Body initPhysicObject(World world)
   {
     BodyDef bodyDef = new BodyDef();
     bodyDef.type = BodyType.DynamicBody;
@@ -56,7 +56,7 @@ public class Car extends CompositeObject2D
   }
   
   @Override
-  public boolean initLights(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
+  public boolean initLightsObject(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
   {
     ConusLight2D3D left_headlight = new ConusLight2D3D(lightsWorld, 256, new Color(0.5f, 0.5f, 0.5f, 0.5f), 1500, 0, 0, getRotation(), 30);
     left_headlight.attachToBody(getBody(), 300, -80);
