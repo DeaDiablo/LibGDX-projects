@@ -71,7 +71,6 @@ public class ModelLayer extends Group3D
       }
       catch(GdxRuntimeException exception)
       {
-        model3D = new ModelObject3D(ResourceManager.instance.getModel("wall_1m.obj"));
       }
       
       if (model3D != null)

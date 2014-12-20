@@ -774,40 +774,6 @@
 						</variables>
 					</model>
 					<model>
-						<name>passage_2m</name>
-						<visible>true</visible>
-						<texture>
-							<file>data/sprites/walls/passage_2m.png</file>
-							<u0>0.0</u0>
-							<v0>0.0</v0>
-							<u1>1.0</u1>
-							<v1>1.0</v1>
-						</texture>
-						<position>
-							<x>2118.9766</x>
-							<y>599.4281</y>
-						</position>
-						<rotation>180.0</rotation>
-						<scale>
-							<x>1.0000001</x>
-							<y>1.0000001</y>
-						</scale>
-						<color>
-							<r>1.0</r>
-							<g>1.0</g>
-							<b>1.0</b>
-							<a>1.0</a>
-						</color>
-						<horzAlign>3</horzAlign>
-						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
-					</model>
-					<model>
 						<name>window_0.5m</name>
 						<visible>true</visible>
 						<texture>
@@ -825,40 +791,6 @@
 						<scale>
 							<x>1.0</x>
 							<y>1.0</y>
-						</scale>
-						<color>
-							<r>1.0</r>
-							<g>1.0</g>
-							<b>1.0</b>
-							<a>1.0</a>
-						</color>
-						<horzAlign>3</horzAlign>
-						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
-					</model>
-					<model>
-						<name>passage_3m</name>
-						<visible>true</visible>
-						<texture>
-							<file>data/sprites/walls/passage_3m.png</file>
-							<u0>0.0</u0>
-							<v0>0.0</v0>
-							<u1>1.0</u1>
-							<v1>1.0</v1>
-						</texture>
-						<position>
-							<x>2118.5747</x>
-							<y>100.16693</y>
-						</position>
-						<rotation>180.0</rotation>
-						<scale>
-							<x>1.0</x>
-							<y>1.0000001</y>
 						</scale>
 						<color>
 							<r>1.0</r>
@@ -910,40 +842,6 @@
 						</variables>
 					</model>
 					<model>
-						<name>passage_2.5m</name>
-						<visible>true</visible>
-						<texture>
-							<file>data/sprites/walls/passage_2.5m.png</file>
-							<u0>0.0</u0>
-							<v0>0.0</v0>
-							<u1>1.0</u1>
-							<v1>1.0</v1>
-						</texture>
-						<position>
-							<x>2117.9526</x>
-							<y>-449.38107</y>
-						</position>
-						<rotation>180.0</rotation>
-						<scale>
-							<x>1.0</x>
-							<y>1.0000001</y>
-						</scale>
-						<color>
-							<r>1.0</r>
-							<g>1.0</g>
-							<b>1.0</b>
-							<a>1.0</a>
-						</color>
-						<horzAlign>3</horzAlign>
-						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
-					</model>
-					<model>
 						<name>window_1.5m</name>
 						<visible>true</visible>
 						<texture>
@@ -958,40 +856,6 @@
 							<y>790.2153</y>
 						</position>
 						<rotation>-90.0</rotation>
-						<scale>
-							<x>1.0</x>
-							<y>1.0</y>
-						</scale>
-						<color>
-							<r>1.0</r>
-							<g>1.0</g>
-							<b>1.0</b>
-							<a>1.0</a>
-						</color>
-						<horzAlign>3</horzAlign>
-						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
-					</model>
-					<model>
-						<name>wall_0.5m</name>
-						<visible>true</visible>
-						<texture>
-							<file>data/sprites/walls/wall_0.5m.png</file>
-							<u0>0.0</u0>
-							<v0>0.0</v0>
-							<u1>1.0</u1>
-							<v1>1.0</v1>
-						</texture>
-						<position>
-							<x>2117.8315</x>
-							<y>-749.2985</y>
-						</position>
-						<rotation>180.0</rotation>
 						<scale>
 							<x>1.0</x>
 							<y>1.0</y>

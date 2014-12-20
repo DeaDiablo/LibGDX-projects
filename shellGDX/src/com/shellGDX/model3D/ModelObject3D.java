@@ -59,8 +59,8 @@ public class ModelObject3D extends ModelInstance implements Disposable
     setPosition(x, y, z);
     // boundBox = model.meshes.get(0).calculateBoundingBox();
     calculateBoundingBox(boundBox);
-    center.set(boundBox.getCenter());
-    dimensions.set(boundBox.getDimensions());
+    boundBox.getCenter(center);
+    boundBox.getDimensions(dimensions);
     radius = dimensions.len() / 2f;
     animation = new AnimationController(this);
   }
