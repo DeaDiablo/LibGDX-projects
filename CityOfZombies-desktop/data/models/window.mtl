@@ -2,7 +2,7 @@
 # File Created: 19.12.2014 22:10:12
 
 newmtl Material__1
-	map_Kd textures\wall2.jpg
+	map_Kd textures\wall.png
 
 newmtl Material__2
 	map_Kd textures\window.jpg

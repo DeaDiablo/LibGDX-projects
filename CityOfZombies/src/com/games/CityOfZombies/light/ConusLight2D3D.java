@@ -18,7 +18,7 @@ public class ConusLight2D3D extends ConeLight implements Light2D3D
                         float coneDegree)
   {
     super(rayHandler, rays, color, distance, x, y, directionDegree, coneDegree);
-    light3D = new ConusLight3D(new Vector3(x, y, 50.0f),
+    light3D = new ConusLight3D(new Vector3(x, y, 120.0f),
                                new Vector3(MathUtils.cos(directionDegree * MathUtils.degRad),
                                            MathUtils.sin(directionDegree * MathUtils.degRad),
                                            0.0f),
@@ -35,15 +35,36 @@ public class ConusLight2D3D extends ConeLight implements Light2D3D
   }
 
   @Override
+  public void setPosition(float x, float y)
+  {
+    super.setPosition(x, y);
+    if (light3D != null)
+      light3D.position.set(x, y, 120.0f);
+  }
+  
+  @Override
+  public void setDirection(float direction)
+  {
+    super.setDirection(direction);
+    if (light3D != null)
+      light3D.direction.set(MathUtils.cos(direction * MathUtils.degRad),
+                            MathUtils.sin(direction * MathUtils.degRad),
+                            0.0f);
+  }
+
+  @Override
   public void update(float deltaTime)
   {
+    if (light3D == null)
+      return;
+    
     light3D.active = isActive();
     light3D.position.x = getX();
     light3D.position.y = getY();
     light3D.conusAngle = 96.0f - getConeDegree();
     light3D.radius = getDistance() * 0.5f;
     
-    if (body != null)
+    if (body != null && !body.isFixedRotation())
     {
       float angle = body.getAngle();
       light3D.direction.x = MathUtils.cos(angle);

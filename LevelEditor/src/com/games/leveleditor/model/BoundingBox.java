@@ -1,5 +1,7 @@
 package com.games.leveleditor.model;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
@@ -17,6 +19,8 @@ public class BoundingBox
   protected ShapeRenderer shapeRenderer = null;
   protected Rectangle bound = null;
   protected Array<Rectangle> scaleRectangles = new Array<Rectangle>(false, 8);
+  
+  public static boolean drawRectangles = true;
 
   public BoundingBox(Rectangle bound)
   {
@@ -41,19 +45,23 @@ public class BoundingBox
     scaleRectangles.get(6).setPosition(bound.x + bound.width * 0.5f  - deltaSmallCube, bound.y + bound.height - deltaSmallCube);
     scaleRectangles.get(7).setPosition(bound.x + bound.width * 0.5f - deltaSmallCube, bound.y - deltaSmallCube);
 
-    shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 1);
-
+    shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.5f);
     shapeRenderer.begin(ShapeType.Line);
     shapeRenderer.rect(bound.x, bound.y, bound.width, bound.height);
     shapeRenderer.end();
 
-    shapeRenderer.begin(ShapeType.Filled);
-    for (int i = 0; i < scaleRectangles.size; i ++)
+    if (drawRectangles)
     {
-      Rectangle rect = scaleRectangles.get(i);
-      shapeRenderer.rect(rect.x, rect.y, rect.width, rect.height);
+      Gdx.gl.glEnable(GL20.GL_BLEND);
+      shapeRenderer.begin(ShapeType.Filled);
+      for (int i = 0; i < scaleRectangles.size; i ++)
+      {
+        Rectangle rect = scaleRectangles.get(i);
+        shapeRenderer.rect(rect.x, rect.y, rect.width, rect.height);
+      }
+      shapeRenderer.end();
+      Gdx.gl.glDisable(GL20.GL_BLEND);
     }
-    shapeRenderer.end();
   }
 
   public Operation getOperationType(Vector2 touch)

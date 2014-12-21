@@ -2,7 +2,36 @@
 	<layer>
 		<name>level0</name>
 		<visible>true</visible>
-		<children/>
+		<children>
+			<model>
+				<name>grass</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/back/grass.jpg</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>30.0</u1>
+					<v1>30.0</v1>
+				</texture>
+				<position>
+					<x>-1384.0</x>
+					<y>-305.0</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+		</children>
 	</layer>
 	<layer>
 		<name>level1</name>
@@ -15,12 +44,12 @@
 					<file>data/sprites/floors/linoleum_1.jpg</file>
 					<u0>0.0</u0>
 					<v0>0.0</v0>
-					<u1>100.0</u1>
-					<v1>100.0</v1>
+					<u1>16.5</u1>
+					<v1>15.0</v1>
 				</texture>
 				<position>
-					<x>-318.5</x>
-					<y>448.0</y>
+					<x>-1205.5</x>
+					<y>-380.0</y>
 				</position>
 				<rotation>0.0</rotation>
 				<scale>
@@ -93,12 +122,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -127,12 +150,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2m</name>
@@ -145,7 +162,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.9766</x>
+							<x>2118.98</x>
 							<y>599.4281</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -161,12 +178,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_0.5m</name>
@@ -195,12 +206,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_3m</name>
@@ -229,12 +234,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -263,12 +262,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2.5m</name>
@@ -297,12 +290,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1.5m</name>
@@ -331,12 +318,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_0.5m</name>
@@ -365,12 +346,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -399,12 +374,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_1.5m</name>
@@ -433,12 +402,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1m</name>
@@ -467,12 +430,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_3m</name>
@@ -501,12 +458,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2.5m</name>
@@ -535,12 +486,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2m</name>
@@ -569,12 +514,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -603,12 +542,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2.5m</name>
@@ -637,12 +570,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_3m</name>
@@ -671,15 +598,93 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 				</children>
 			</group>
+			<model>
+				<name>wall_1m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-460.3333</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_0.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_0.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-310.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_1.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.2</x>
+					<y>-110.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
 		</children>
 	</layer>
 	<layer>
@@ -732,12 +737,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -766,12 +765,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_0.5m</name>
@@ -800,12 +793,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -834,12 +821,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1.5m</name>
@@ -868,12 +849,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -902,12 +877,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_1.5m</name>
@@ -936,12 +905,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1m</name>
@@ -970,12 +933,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_3m</name>
@@ -1004,12 +961,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2.5m</name>
@@ -1038,12 +989,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2m</name>
@@ -1072,12 +1017,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -1106,12 +1045,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2.5m</name>
@@ -1140,12 +1073,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_3m</name>
@@ -1174,15 +1101,93 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 				</children>
 			</group>
+			<model>
+				<name>wall_1.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.2</x>
+					<y>-110.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_1m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-460.3333</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_0.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_0.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-310.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
 		</children>
 	</layer>
 	<layer>
@@ -1235,12 +1240,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -1269,12 +1268,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2m</name>
@@ -1287,7 +1280,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.9766</x>
+							<x>2118.98</x>
 							<y>599.4281</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -1303,12 +1296,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_0.5m</name>
@@ -1337,12 +1324,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_3m</name>
@@ -1355,7 +1336,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.5747</x>
+							<x>2118.98</x>
 							<y>100.16693</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -1371,12 +1352,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -1405,12 +1380,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2.5m</name>
@@ -1423,7 +1392,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2117.9526</x>
+							<x>2118.98</x>
 							<y>-449.38107</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -1439,12 +1408,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1.5m</name>
@@ -1473,12 +1436,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_0.5m</name>
@@ -1491,7 +1448,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2117.8315</x>
+							<x>2118.98</x>
 							<y>-749.2985</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -1507,12 +1464,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -1541,12 +1492,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_1.5m</name>
@@ -1559,7 +1504,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2117.7502</x>
+							<x>2118.98</x>
 							<y>-950.02167</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -1575,12 +1520,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1m</name>
@@ -1609,12 +1548,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_3m</name>
@@ -1643,12 +1576,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2.5m</name>
@@ -1677,12 +1604,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2m</name>
@@ -1711,12 +1632,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -1745,12 +1660,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2.5m</name>
@@ -1779,12 +1688,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_3m</name>
@@ -1813,15 +1716,93 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 				</children>
 			</group>
+			<model>
+				<name>wall_1.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.2</x>
+					<y>-110.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_1m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-460.3333</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_0.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_0.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-310.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
 		</children>
 	</layer>
 	<layer>
@@ -1874,12 +1855,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -1908,12 +1883,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2m</name>
@@ -1926,7 +1895,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.9766</x>
+							<x>2118.98</x>
 							<y>599.4281</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -1942,12 +1911,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_0.5m</name>
@@ -1976,12 +1939,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_3m</name>
@@ -1994,7 +1951,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.5747</x>
+							<x>2118.98</x>
 							<y>100.16693</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -2010,12 +1967,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -2044,12 +1995,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2.5m</name>
@@ -2062,7 +2007,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2117.9526</x>
+							<x>2118.98</x>
 							<y>-449.38107</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -2078,12 +2023,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1.5m</name>
@@ -2112,12 +2051,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_0.5m</name>
@@ -2146,12 +2079,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -2180,12 +2107,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_1.5m</name>
@@ -2214,12 +2135,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1m</name>
@@ -2248,12 +2163,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_3m</name>
@@ -2282,12 +2191,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2.5m</name>
@@ -2316,12 +2219,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2m</name>
@@ -2350,12 +2247,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -2384,12 +2275,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2.5m</name>
@@ -2418,12 +2303,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_3m</name>
@@ -2452,15 +2331,93 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 				</children>
 			</group>
+			<model>
+				<name>wall_1.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.2</x>
+					<y>-110.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_1m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-460.3333</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_0.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_0.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-310.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
 		</children>
 	</layer>
 	<layer>
@@ -2513,12 +2470,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -2547,12 +2498,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2m</name>
@@ -2565,7 +2510,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.9766</x>
+							<x>2118.98</x>
 							<y>599.4281</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -2581,12 +2526,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_0.5m</name>
@@ -2615,12 +2554,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_3m</name>
@@ -2633,7 +2566,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2118.5747</x>
+							<x>2118.98</x>
 							<y>100.16693</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -2649,12 +2582,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -2683,12 +2610,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>passage_2.5m</name>
@@ -2701,7 +2622,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2117.9526</x>
+							<x>2118.98</x>
 							<y>-449.38107</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -2717,12 +2638,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1.5m</name>
@@ -2751,12 +2666,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_0.5m</name>
@@ -2769,7 +2678,7 @@
 							<v1>1.0</v1>
 						</texture>
 						<position>
-							<x>2117.8315</x>
+							<x>2117.83</x>
 							<y>-749.2985</y>
 						</position>
 						<rotation>180.0</rotation>
@@ -2785,12 +2694,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -2819,12 +2722,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_1.5m</name>
@@ -2853,12 +2750,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_1m</name>
@@ -2887,12 +2778,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_3m</name>
@@ -2921,12 +2806,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2.5m</name>
@@ -2955,12 +2834,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2m</name>
@@ -2989,12 +2862,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_2m</name>
@@ -3023,12 +2890,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>wall_2.5m</name>
@@ -3057,12 +2918,6 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 					<model>
 						<name>window_3m</name>
@@ -3091,15 +2946,93 @@
 						</color>
 						<horzAlign>3</horzAlign>
 						<vertAlign>3</vertAlign>
-						<variables>
-							<variable>
-								<key>type</key>
-								<value>box</value>
-							</variable>
-						</variables>
 					</model>
 				</children>
 			</group>
+			<model>
+				<name>wall_1.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.2</x>
+					<y>-110.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_1m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_1m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-460.3333</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
+			<model>
+				<name>wall_0.5m</name>
+				<visible>true</visible>
+				<texture>
+					<file>data/sprites/walls/wall_0.5m.png</file>
+					<u0>0.0</u0>
+					<v0>0.0</v0>
+					<u1>1.0</u1>
+					<v1>1.0</v1>
+				</texture>
+				<position>
+					<x>1212.3333</x>
+					<y>-310.33334</y>
+				</position>
+				<rotation>0.0</rotation>
+				<scale>
+					<x>1.0</x>
+					<y>1.0</y>
+				</scale>
+				<color>
+					<r>1.0</r>
+					<g>1.0</g>
+					<b>1.0</b>
+					<a>1.0</a>
+				</color>
+				<horzAlign>3</horzAlign>
+				<vertAlign>3</vertAlign>
+			</model>
 		</children>
 	</layer>
 </LevelEditor2D>

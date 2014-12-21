@@ -2,6 +2,7 @@ package com.shellGDX.model3D.light;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Array;
+import com.shellGDX.model3D.Scene3D;
 import com.shellGDX.shader.ShaderInstance;
 import com.shellGDX.shader.ShaderManager;
 
@@ -26,7 +27,7 @@ public enum LightWorld3D
     activeShader = ShaderManager.instance.getShader("light0");
   }
 
-  public void update()
+  public void update(Scene3D scene3D)
   {
     activeLights = 0;
     for (int i = 0; i < lights.size; i++)
@@ -39,6 +40,7 @@ public enum LightWorld3D
       }
     }
     activeShader = ShaderManager.instance.getShader("light" + String.valueOf(activeLights));
+    scene3D.setShader(activeShader);
   }
   
   public ShaderInstance getActiveShader()

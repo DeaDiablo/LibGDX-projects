@@ -110,8 +110,7 @@ public class CityScreen extends GameScreen
     for(Light2D3D light : Light2D3D.lights2D3D)
       light.update(deltaTime);
 
-    LightWorld3D.instance.update();
-    scene3D.setShader(LightWorld3D.instance.getActiveShader());
+    LightWorld3D.instance.update(scene3D);
     GameLog.instance.writeFPS();
   }
 

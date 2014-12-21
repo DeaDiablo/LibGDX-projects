@@ -1,6 +1,5 @@
 package com.shellGDX.box2dLight;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
@@ -85,17 +84,10 @@ public abstract class PositionalLight extends Light2D
   }
 
   protected Vector2 startBuffer = new Vector2();
-  protected final float   updateTimeValue = 0.0325f;
-  protected float         updateTime = updateTimeValue;
   
   @Override
   void update()
   {
-    updateTime -= Gdx.graphics.getDeltaTime();
-    if (updateTime > 0.0f)
-      return;
-    updateTime = updateTimeValue;
-
     if (body != null && !staticLight)
     {
       final Vector2 vec = body.getPosition();

@@ -20,6 +20,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.loader.ObjLoader.ObjLoaderParameters;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -143,6 +144,7 @@ public class ResourceManager extends AssetManager
   {
     TextureParameter param = new TextureParameter();
     param.minFilter = TextureFilter.Linear;
+    param.magFilter = TextureFilter.Linear;
     param.genMipMaps = false;
     param.wrapU = TextureWrap.Repeat;
     param.wrapV = TextureWrap.Repeat;
@@ -151,7 +153,7 @@ public class ResourceManager extends AssetManager
   
   public Texture getTexture(String fileName)
   {
-    return get(fileName, Texture.class);
+    return get(fileName, Texture.class); 
   }
   
   public void loadTextureAtlas(String fileName)
@@ -163,7 +165,6 @@ public class ResourceManager extends AssetManager
   {
     return get(fileName, TextureAtlas.class);
   }
-
 
   public TextureRegion getTextureRegion(String fileName)
   {
@@ -202,7 +203,10 @@ public class ResourceManager extends AssetManager
   
   public void loadModel(String fileName)
   {
-    load(fileName, Model.class);
+    ObjLoaderParameters param = new ObjLoaderParameters();
+    param.textureParameter.genMipMaps = true;
+    param.textureParameter.minFilter = TextureFilter.MipMapLinearLinear;
+    load(fileName, Model.class, param);
   }
 
   public Model getModel(String fileName)

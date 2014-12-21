@@ -324,6 +324,17 @@ public class MainScreen extends GameScreen implements InputProcessor
           if (!ctrlPress)
             addModel.setRotation((float)Math.ceil(addModel.getRotation() / 45.0f) * 45.0f); 
         }
+        else
+        {
+          TranslateCommand transCommand = new TranslateCommand();
+          for (Actor actor : layers.selectLayer.getSelectedModels())
+          {
+            transCommand.addActor(actor);
+          }
+          transCommand.addUpdater(properties.panelUpdater);
+          transCommand.setDelta(keycode == Input.Keys.LEFT ? -1.0f : 1.0f, 0.0f);
+          CommandController.instance.addCommand(transCommand);
+        }
         break;
       case Input.Keys.UP:
       case Input.Keys.DOWN:
@@ -337,15 +348,30 @@ public class MainScreen extends GameScreen implements InputProcessor
         }
         else
         {
-          if (keycode == Input.Keys.UP)
-            UpDownElement(1);
-          else
-            UpDownElement(-1);
+          if (ctrlPress)
+          {
+            if (keycode == Input.Keys.UP)
+              UpDownElement(1);
+            else
+              UpDownElement(-1);
+            break;
+          }
+
+          TranslateCommand transCommand = new TranslateCommand();
+          for (Actor actor : layers.selectLayer.getSelectedModels())
+          {
+            transCommand.addActor(actor);
+          }
+          transCommand.addUpdater(properties.panelUpdater);
+          transCommand.setDelta(0.0f, keycode == Input.Keys.DOWN ? -1.0f : 1.0f);
+          CommandController.instance.addCommand(transCommand);
         }
         break;
       case Input.Keys.V:
         if (ctrlPress)
           paste();
+        else
+          BoundingBox.drawRectangles = !BoundingBox.drawRectangles;
         break;
       case Input.Keys.C:
         if (ctrlPress)
@@ -489,8 +515,8 @@ public class MainScreen extends GameScreen implements InputProcessor
       for(int i = 0; i < selected.size; i++)
       {
         transCommand.addActor(selected.get(i));
-        transCommand.addUpdater(properties.panelUpdater);
       }
+      transCommand.addUpdater(properties.panelUpdater);
       command = transCommand;
       rotate = false;
       scale = false;
@@ -503,8 +529,8 @@ public class MainScreen extends GameScreen implements InputProcessor
       for(int i = 0; i < selected.size; i++)
       {
         rotateCommand.addActor(selected.get(i));
-        rotateCommand.addUpdater(properties.panelUpdater);
       }
+      rotateCommand.addUpdater(properties.panelUpdater);
       command = rotateCommand;
       translate = false;
       scale = false;
@@ -517,8 +543,8 @@ public class MainScreen extends GameScreen implements InputProcessor
       for(int i = 0; i < selected.size; i++)
       {
         scaleCommand.addActor(selected.get(i));
-        scaleCommand.addUpdater(properties.panelUpdater);
       }
+      scaleCommand.addUpdater(properties.panelUpdater);
       command = scaleCommand;
       translate = false;
       rotate = false;
@@ -670,7 +696,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       if (deltaX != 0.0f || deltaY != 0.0f)
       {
         TranslateCommand transCommand = (TranslateCommand)command;
-        transCommand.setDelta(deltaX, deltaY);
+        transCommand.setDelta((int)deltaX, (int)deltaY);
         CommandController.instance.addCommand(transCommand);
       }
     }
@@ -942,9 +968,10 @@ public class MainScreen extends GameScreen implements InputProcessor
         }
       }
     }
+    cursorPos.set((int)cursorPos.x, (int)cursorPos.y);
     
     OrthographicCamera camera = (OrthographicCamera)mainScene.getCamera();
-    cursorText.setText(String.format(Locale.ENGLISH, "x: %.2f   y: %.2f   z: %.1f", cursorPos.x, cursorPos.y, camera.zoom));
+    cursorText.setText(String.format(Locale.ENGLISH, "x: %.0f   y: %.0f   z: %.1f", cursorPos.x, cursorPos.y, camera.zoom));
 
     if (addModel != null)
     {
@@ -1193,6 +1220,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       }
     }
     command.addUpdater(tree.panelUpdater);
+    command.addUpdater(properties.panelUpdater);
     CommandController.instance.addCommand(command);
   }
 

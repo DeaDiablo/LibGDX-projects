@@ -180,6 +180,7 @@ public class LightsShader extends ShaderInstance
     TextureAttribute attr = (TextureAttribute)renderable.material.get(TextureAttribute.Diffuse);
     program.setUniformi(u_texture, context.textureBinder.bind(attr.textureDescription));
     program.setUniformMatrix(u_worldMatrix, renderable.worldTransform);
+    //Gdx.gl.glTexParameterf(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_MAX_ANISOTROPY_EXT, 4.0f);
     
     normalMatrix.set(renderable.worldTransform).inv().transpose();
     program.setUniformMatrix(u_normalMatrix, normalMatrix);
@@ -223,7 +224,7 @@ public class LightsShader extends ShaderInstance
       program.setUniform3fv(u_direction, directionLights, 0, 3 * numLights);
       program.setUniform2fv(u_angles, anglesLights, 0, 2 * numLights);
     }
-    
+
     renderable.mesh.render(program,
                            renderable.primitiveType,
                            renderable.meshPartOffset,

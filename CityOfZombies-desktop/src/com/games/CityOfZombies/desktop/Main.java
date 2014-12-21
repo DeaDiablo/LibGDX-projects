@@ -14,8 +14,9 @@ public class Main
     config.width = 1440;
     config.height = 810;
     config.fullscreen = false;
-    config.vSyncEnabled = false;
-    config.foregroundFPS = 0;
+    config.vSyncEnabled = true;
+    //config.foregroundFPS = 0;
+    //config.samples = 8;
     new LwjglApplication(new CityOfZombies(), config);
   }
 }

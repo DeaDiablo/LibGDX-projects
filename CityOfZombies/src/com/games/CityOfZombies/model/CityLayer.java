@@ -63,51 +63,16 @@ public class CityLayer extends Group2D
       
       TextureRegion region = ResourceManager.instance.getTextureRegion(model.textureFile, model.u0, model.v0, model.u1, model.v1);
       
-      String value = model.variables.get("type");
-      if (value != null)
+      if (model2D == null)
       {
-        if (value.compareTo("box") == 0)
-        {
-          try
-          {
-            float w = Float.parseFloat(model.variables.get("width"));
-            if (w <= 1.0f)
-              w *= region.getRegionWidth();
-            float h = Float.parseFloat(model.variables.get("height"));
-            if (h <= 1.0f)
-              h *= region.getRegionHeight();
-            model2D = new Box(region, w * 0.5f, h * 0.5f);
-          }
-          catch(NullPointerException exception)
-          {
-          }
-          catch(NumberFormatException exception)
-          {
-          }
-          
-          if (model2D == null)
-            model2D = new Box(region, region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f);
-        }
-        else if (value.compareTo("circle") == 0)
-        {
-          try
-          {
-            float r = Float.parseFloat(model.variables.get("radius"));
-            if (r <= 1.0f)
-              r *= region.getRegionWidth() * 0.5f;
-            model2D = new Circle(r);
-          }
-          catch(NullPointerException exception)
-          {
-          }
-          catch(NumberFormatException exception)
-          {
-          }
-          
-          if (model2D == null)
-            model2D = new Circle(region.getRegionWidth() * 0.5f);
-        }
+        int indexBegin = model.textureFile.lastIndexOf("/");
+        int indexEnd = model.textureFile.lastIndexOf("_");
+        if (indexBegin > 0 && indexEnd > 0)
+          model2D = getWallModel(model.textureFile.substring(indexBegin + 1, indexEnd), region);
       }
+
+      if (model2D == null)
+        model2D = getVariablesObject(model.variables, region);
       
       if (model2D == null)
         model2D = new ModelObject2D(region);
@@ -123,6 +88,66 @@ public class CityLayer extends Group2D
         group.addActor(model2D);
       }
     }
+  }
+
+  private Actor getVariablesObject(HashMap<String, String> variables, TextureRegion region)
+  {
+    String value = variables.get("type");
+    if (value != null)
+    {
+      if (value.compareTo("box") == 0)
+      {
+        float w = region.getRegionWidth();
+        float h = region.getRegionHeight();
+        try
+        {
+          w = Float.parseFloat(variables.get("width"));
+          if (w <= 1.0f)
+            w *= region.getRegionWidth();
+          h = Float.parseFloat(variables.get("height"));
+          if (h <= 1.0f)
+            h *= region.getRegionHeight();
+        }
+        catch(NullPointerException exception)
+        {
+        }
+        catch(NumberFormatException exception)
+        {
+        }
+
+        return new Box(region, w * 0.5f, h * 0.5f);
+      }
+      else if (value.compareTo("circle") == 0)
+      {
+        float r = region.getRegionWidth();
+        try
+        {
+          r = Float.parseFloat(variables.get("radius"));
+          if (r <= 1.0f)
+            r *= region.getRegionWidth();
+        }
+        catch(NullPointerException exception)
+        {
+        }
+        catch(NumberFormatException exception)
+        {
+        }
+        
+        return new Circle(r);
+      }
+    }
+    return null;
+  }
+
+  private Actor getWallModel(String substring, TextureRegion region)
+  {
+    if (substring.compareToIgnoreCase("wall") == 0)
+      return new Box(region, region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f);
+    if (substring.compareTo("passage") == 0)
+      return new Passage(region, region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f);
+    if (substring.compareToIgnoreCase("window") == 0)
+      return new Window(region, region.getRegionWidth() * 0.5f, region.getRegionHeight() * 0.5f);
+    return null;
   }
 
   @Override

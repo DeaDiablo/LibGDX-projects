@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.SnapshotArray;
+import com.games.CityOfZombies.light.ConusLight2D3D;
 import com.games.CityOfZombies.light.PointLight2D3D;
 import com.shellGDX.box2dLight.Light2D;
 import com.shellGDX.box2dLight.RayHandler;
@@ -58,20 +59,31 @@ public class Player extends CompositeObject2D implements InputProcessor
     return body;
   }
   
+  protected ConusLight2D3D conusLight;
+  
   protected boolean initLightsObject(RayHandler lightsWorld, final SnapshotArray<Light2D> lights)
   {
-    PointLight2D3D pointLight = new PointLight2D3D(lightsWorld, 512, new Color(0.35f, 0.5f, 0.5f, 0.5f), 2000, 0, 0);
+    PointLight2D3D pointLight = new PointLight2D3D(lightsWorld, 512, new Color(1.0f, 1.0f, 1.0f, 1.0f), 200, 0, 0);
     pointLight.attachToBody(getBody(), 0, 0);
     pointLight.setActive(true);
     pointLight.setStaticLight(false);
     pointLight.setSoft(false);
-    lights.add(pointLight);
+    //lights.add(pointLight);
+    
+
+    conusLight = new ConusLight2D3D(lightsWorld, 512, new Color(1.0f, 1.0f, 1.0f, 1.0f), 1500, 0, 0, getRotation() + 90.0f, 30.0f);
+    //conusLight.attachToBody(getBody(), 0, 0);
+    conusLight.setActive(true);
+    conusLight.setStaticLight(false);
+    conusLight.setSoft(false);
+    
+    lights.add(conusLight);
     
     return true;
   }
   
   //control
-  protected final float speedValue = 1000.0f; 
+  protected final float speedValue = 400.0f; 
   protected Vector2 speed          = new Vector2();
   protected Vector2 moveVec        = new Vector2(0, 0);
   protected Vector2 mousePoint     = new Vector2(0, 0);
@@ -81,6 +93,9 @@ public class Player extends CompositeObject2D implements InputProcessor
   {
     if (!super.update(deltaTime))
       return false;
+
+    conusLight.setPosition(getX(), getY());
+    conusLight.setDirection(getRotation() + 90.0f);
 
     speed.set(moveVec);
     speed.scl(PhysicsWorld2D.WORLD_TO_BOX * speedValue);
