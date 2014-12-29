@@ -122,7 +122,7 @@ public class PanelProperties extends PanelScroll
             try
             {
               Float value = Float.parseFloat(textField.getText());
-              if (textField == positionX && value != model.getX())
+              if (textField == positionX)
               {
                 TranslateCommand transCommand = new TranslateCommand();
                 transCommand.setNewPosition(value, model.getY());

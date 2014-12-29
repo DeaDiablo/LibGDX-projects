@@ -668,6 +668,7 @@ public class MainScreen extends GameScreen implements InputProcessor
           if (!brushMode)
           {
             EditModel newModel = addModel.copy();
+            newModel.getColor().a = 1.0f;
             
             AddCommand command = new AddCommand();
             command.addModel(newModel);
@@ -753,9 +754,15 @@ public class MainScreen extends GameScreen implements InputProcessor
             return true;
         }
 
-        EditModel newModel = addModel.copy();
-        newBrushModels.add(newModel);
+        {
+          EditModel newModel = addModel.copy();
+          newModel.getColor().a = 1.0f;
+          newBrushModels.add(newModel);
+        }
         
+        EditModel newModel = addModel.copy();
+        newModel.getColor().a = 1.0f;
+
         AddCommand command = new AddCommand();
         command.addModel(newModel);
         command.setGroup(layers.selectLayer.getCurrentGroup());
@@ -1220,7 +1227,7 @@ public class MainScreen extends GameScreen implements InputProcessor
       }
     }
     command.addUpdater(tree.panelUpdater);
-    command.addUpdater(properties.panelUpdater);
+    command.addUpdater(propertiesUpdater);
     CommandController.instance.addCommand(command);
   }
 

@@ -42,6 +42,7 @@ public class EditModel extends ModelObject2D implements SelectObject
     newModel.setVisible(isVisible());
     newModel.setRotation(getRotation());
     newModel.setScale(getScaleX(), getScaleY());
+    newModel.setColor(getColor());
     newModel.setAlign(getHorzAlign(), getVertAlign());
     newModel.variables.putAll(variables);
     return newModel;
@@ -56,7 +57,16 @@ public class EditModel extends ModelObject2D implements SelectObject
   {
     try
     {
-      setTextureRegion(ResourceManager.instance.getTextureRegion(path));
+      float u0 = 0.0f, v0 = 1.0f, u1 = 1.0f, v1 = 1.0f;
+      if (region != null)
+      {
+        u0 = region.getU();
+        v0 = region.getV();
+        u1 = region.getU2();
+        v1 = region.getV2();
+      }
+      
+      setTextureRegion(ResourceManager.instance.getTextureRegion(path, u0, v0, u1, v1));
     }
     catch(GdxRuntimeException exception)
     {
