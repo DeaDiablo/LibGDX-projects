@@ -68,14 +68,15 @@ public class Player extends CompositeObject2D implements InputProcessor
     pointLight.setActive(true);
     pointLight.setStaticLight(false);
     pointLight.setSoft(false);
-    //lights.add(pointLight);
+    lights.add(pointLight);
     
 
     conusLight = new ConusLight2D3D(lightsWorld, 512, new Color(1.0f, 1.0f, 1.0f, 1.0f), 1500, 0, 0, getRotation() + 90.0f, 30.0f);
     //conusLight.attachToBody(getBody(), 0, 0);
     conusLight.setActive(true);
     conusLight.setStaticLight(false);
-    conusLight.setSoft(false);
+    conusLight.setSoft(true);
+    conusLight.setSoftnessLength(10);
     
     lights.add(conusLight);
     
@@ -83,7 +84,7 @@ public class Player extends CompositeObject2D implements InputProcessor
   }
   
   //control
-  protected final float speedValue = 400.0f; 
+  protected final float speedValue = 1000.0f; 
   protected Vector2 speed          = new Vector2();
   protected Vector2 moveVec        = new Vector2(0, 0);
   protected Vector2 mousePoint     = new Vector2(0, 0);

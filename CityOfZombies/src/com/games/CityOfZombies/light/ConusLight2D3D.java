@@ -22,7 +22,7 @@ public class ConusLight2D3D extends ConeLight implements Light2D3D
                                new Vector3(MathUtils.cos(directionDegree * MathUtils.degRad),
                                            MathUtils.sin(directionDegree * MathUtils.degRad),
                                            0.0f),
-                               distance * 0.5f,
+                               distance * 0.75f,
                                96.0f - coneDegree,
                                color);
     LightWorld3D.instance.addLight(light3D);
@@ -62,7 +62,7 @@ public class ConusLight2D3D extends ConeLight implements Light2D3D
     light3D.position.x = getX();
     light3D.position.y = getY();
     light3D.conusAngle = 96.0f - getConeDegree();
-    light3D.radius = getDistance() * 0.5f;
+    light3D.radius = getDistance() * 0.75f;
     
     if (body != null && !body.isFixedRotation())
     {

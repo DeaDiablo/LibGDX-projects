@@ -62,8 +62,16 @@ public class ModelLayer extends Group3D
     {
       ModelObject3D model3D = null;
       
-      String fileName = model.textureFile;
-      fileName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.')) + ".obj";
+      String fileName = model.variables.get("model");
+      
+      if (fileName == null)
+        return;
+      
+      if (fileName.compareTo("*name*") == 0)
+      {
+        fileName = model.textureFile;
+        fileName = fileName.substring(fileName.lastIndexOf('/') + 1, fileName.lastIndexOf('.')) + ".obj";
+      }
       
       try
       {
@@ -96,7 +104,7 @@ public class ModelLayer extends Group3D
   @Override
   public void addModel3D(ModelObject3D model)
   {
-    String key = String.format("%d %d", (int)model.getX() / CityLayer.xGridSize, (int)model.getY() / CityLayer.yGridSize);
+    String key = String.format("%d %d", (int)(model.getX() - 0.5f)/ CityLayer.xGridSize, (int)(model.getY() - 0.5f)/ CityLayer.yGridSize);
     Array<ModelObject3D> arrayModel = mapModels.get(key);
     if (arrayModel == null)
     {
@@ -120,8 +128,8 @@ public class ModelLayer extends Group3D
       return false;
     
     Camera camera = scene.getCamera();
-    int blockX = (int)camera.position.x / CityLayer.xGridSize;
-    int blockY = (int)camera.position.y / CityLayer.yGridSize;
+    int blockX = (int)(camera.position.x  - 0.5f) / CityLayer.xGridSize;
+    int blockY = (int)(camera.position.y  - 0.5f) / CityLayer.yGridSize;
     
     if (blockX == oldBlockX && blockY == oldBlockY)
       return true;
